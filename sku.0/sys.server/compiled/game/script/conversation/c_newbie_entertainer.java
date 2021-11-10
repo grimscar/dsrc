@@ -514,7 +514,7 @@ public class c_newbie_entertainer extends script.base_script
         setCondition(self, CONDITION_CONVERSABLE);
         setCondition(self, CONDITION_INTERESTING);
         setInvulnerable(self, true);
-        setName(self, "Allura");
+        setName(self, "Holly");
         ai_lib.setDefaultCalmBehavior(self, ai_lib.BEHAVIOR_SENTINEL);
         return SCRIPT_CONTINUE;
     }
@@ -523,7 +523,7 @@ public class c_newbie_entertainer extends script.base_script
         setCondition(self, CONDITION_CONVERSABLE);
         setCondition(self, CONDITION_INTERESTING);
         setInvulnerable(self, true);
-        setName(self, "Allura");
+        setName(self, "Holly");
         ai_lib.setDefaultCalmBehavior(self, ai_lib.BEHAVIOR_SENTINEL);
         return SCRIPT_CONTINUE;
     }
