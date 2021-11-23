@@ -446,4 +446,4 @@ object/building/player/player_guildhall_tatooine_style_01.iff	meeting2	-3.85144	
 object/building/player/player_guildhall_tatooine_style_01.iff	meeting4	-4.00956	-8.5
 object/building/player/player_guildhall_tatooine_style_01.iff	meeting5	-4.13606	-8.5
 object/building/player/player_house_tree_house_02.iff	entry	100	0.1
-object/building/general/boss_nass_dungeon.iff	room1	100	0.1
+object/building/general/boss_nass_dungeon.iff	room1	100	-10
