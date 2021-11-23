@@ -1,14 +1,13 @@
 package script.terminal;
 
-import script.*;
-import script.library.city;
-import script.library.money;
-import script.library.sui;
-import script.library.utils;
+import script.menu_info;
+import script.modifiable_int;
+import script.obj_id;
+import script.string_id;
 
 public class grimtest_terminal extends script.terminal.base.base_terminal
 {
-    public grimterminal()
+    public grimtest_terminal()
     {
     }
     public static final string_id SID_BAZAAR_OPTIONS = new string_id("terminal_ui", "bazaar_options");
