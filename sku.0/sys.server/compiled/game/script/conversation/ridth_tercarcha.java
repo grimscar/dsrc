@@ -889,7 +889,7 @@ public class ridth_tercarcha extends script.base_script
     public int OnInitialize (obj_id self) throws InterruptedException
     {
     	if ((!isTangible (self)) || (isPlayer (self)))
-		    detachScript(self, "conversation.ridth_tercarcha"); // TODO: needs , "object/mobile/npc.iff");  added
+		    detachScript(self, "conversation.ridth_tercarcha");
 
 	    setCondition (self, CONDITION_CONVERSABLE);
 
@@ -924,7 +924,7 @@ public class ridth_tercarcha extends script.base_script
 	    return SCRIPT_CONTINUE;
     }
 
-    public boolean npcStartConversation(obj_id player, obj_id npc, string convoName, string_id greetingId, prose_package greetingProse, string_id[] responses) throws InterruptedException
+    public boolean npcStartConversation(obj_id player, obj_id npc, String convoName, string_id greetingId, prose_package greetingProse, string_id[] responses) throws InterruptedException
     {
     	Object[] objects = new Object[responses.length];
     	System.arraycopy(responses, 0, objects, 0, responses.length);
