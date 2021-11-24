@@ -31,12 +31,12 @@ public class ridth_tercarcha extends script.base_script
 
 	public boolean ridth_tercarcha_condition_isOnBunkerQuest (obj_id player, obj_id npc) throws InterruptedException
 	{
-	/*
-	This is true when the follow has happened:
-	Player has talked to the crazy scientist
-	Player has completed the crazed scientists tutorial quest
-	Player has accepted to go into ancient bunkers to obtain the DNA for him
-	*/
+		/*
+		This is true when the follow has happened:
+		Player has talked to the crazy scientist
+		Player has completed the crazed scientists tutorial quest
+		Player has accepted to go into ancient bunkers to obtain the DNA for him
+		*/
 		return true;
 	}
 
@@ -107,7 +107,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] (Continue watching...)
 	    //-- PLAYER: (Continue watching...)
-	    if (response == "s_33")
+	    if (response.equals("s_33"))
 	    {
 		//-- [NOTE] (After a moment, all grow silent. A door opens, and a being steps out.) Behold, we have created LIFE! (he shouts out happily.) Everyone said I was crazy, but I have ascended beyond anything they could ever dream of doing. You will be remembered and immortalized in history; go now before someone finds us here.
 		    if (ridth_tercarcha_condition__defaultCondition (player, npc))
@@ -133,7 +133,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] No, not yet.
 	    //-- PLAYER: No, not yet.
-	    if (response == "s_37")
+	    if (response.equals("s_37"))
 	    {
     		//-- [NOTE] Then get back out there. You're wasting our time!
 		    if (ridth_tercarcha_condition__defaultCondition (player, npc))
@@ -161,7 +161,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] Yes.
 	    //-- PLAYER: Yes.
-	    if (response == "s_40")
+	    if (response.equals("s_40"))
 	    {
     		//-- [NOTE] Perfect, here is the chip that contains all of the information you need for the location of the bunkers. (He hands you the chip and waves you off.) Hurry along now; time is of the essence, my friend!
 		    if (ridth_tercarcha_condition__defaultCondition (player, npc))
@@ -179,7 +179,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] 
 	    //-- PLAYER: No.
-    	if (response == "s_41")
+    	if (response.equals("s_41"))
     	{
 		    //-- [NOTE] Then why would you waste either of our time by acting like you were going to help? Begone from here.
 		    if (ridth_tercarcha_condition__defaultCondition (player, npc))
@@ -205,7 +205,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] Yes, here you go.
 	    //-- PLAYER: Yes, here you go.
-	    if (response == "s_45")
+	    if (response.equals("s_45"))
 	    {
     		//-- [NOTE] Excellent! (he exclaims, grabbing the device from you. He frantically starts manipulating buttons and levers on it while he compares information from his datapad. After a few moments, he ejects a small disc from his datapad and hands it towards you.) If you take this, then you will be able to find the location of the next bunker. You will still help me, won't you?
 		    if (ridth_tercarcha_condition__defaultCondition (player, npc))
@@ -276,7 +276,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] (Take the data chip)
 	    //-- PLAYER: (Take the data chip)
-	    if (response == "s_47")
+	    if (response.equals("s_47"))
 	    {
     		//-- [NOTE] Thank you so much. I am sure these bunkers will pose a more significant threat than before. Please be safe and hurry!
 		    if (ridth_tercarcha_condition__defaultCondition (player, npc))
@@ -294,7 +294,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] No, that was way too dangerous.
 	    //-- PLAYER: No, that was way too dangerous.
-	    if (response == "s_49")
+	    if (response.equals("s_49"))
 	    {
     		//-- [NOTE] I can't believe you would turn away after coming so far. Are you sure?
 		    if (ridth_tercarcha_condition__defaultCondition (player, npc))
@@ -363,7 +363,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] Fine. (Take the data chip)
 	    //-- PLAYER: Fine. (Take the data chip)
-	    if (response == "s_51")
+	    if (response.equals("s_51"))
 	    {
     		//-- [NOTE] Thank you so much. I am sure these bunkers will pose a more significant threat than before. Please be safe and hurry!
 		    if (ridth_tercarcha_condition__defaultCondition (player, npc))
@@ -381,7 +381,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] Yes, I value my life more.
 	    //-- PLAYER: Yes, I value my life more.
-	    if (response == "s_53")
+	    if (response.equals("s_53"))
 	    {
     		//-- [NOTE] Be that way, but should you change your mind...
 		    if (ridth_tercarcha_condition__defaultCondition (player, npc))
@@ -407,7 +407,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] No, not yet.
 	    //-- PLAYER: No, not yet.
-	    if (response == "s_56")
+	    if (response.equals("s_56"))
 	    {
     		//-- [NOTE] Then what are you wasting your time here then? Time is of the essence!
 		    if (ridth_tercarcha_condition__defaultCondition (player, npc))
@@ -433,7 +433,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] Yes, let's hear it.
 	    //-- PLAYER: Yes, let's hear it.
-	    if (response == "s_60")
+	    if (response.equals("s_60"))
 	    {
     		//-- [NOTE] Excellent! Excellent! (he exclaims as he pulls out a datapad. Reviewing the material closely, he begins to speak again.) I have triangulated a location that is near here. First, I need you to assist in gathering an ancient device that holds the key to finding the five other bunkers, which contain DNA samples that have the key to creating life itself. (He presses a few buttons on the datapad and brings up a map displaying the location to you.)
 		    if (ridth_tercarcha_condition__defaultCondition (player, npc))
@@ -483,7 +483,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] On second thought, I still don't have time.
 	    //-- PLAYER: On second thought, I still don't have time.
-	    if (response == "s_76")
+	    if (response.equals("s_76"))
 	    {
     		//-- [NOTE] You will know where you can find me.
 		    if (ridth_tercarcha_condition__defaultCondition (player, npc))
@@ -509,7 +509,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] (Continue to listen...)
 	    //-- PLAYER: (Continue to listen...)
-	    if (response == "s_64")
+	    if (response.equals("s_64"))
 	    {
     		//-- [NOTE] Go to this bunker; you will find that it has a series of traps meant to keep people out. You could bring friends that specialize in an array of talents that could prove to be useful. Once the bunker's security discovers you, you won't have much time to finish. Else all my life's work would be lost to the ruins. Failure is not an option.
 		    if (ridth_tercarcha_condition__defaultCondition (player, npc))
@@ -578,7 +578,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] Okay, I am off then.
 	    //-- PLAYER: Okay, I am off then.
-	    if (response == "s_68")
+	    if (response.equals("s_68"))
 	    {
     		//-- [NOTE] Excellent! Please hurry back once you have the device.
 		    if (ridth_tercarcha_condition__defaultCondition (player, npc))
@@ -598,7 +598,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] No, that sounds too dangerous.
 	    //-- PLAYER: No, that sounds too dangerous.
-	    if (response == "s_72")
+	    if (response.equals("s_72"))
 	    {
     		//-- [NOTE] You're no better than the rest. Begone!
 		    if (ridth_tercarcha_condition__defaultCondition (player, npc))
@@ -626,7 +626,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] (Lean in to listen...)
 	    //-- PLAYER: (Lean in to listen...)
-	    if (response == "s_82")
+	    if (response.equals("s_82"))
 	    {
     		//-- [NOTE] I could create a new lifeform for you. You could live an alternative life and do anything you wished with it!
 		    if (ridth_tercarcha_condition__defaultCondition (player, npc))
@@ -693,7 +693,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] Sure, you have my interest.
 	    //-- PLAYER: Sure, you have my interest.
-	    if (response == "s_86")
+	    if (response.equals("s_86"))
 	    {
     		//-- [NOTE] Excellent! Excellent! (he exclaims as he pulls out a datapad. Reviewing the material closely, he begins to speak again.) I have triangulated a location that is near here. First, I need you to assist in gathering an ancient device that holds the key to finding the five other bunkers, which contain DNA samples that have the key to creating life itself. (He presses a few buttons on the datapad and brings up a map displaying the location to you.)
 		    if (ridth_tercarcha_condition__defaultCondition (player, npc))
@@ -742,7 +742,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] I don't have time right now.
 	    //-- PLAYER: I don't have time right now.
-	    if (response == "s_102")
+	    if (response.equals("s_102"))
 	    {
     		doAnimationAction (player, "shake_head_no");
 
@@ -772,7 +772,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] (Continue to listen...)
 	    //-- PLAYER: (Continue to listen...)
-	    if (response == "s_90")
+	    if (response.equals("s_90"))
 	    {
     		//-- [NOTE] Go to this bunker; you will find that it has a series of traps meant to keep people out. You could bring friends that specialize in an array of talents that could prove to be useful. Once the bunker's security discovers you, you won't have much time to finish. Else all my life's work would be lost to the ruins. Failure is not an option.
 		    if (ridth_tercarcha_condition__defaultCondition (player, npc))
@@ -841,7 +841,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] Okay, I am off then.
 	    //-- PLAYER: Okay, I am off then.
-	    if (response == "s_94")
+	    if (response.equals("s_94"))
 	    {
     		doAnimationAction (player, "nod");
 
@@ -863,7 +863,7 @@ public class ridth_tercarcha extends script.base_script
 
 	    //-- [RESPONSE NOTE] No, that sounds too dangerous.
 	    //-- PLAYER: No, that sounds too dangerous.
-	    if (response == "s_98")
+	    if (response.equals("s_98"))
 	    {
     		doAnimationAction (player, "shake_head_no");
 
@@ -1275,7 +1275,7 @@ public class ridth_tercarcha extends script.base_script
 	    return SCRIPT_CONTINUE;
     }
 
-    public int OnNpcConversationResponse (obj_id self, string conversationId, obj_id player, string_id response) throws InterruptedException
+    public int OnNpcConversationResponse (obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
     {
     	if (conversationId != "ridth_tercarcha")
 		    return SCRIPT_CONTINUE;
