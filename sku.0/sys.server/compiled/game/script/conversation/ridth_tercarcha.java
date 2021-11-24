@@ -414,11 +414,9 @@ public class ridth_tercarcha extends script.base_script
 		    {
 			    //-- NPC: Then what are you wasting your time here then? Time is of the essence!
 			    string_id message = new string_id (c_stringFile, "s_57");
-            }
-			utils.removeScriptVar (player, "conversation.ridth_tercarcha.branchId");
-    			
-            npcEndConversationWithMessage (player, message);
-
+				utils.removeScriptVar (player, "conversation.ridth_tercarcha.branchId");
+            	npcEndConversationWithMessage (player, message);
+			}
 			return SCRIPT_CONTINUE;
 
     	}
