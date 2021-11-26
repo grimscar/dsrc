@@ -65,6 +65,7 @@
 0x05f58d3c	spacequest/space_battle/no_rank4_nova_01_03
 0x064fd7bf	spacequest/escort_duty/corellia_imperial_11
 0x068405ec	quest/recovery_quest_rebel_03
+0x069f8392	quest/grim_test_quest
 0x06a6d798	spacequest/escort/corellia_rebel_tier3_3_c
 0x06b57e05	quest/u13_ponda_pointer
 0x06c91703	quest/tatooine_entha_race3_restart
@@ -2521,6 +2522,7 @@
 0xf5235c1d	quest/outbreak_radio_delivery_03
 0xf5272668	spacequest/survival/no_rank4_orion_01_02
 0xf53d33ee	quest/ep3_kachirho_destroyed_camp
+0xf548ea1c	quest/wod_queen_mother_boss_fight
 0xf57d1323	spacequest/destroy/tatooine_imperial_tier3_4
 0xf58f532c	quest/test_checker
 0xf5901279	quest/c_story1_3_reb
