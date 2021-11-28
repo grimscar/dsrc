@@ -49,7 +49,6 @@ public class third_character_room_three_water_controls extends script.base_scrip
 		//-- PLAYER:[Access Water Controls]
 		if (response.equals("s_6"))
 		{
-			v1Status = true;
 			//--[NOTE] Current waterflow status:[Malfunctioning]
 			if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
 			{
