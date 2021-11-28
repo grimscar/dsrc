@@ -13,6 +13,32 @@ public class third_character_room_three_water_controls extends script.base_scrip
 	{
 		return true;
 	}
+	/*
+	public String valveOneStatus(obj_id player, obj_id npc) throws InterruptedException
+	{
+		if (v1Status)
+		{
+			return new String("Open");
+		}
+		return new String("Closed");
+	}
+	public String valveTwoStatus(obj_id player, obj_id npc) throws InterruptedException
+	{
+		if (v2Status)
+		{
+			return new String("Open");
+		}
+		return new String("Closed");
+	}
+	public String valveThreeStatus(obj_id player, obj_id npc) throws InterruptedException
+	{
+		if (v3Status)
+		{
+			return new String("Open");
+		}
+		return new String("Closed");
+	}
+	*/
 
 	public int third_character_room_three_water_controls_handleBranch1(obj_id player, obj_id npc, string_id response) throws InterruptedException
 	{
@@ -23,6 +49,7 @@ public class third_character_room_three_water_controls extends script.base_scrip
 		//-- PLAYER:[Access Water Controls]
 		if (response.equals("s_6"))
 		{
+			v1Status = true;
 			//--[NOTE] Current waterflow status:[Malfunctioning]
 			if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
 			{
@@ -357,6 +384,8 @@ public class third_character_room_three_water_controls extends script.base_scrip
 		//-- PLAYER:[Open Valve #1]
 		if (response.equals("s_14"))
 		{
+			prose_package pp = new prose_package();
+			pp.other.set("Open");
 			//--[NOTE] Return to Access Valve #1 Controls
 			if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
 			{
@@ -965,10 +994,6 @@ public class third_character_room_three_water_controls extends script.base_scrip
 
 		return SCRIPT_CONTINUE;
 	}
-
-	// ======================================================================
-	// Script Triggers
-	// ======================================================================
 
 	//-- This function should move to base_class.java
 	public boolean npcStartConversation(obj_id player, obj_id npc, String convoName, string_id greetingId, prose_package greetingProse, string_id[] responses) throws InterruptedException
