@@ -3,6 +3,9 @@ package script.conversation;
 import script.library.ai_lib;
 import script.library.chat;
 import script.library.utils;
+
+import javax.lang.model.util.ElementScanner6;
+
 import script.*;
 
 public class tutorial extends script.base_script
@@ -15,7 +18,6 @@ public class tutorial extends script.base_script
     {
     	return true;
     }
-
     public int tutorial_handleBranch1(obj_id player, obj_id npc, string_id response) throws InterruptedException
     {
     	//-- [BRANCH NOTE] Branch 1 Welcome Message
@@ -40,7 +42,6 @@ public class tutorial extends script.base_script
 				    hasResponse = true;
 				    hasResponse0 = true;
 			    }
-
 			    //-- PLAYER: Player Menu 3 [Log off]
 			    boolean hasResponse1 = false;
 			    if (tutorial_condition__defaultCondition(player, npc))
@@ -49,12 +50,10 @@ public class tutorial extends script.base_script
 				    hasResponse = true;
 				    hasResponse1 = true;
 			    }
-
 			    if (hasResponse)
 			    {
     				int responseIndex = 0;
 				    string_id responses [] = new string_id[numberOfResponses];
-
 				    if (hasResponse0)
                     {
     					responses [responseIndex++] = new string_id(c_stringFile, "s_6");
@@ -64,7 +63,6 @@ public class tutorial extends script.base_script
     					responses [responseIndex++] = new string_id(c_stringFile, "s_7");
                     }
 				    utils.setScriptVar(player, "conversation.tutorial.branchId", 2);
-
 				    npcSpeak(player, message);
 				    npcSetConversationResponses(player, responses);
 			    }
@@ -92,9 +90,6 @@ public class tutorial extends script.base_script
 		    {
     			//-- NPC: Branch 3 loop back to Branch 1
 			    string_id message = new string_id(c_stringFile, "s_9");
-            }
-            else
-            {
 			    utils.removeScriptVar(player, "conversation.tutorial.branchId");
 			    npcEndConversationWithMessage(player, message);
 		    }
@@ -110,9 +105,6 @@ public class tutorial extends script.base_script
 		    {
     			//-- NPC: Branch 4 [Log off Message]
 			    string_id message = new string_id(c_stringFile, "s_8");
-            }
-            else
-            {
 			    utils.removeScriptVar(player, "conversation.tutorial.branchId");
 			    npcEndConversationWithMessage(player, message);
             }
@@ -179,7 +171,7 @@ public class tutorial extends script.base_script
 		    if (hasResponse)
 		    {
     			int responseIndex = 0;
-			    string_id responses [] = new string_id[numberOfResponses];
+			    string_id responses[] = new string_id[numberOfResponses];
 			    if (hasResponse0)
                 {
     				responses [responseIndex++] = new string_id(c_stringFile, "s_4");
