@@ -229,7 +229,7 @@ public class tutorial extends script.base_script
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
     {
-    	if (conversationId != "tutorial")
+    	if (!conversationId.equals("tutorial"))
         {
 		    return SCRIPT_CONTINUE;
         }
