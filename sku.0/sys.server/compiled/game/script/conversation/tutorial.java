@@ -54,7 +54,7 @@ public class tutorial extends script.base_script
 			    if (hasResponse)
 			    {
     				int responseIndex = 0;
-				    string_id responses [] = new string_id [numberOfResponses];
+				    string_id responses [] = new string_id[numberOfResponses];
 
 				    if (hasResponse0)
                     {
@@ -132,8 +132,9 @@ public class tutorial extends script.base_script
     public int OnInitialize(obj_id self) throws InterruptedException
     {
     	if ((!isTangible(self)) ||(isPlayer(self)))
+        {
 		    detachScript(self, "conversation.tutorial");
-
+        }
 	    setCondition(self, CONDITION_CONVERSABLE);
 
 	    return SCRIPT_CONTINUE;
@@ -183,17 +184,16 @@ public class tutorial extends script.base_script
     	obj_id npc = self;
 
 	    if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        {
     		return SCRIPT_OVERRIDE;
-
+        }
 	    //-- [NOTE] Branch 1 Welcome Message
 	    if (tutorial_condition__defaultCondition(player, npc))
 	    {
     		//-- NPC: Branch 1 Welcome Message
 		    string_id message = new string_id(c_stringFile, "s_3");
 		    int numberOfResponses = 0;
-
 		    boolean hasResponse = false;
-
 		    //-- PLAYER: Player Menu 1
 		    boolean hasResponse0 = false;
 		    if (tutorial_condition__defaultCondition(player, npc))
@@ -206,14 +206,13 @@ public class tutorial extends script.base_script
 		    if (hasResponse)
 		    {
     			int responseIndex = 0;
-			    string_id responses [] = new string_id [numberOfResponses];
+			    string_id responses [] = new string_id[numberOfResponses];
 
 			    if (hasResponse0)
                 {
     				responses [responseIndex++] = new string_id(c_stringFile, "s_4");
                 }
 			    utils.setScriptVar(player, "conversation.tutorial.branchId", 1);
-
 			    npcStartConversation(player, npc, "tutorial", message, responses);
 		    }
 		    else
@@ -228,9 +227,6 @@ public class tutorial extends script.base_script
 
 	    return SCRIPT_CONTINUE;
     }
-
-    // ----------------------------------------------------------------------
-
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
     {
     	if (conversationId != "tutorial")
