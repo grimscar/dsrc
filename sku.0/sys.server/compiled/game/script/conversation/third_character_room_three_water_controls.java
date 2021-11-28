@@ -361,7 +361,7 @@ public class third_character_room_three_water_controls extends script.base_scrip
 			if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
 			{
 				//-- NPC: Return to Access Valve #1 Controls
-				string_id message = new string_id(c_stringFile, "s_10");
+				string_id message = new string_id(c_stringFile, "v1open");
 				int numberOfResponses = 0;
 				boolean hasResponse = false;
 				boolean hasResponse0 = false;
@@ -423,7 +423,7 @@ public class third_character_room_three_water_controls extends script.base_scrip
 			if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
 			{
 				//-- NPC: Return to Access Valve #1 Controls
-				string_id message = new string_id(c_stringFile, "s_10");
+				string_id message = new string_id(c_stringFile, "v1close");
 				int numberOfResponses = 0;
 				boolean hasResponse = false;
 				boolean hasResponse0 = false;
@@ -555,7 +555,7 @@ public class third_character_room_three_water_controls extends script.base_scrip
 			if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
 			{
 				//-- NPC: Return to Access Valve #2 Controls
-				string_id message = new string_id(c_stringFile, "s_23");
+				string_id message = new string_id(c_stringFile, "v2open");
 				int numberOfResponses = 0;
 				boolean hasResponse = false;
 				boolean hasResponse0 = false;
@@ -617,7 +617,7 @@ public class third_character_room_three_water_controls extends script.base_scrip
 			if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
 			{
 				//-- NPC: Return to Access Valve #2 Controls
-				string_id message = new string_id(c_stringFile, "s_23");
+				string_id message = new string_id(c_stringFile, "v2close");
 				int numberOfResponses = 0;
 				boolean hasResponse = false;
 				boolean hasResponse0 = false;
@@ -751,7 +751,7 @@ public class third_character_room_three_water_controls extends script.base_scrip
 			if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
 			{
 				//-- NPC: Return to Access Valve #3 Controls
-				string_id message = new string_id(c_stringFile, "s_10");
+				string_id message = new string_id(c_stringFile, "v3open");
 				int numberOfResponses = 0;
 				boolean hasResponse = false;
 				boolean hasResponse0 = false;
@@ -813,7 +813,7 @@ public class third_character_room_three_water_controls extends script.base_scrip
 			if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
 			{
 				//-- NPC: Return to Access Valve #3 Controls
-				string_id message = new string_id(c_stringFile, "s_10");
+				string_id message = new string_id(c_stringFile, "v3close");
 				int numberOfResponses = 0;
 				boolean hasResponse = false;
 				boolean hasResponse0 = false;
@@ -931,13 +931,6 @@ public class third_character_room_three_water_controls extends script.base_scrip
 
 		return SCRIPT_DEFAULT;
 	}
-
-	// ----------------------------------------------------------------------
-
-	// ======================================================================
-	// User Script Triggers
-	// ======================================================================
-
 	public int OnInitialize(obj_id self) throws InterruptedException
 	{
 		if ((!isTangible(self)) ||(isPlayer(self)))
