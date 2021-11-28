@@ -91,15 +91,25 @@ public class tutorial extends script.base_script
 			    string_id message = new string_id(c_stringFile, "s_3");
 				int numberOfResponses = 0;
 				boolean hasResponse = false;
+				boolean hasResponse0 = false;
 				if (tutorial_condition__defaultCondition(player, npc))
 				{
 					++numberOfResponses;
 					hasResponse = true;
+					hasResponse0 = true;
 				}
 				if (hasResponse)
 				{
+					int responseIndex = 0;
 					string_id responses[] = new string_id[numberOfResponses];
 					if (hasResponse)
+					{
+						responses[responseIndex++] = new string_id(c_stringFile, "s_6");
+					}
+					if (hasResponse0)
+					{
+						responses[responseIndex++] = new string_id(c_stringFile, "s_7");
+					}
 					utils.setScriptVar(player, "conversation.tutorial.branchId", 1);
 					npcSpeak(player, message);
 					npcSetConversationResponses(player, responses);
