@@ -4,8 +4,6 @@ import script.library.ai_lib;
 import script.library.chat;
 import script.library.utils;
 
-import javax.lang.model.util.ElementScanner6;
-
 import script.*;
 
 public class tutorial extends script.base_script
@@ -93,43 +91,25 @@ public class tutorial extends script.base_script
 			    string_id message = new string_id(c_stringFile, "s_3");
 				int numberOfResponses = 0;
 				boolean hasResponse = false;
-				boolean hasResponse0 = false;
 				if (tutorial_condition__defaultCondition(player, npc))
-			    {
-    				++numberOfResponses;
-				    hasResponse = true;
-				    hasResponse0 = true;
-			    }
-			    //-- PLAYER: Player Menu 3[Log off]
-			    boolean hasResponse1 = false;
-			    if (tutorial_condition__defaultCondition(player, npc))
-			    {
-    				++numberOfResponses;
-				    hasResponse = true;
-				    hasResponse1 = true;
-			    }
-			    if (hasResponse)
-			    {
-    				int responseIndex = 0;
-				    string_id responses[] = new string_id[numberOfResponses];
-				    if (hasResponse0)
-                    {
-    					responses[responseIndex++] = new string_id(c_stringFile, "s_6");
-                    }
-				    if (hasResponse1)
-                    {
-    					responses[responseIndex++] = new string_id(c_stringFile, "s_7");
-                    }
-				    utils.setScriptVar(player, "conversation.tutorial.branchId", 1);
-				    npcSpeak(player, message);
-				    npcSetConversationResponses(player, responses);
-			    }
-			    else
-			    {
-    				utils.removeScriptVar(player, "conversation.tutorial.branchId");
-				    npcEndConversationWithMessage(player, message);
-			    }
-			    return SCRIPT_CONTINUE;
+				{
+					++numberOfResponses;
+					hasResponse = true;
+				}
+				if (hasResponse)
+				{
+					string_id responses[] = new string_id[numberOfResponses];
+					if (hasResponse)
+					utils.setScriptVar(player, "conversation.tutorial.branchId", 1);
+					npcSpeak(player, message);
+					npcSetConversationResponses(player, responses);
+				}
+				else
+				{
+			    	utils.removeScriptVar(player, "conversation.tutorial.branchId");
+			    	npcEndConversationWithMessage(player, message);
+				}
+				return SCRIPT_CONTINUE;
 		    }
 	    }
 
