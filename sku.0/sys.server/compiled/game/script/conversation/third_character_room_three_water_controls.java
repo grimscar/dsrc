@@ -437,7 +437,7 @@ public class third_character_room_three_water_controls extends script.base_scrip
 					{
 						responses[responseIndex++] = new string_id(c_stringFile, "s_42");
 					}
-					utils.setScriptVar(player, "conversation.third_character_room_three_water_controls.branchId", 3);
+					utils.setScriptVar(player, "conversation.third_character_room_three_water_controls.branchId", 2);
 					npcSpeak(player, message);
 					npcSetConversationResponses(player, responses);
 				}
