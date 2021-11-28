@@ -555,11 +555,55 @@ public class third_character_room_three_water_controls extends script.base_scrip
 			if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
 			{
 				//-- NPC: Return to Access Valve #2 Controls
-				string_id message = new string_id(c_stringFile, "s_32");
+				string_id message = new string_id(c_stringFile, "s_23");
+				int numberOfResponses = 0;
+				boolean hasResponse = false;
+				boolean hasResponse0 = false;
+				if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse0 = true;
+				}
+				boolean hasResponse1 = false;
+				if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse1 = true;
+				}
+				boolean hasResponse2 = false;
+				if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse2 = true;
+				}
+				if (hasResponse)
+				{
+					int responseIndex = 0;
+					string_id responses[] = new string_id[numberOfResponses];
+					if (hasResponse0)
+					{
+						responses[responseIndex++] = new string_id(c_stringFile, "s_30");
+					}
+					if(hasResponse1)
+					{
+						responses[responseIndex++] = new string_id(c_stringFile, "s_34");
+					}
+					if(hasResponse2)
+					{
+						responses[responseIndex++] = new string_id(c_stringFile, "s_38");
+					}
+					utils.setScriptVar(player, "conversation.third_character_room_three_water_controls.branchId", 7);
+					npcSpeak(player, message);
+					npcSetConversationResponses(player, responses);
+				}
+				else
+				{
 				utils.removeScriptVar(player, "conversation.third_character_room_three_water_controls.branchId");
-
 				npcEndConversationWithMessage(player, message);
-
+				}
 				return SCRIPT_CONTINUE;
 			}
 
@@ -573,11 +617,55 @@ public class third_character_room_three_water_controls extends script.base_scrip
 			if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
 			{
 				//-- NPC: Return to Access Valve #2 Controls
-				string_id message = new string_id(c_stringFile, "s_36");
+				string_id message = new string_id(c_stringFile, "s_23");
+				int numberOfResponses = 0;
+				boolean hasResponse = false;
+				boolean hasResponse0 = false;
+				if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse0 = true;
+				}
+				boolean hasResponse1 = false;
+				if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse1 = true;
+				}
+				boolean hasResponse2 = false;
+				if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse2 = true;
+				}
+				if (hasResponse)
+				{
+					int responseIndex = 0;
+					string_id responses[] = new string_id[numberOfResponses];
+					if (hasResponse0)
+					{
+						responses[responseIndex++] = new string_id(c_stringFile, "s_30");
+					}
+					if(hasResponse1)
+					{
+						responses[responseIndex++] = new string_id(c_stringFile, "s_34");
+					}
+					if(hasResponse2)
+					{
+						responses[responseIndex++] = new string_id(c_stringFile, "s_38");
+					}
+					utils.setScriptVar(player, "conversation.third_character_room_three_water_controls.branchId", 7);
+					npcSpeak(player, message);
+					npcSetConversationResponses(player, responses);
+				}
+				else
+				{
 				utils.removeScriptVar(player, "conversation.third_character_room_three_water_controls.branchId");
-
 				npcEndConversationWithMessage(player, message);
-
+				}
 				return SCRIPT_CONTINUE;
 			}
 
@@ -663,11 +751,55 @@ public class third_character_room_three_water_controls extends script.base_scrip
 			if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
 			{
 				//-- NPC: Return to Access Valve #3 Controls
-				string_id message = new string_id(c_stringFile, "s_48");
+				string_id message = new string_id(c_stringFile, "s_10");
+				int numberOfResponses = 0;
+				boolean hasResponse = false;
+				boolean hasResponse0 = false;
+				if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse0 = true;
+				}
+				boolean hasResponse1 = false;
+				if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse1 = true;
+				}
+				boolean hasResponse2 = false;
+				if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse2 = true;
+				}
+				if (hasResponse)
+				{
+					int responseIndex = 0;
+					string_id responses[] = new string_id[numberOfResponses];
+					if (hasResponse0)
+					{
+						responses[responseIndex++] = new string_id(c_stringFile, "s_46");
+					}
+					if(hasResponse1)
+					{
+						responses[responseIndex++] = new string_id(c_stringFile, "s_50");
+					}
+					if(hasResponse2)
+					{
+						responses[responseIndex++] = new string_id(c_stringFile, "s_54");
+					}
+					utils.setScriptVar(player, "conversation.third_character_room_three_water_controls.branchId", 11);
+					npcSpeak(player, message);
+					npcSetConversationResponses(player, responses);
+				}
+				else
+				{
 				utils.removeScriptVar(player, "conversation.third_character_room_three_water_controls.branchId");
-
 				npcEndConversationWithMessage(player, message);
-
+				}
 				return SCRIPT_CONTINUE;
 			}
 
@@ -681,11 +813,55 @@ public class third_character_room_three_water_controls extends script.base_scrip
 			if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
 			{
 				//-- NPC: Return to Access Valve #3 Controls
-				string_id message = new string_id(c_stringFile, "s_52");
+				string_id message = new string_id(c_stringFile, "s_10");
+				int numberOfResponses = 0;
+				boolean hasResponse = false;
+				boolean hasResponse0 = false;
+				if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse0 = true;
+				}
+				boolean hasResponse1 = false;
+				if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse1 = true;
+				}
+				boolean hasResponse2 = false;
+				if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse2 = true;
+				}
+				if (hasResponse)
+				{
+					int responseIndex = 0;
+					string_id responses[] = new string_id[numberOfResponses];
+					if (hasResponse0)
+					{
+						responses[responseIndex++] = new string_id(c_stringFile, "s_46");
+					}
+					if(hasResponse1)
+					{
+						responses[responseIndex++] = new string_id(c_stringFile, "s_50");
+					}
+					if(hasResponse2)
+					{
+						responses[responseIndex++] = new string_id(c_stringFile, "s_54");
+					}
+					utils.setScriptVar(player, "conversation.third_character_room_three_water_controls.branchId", 11);
+					npcSpeak(player, message);
+					npcSetConversationResponses(player, responses);
+				}
+				else
+				{
 				utils.removeScriptVar(player, "conversation.third_character_room_three_water_controls.branchId");
-
 				npcEndConversationWithMessage(player, message);
-
+				}
 				return SCRIPT_CONTINUE;
 			}
 
