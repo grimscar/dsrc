@@ -20,14 +20,14 @@ public class tutorial extends script.base_script
     }
     public int tutorial_handleBranch1(obj_id player, obj_id npc, string_id response) throws InterruptedException
     {
-    	//-- [BRANCH NOTE] Branch 1 Welcome Message
+    	//--[BRANCH NOTE] Branch 1 Welcome Message
     	//-- NPC: Branch 1 Welcome Message
 
-	    //-- [RESPONSE NOTE] Player Menu 1
+	    //--[RESPONSE NOTE] Player Menu 1
 	    //-- PLAYER: Player Menu 1
 	    if (response.equals("s_4"))
 	    {
-    		//-- [NOTE] Branch 2 Menu
+    		//--[NOTE] Branch 2 Menu
 		    if (tutorial_condition__defaultCondition(player, npc))
 		    {
     			//-- NPC: Branch 2 Menu
@@ -42,7 +42,7 @@ public class tutorial extends script.base_script
 				    hasResponse = true;
 				    hasResponse0 = true;
 			    }
-			    //-- PLAYER: Player Menu 3 [Log off]
+			    //-- PLAYER: Player Menu 3[Log off]
 			    boolean hasResponse1 = false;
 			    if (tutorial_condition__defaultCondition(player, npc))
 			    {
@@ -53,14 +53,14 @@ public class tutorial extends script.base_script
 			    if (hasResponse)
 			    {
     				int responseIndex = 0;
-				    string_id responses [] = new string_id[numberOfResponses];
+				    string_id responses[] = new string_id[numberOfResponses];
 				    if (hasResponse0)
                     {
-    					responses [responseIndex++] = new string_id(c_stringFile, "s_6");
+    					responses[responseIndex++] = new string_id(c_stringFile, "s_6");
                     }
 				    if (hasResponse1)
                     {
-    					responses [responseIndex++] = new string_id(c_stringFile, "s_7");
+    					responses[responseIndex++] = new string_id(c_stringFile, "s_7");
                     }
 				    utils.setScriptVar(player, "conversation.tutorial.branchId", 2);
 				    npcSpeak(player, message);
@@ -78,32 +78,49 @@ public class tutorial extends script.base_script
     }
     public int tutorial_handleBranch2(obj_id player, obj_id npc, string_id response) throws InterruptedException
     {
-    	//-- [BRANCH NOTE] Branch 2 Menu
+    	//--[BRANCH NOTE] Branch 2 Menu
     	//-- NPC: Branch 2 Menu
 
-	    //-- [RESPONSE NOTE] Player Menu 2
+	    //--[RESPONSE NOTE] Player Menu 2
 	    //-- PLAYER: Player Menu 2
 	    if (response.equals("s_6"))
 	    {
-    		//-- [NOTE] Branch 3 loop back to Branch 1
+    		//--[NOTE] Branch 3 loop back to Branch 1
 		    if (tutorial_condition__defaultCondition(player, npc))
 		    {
-    			//-- NPC: Branch 3 loop back to Branch 1
-			    string_id message = new string_id(c_stringFile, "s_9");
-			    utils.removeScriptVar(player, "conversation.tutorial.branchId");
-			    npcEndConversationWithMessage(player, message);
+    			//-- NPC: Branch 3 loop back to Branch 1 s_9
+				// s_3 is the welcome screen that we loop to
+			    string_id message = new string_id(c_stringFile, "s_3");
+				int numberOfResponses = 0;
+				boolean hasResponse = false;
+				if (tutorial_condition__defaultCondition(player, npc))
+				{
+					hasResponse = true;
+				}
+				if (hasResponse)
+				{
+					string_id responses[] = new string_id[numberOfResponses];
+					utils.setScriptVar(player, "conversation.tutorial.branchId", 1);
+					npcSpeak(player, message);
+					npcSetConversationResponses(player, responses);
+				}
+				else
+				{
+			    	utils.removeScriptVar(player, "conversation.tutorial.branchId");
+			    	npcEndConversationWithMessage(player, message);
+				}
+				return SCRIPT_CONTINUE;
 		    }
-            return SCRIPT_CONTINUE;
 	    }
 
-	    //-- [RESPONSE NOTE] Player Menu 3 [Log off]
-	    //-- PLAYER: Player Menu 3 [Log off]
+	    //--[RESPONSE NOTE] Player Menu 3[Log off]
+	    //-- PLAYER: Player Menu 3[Log off]
 	    if (response.equals("s_7"))
 	    {
-    		//-- [NOTE] 
+    		//--[NOTE] 
 		    if (tutorial_condition__defaultCondition(player, npc))
 		    {
-    			//-- NPC: Branch 4 [Log off Message]
+    			//-- NPC: Branch 4[Log off Message]
 			    string_id message = new string_id(c_stringFile, "s_8");
 			    utils.removeScriptVar(player, "conversation.tutorial.branchId");
 			    npcEndConversationWithMessage(player, message);
@@ -153,7 +170,7 @@ public class tutorial extends script.base_script
         {
     		return SCRIPT_OVERRIDE;
         }
-	    //-- [NOTE] Branch 1 Welcome Message
+	    //--[NOTE] Branch 1 Welcome Message
 	    if (tutorial_condition__defaultCondition(player, npc))
 	    {
     		//-- NPC: Branch 1 Welcome Message
@@ -174,7 +191,7 @@ public class tutorial extends script.base_script
 			    string_id responses[] = new string_id[numberOfResponses];
 			    if (hasResponse0)
                 {
-    				responses [responseIndex++] = new string_id(c_stringFile, "s_4");
+    				responses[responseIndex++] = new string_id(c_stringFile, "s_4");
                 }
 			    utils.setScriptVar(player, "conversation.tutorial.branchId", 1);
 			    npcStartConversation(player, npc, "tutorial", message, responses);
