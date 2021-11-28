@@ -102,13 +102,9 @@ public class tutorial extends script.base_script
 				{
 					int responseIndex = 0;
 					string_id responses[] = new string_id[numberOfResponses];
-					if (hasResponse)
-					{
-						responses[responseIndex++] = new string_id(c_stringFile, "s_6");
-					}
 					if (hasResponse0)
 					{
-						responses[responseIndex++] = new string_id(c_stringFile, "s_7");
+						responses[responseIndex++] = new string_id(c_stringFile, "s_4");
 					}
 					utils.setScriptVar(player, "conversation.tutorial.branchId", 1);
 					npcSpeak(player, message);
