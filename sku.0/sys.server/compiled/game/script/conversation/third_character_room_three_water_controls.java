@@ -2,19 +2,23 @@ package script.conversation;
 
 import script.library.ai_lib;
 import script.library.chat;
+import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class 3rd_character_room_three_water_controls extends script.base_script
+public class third_character_room_three_water_controls extends script.base_script
 {
-	string c_stringFile = "conversation/3rd_character_room_three_water_controls";
+    public third_character_room_three_water_controls()
+    {
+    }
+	String c_stringFile = "conversation/third_character_room_three_water_controls";
 
-	boolean 3rd_character_room_three_water_controls_condition__defaultCondition (obj_id player, obj_id npc)
+	public boolean third_character_room_three_water_controls_condition__defaultCondition (obj_id player, obj_id npc) throws InterruptedException
 	{
 		return true;
 	}
 
-	int 3rd_character_room_three_water_controls_handleBranch1 (obj_id player, obj_id npc, string_id response)
+	public int third_character_room_three_water_controls_handleBranch1 (obj_id player, obj_id npc, string_id response) throws InterruptedException
 	{
 		//-- [BRANCH NOTE] Initial Weclome Screen:
 		//-- NPC: Initial Weclome Screen:
@@ -24,7 +28,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		if (response.equals("s_4"))
 		{
 			//-- [NOTE] Current waterflow status:[Malfunctioning]
-			if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+			if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 			{
 				//-- NPC: Current waterflow status:[Malfunctioning]
 				string_id message = new string_id (c_stringFile, "s_6");
@@ -34,7 +38,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 
 				//-- PLAYER: [Access Valve #1 Controls]
 				boolean hasResponse0 = false;
-				if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+				if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 				{
 					++numberOfResponses;
 					hasResponse = true;
@@ -43,7 +47,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 
 				//-- PLAYER: [Access Valve #2 Controls]
 				boolean hasResponse1 = false;
-				if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+				if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 				{
 					++numberOfResponses;
 					hasResponse = true;
@@ -52,7 +56,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 
 				//-- PLAYER: [Access Valve #3 Controls]
 				boolean hasResponse2 = false;
-				if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+				if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 				{
 					++numberOfResponses;
 					hasResponse = true;
@@ -61,7 +65,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 
 				//-- PLAYER: [Log off]
 				boolean hasResponse3 = false;
-				if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+				if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 				{
 					++numberOfResponses;
 					hasResponse = true;
@@ -89,14 +93,14 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 					{
 						responses [responseIndex++] = new string_id (c_stringFile, "s_11");
 					}
-					utils.setScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId", 2);
+					utils.setScriptVar (player, "conversation.third_character_room_three_water_controls.branchId", 2);
 
 					npcSpeak (player, message);
 					npcSetConversationResponses (player, responses);
 				}
 				else
 				{
-					utils.removeScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId");
+					utils.removeScriptVar (player, "conversation.third_character_room_three_water_controls.branchId");
 
 					npcEndConversationWithMessage (player, message);
 				}
@@ -111,11 +115,11 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		if (response.equals("s_37"))
 		{
 			//-- [NOTE] 5% chance this auto-solves otherwise this causes flooding that drastically slows down the player but after XX seconds a water system kicks in to drain allowing them through.
-			if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+			if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 			{
 				//-- NPC: 5% chance this auto-solves otherwise this causes flooding that drastically slows down the player but after XX seconds a water system kicks in to drain allowing them through.
 				string_id message = new string_id (c_stringFile, "s_38");
-				utils.removeScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId");
+				utils.removeScriptVar (player, "conversation.third_character_room_three_water_controls.branchId");
 
 				npcEndConversationWithMessage (player, message);
 
@@ -129,11 +133,11 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		if (response.equals("s_5"))
 		{
 			//-- [NOTE] System shutting down
-			if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+			if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 			{
 				//-- NPC: System shutting down
 				string_id message = new string_id (c_stringFile, "s_36");
-				utils.removeScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId");
+				utils.removeScriptVar (player, "conversation.third_character_room_three_water_controls.branchId");
 
 				npcEndConversationWithMessage (player, message);
 
@@ -145,9 +149,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		return SCRIPT_DEFAULT;
 	}
 
-	// ----------------------------------------------------------------------
-
-	int 3rd_character_room_three_water_controls_handleBranch2 (obj_id player, obj_id npc, string_id response)
+	public int third_character_room_three_water_controls_handleBranch2 (obj_id player, obj_id npc, string_id response) throws InterruptedException
 	{
 		//-- [BRANCH NOTE] Current waterflow status:[Malfunctioning]
 		//-- NPC: Current waterflow status:[Malfunctioning]
@@ -157,7 +159,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		if (response.equals("s_8"))
 		{
 			//-- [NOTE] Please select an option:
-			if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+			if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 			{
 				//-- NPC: Please select an option:
 				string_id message = new string_id (c_stringFile, "s_13");
@@ -167,7 +169,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 
 				//-- PLAYER: [Open Valve #1]
 				boolean hasResponse0 = false;
-				if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+				if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 				{
 					++numberOfResponses;
 					hasResponse = true;
@@ -176,7 +178,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 
 				//-- PLAYER: [Close Valve #1]
 				boolean hasResponse1 = false;
-				if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+				if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 				{
 					++numberOfResponses;
 					hasResponse = true;
@@ -185,7 +187,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 
 				//-- PLAYER: [Return to Menu]
 				boolean hasResponse2 = false;
-				if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+				if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 				{
 					++numberOfResponses;
 					hasResponse = true;
@@ -209,14 +211,14 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 					{
 						responses [responseIndex++] = new string_id (c_stringFile, "s_16");
 					}
-					utils.setScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId", 3);
+					utils.setScriptVar (player, "conversation.third_character_room_three_water_controls.branchId", 3);
 
 					npcSpeak (player, message);
 					npcSetConversationResponses (player, responses);
 				}
 				else
 				{
-					utils.removeScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId");
+					utils.removeScriptVar (player, "conversation.third_character_room_three_water_controls.branchId");
 
 					npcEndConversationWithMessage (player, message);
 				}
@@ -231,7 +233,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		if (response.equals("s_9"))
 		{
 			//-- [NOTE] Please select an option:
-			if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+			if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 			{
 				//-- NPC: Please select an option:
 				string_id message = new string_id (c_stringFile, "s_17");
@@ -241,7 +243,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 
 				//-- PLAYER: [Open Valve #2]
 				boolean hasResponse0 = false;
-				if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+				if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 				{
 					++numberOfResponses;
 					hasResponse = true;
@@ -250,7 +252,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 
 				//-- PLAYER: [Close Valve #2]
 				boolean hasResponse1 = false;
-				if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+				if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 				{
 					++numberOfResponses;
 					hasResponse = true;
@@ -259,7 +261,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 
 				//-- PLAYER: [Return to Menu]
 				boolean hasResponse2 = false;
-				if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+				if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 				{
 					++numberOfResponses;
 					hasResponse = true;
@@ -283,14 +285,14 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 					{
 						responses [responseIndex++] = new string_id (c_stringFile, "s_21");
 					}
-					utils.setScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId", 7);
+					utils.setScriptVar (player, "conversation.third_character_room_three_water_controls.branchId", 7);
 
 					npcSpeak (player, message);
 					npcSetConversationResponses (player, responses);
 				}
 				else
 				{
-					utils.removeScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId");
+					utils.removeScriptVar (player, "conversation.third_character_room_three_water_controls.branchId");
 
 					npcEndConversationWithMessage (player, message);
 				}
@@ -305,7 +307,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		if (response.equals("s_12"))
 		{
 			//-- [NOTE] Please select an option:
-			if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+			if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 			{
 				//-- NPC: Please select an option:
 				string_id message = new string_id (c_stringFile, "s_22");
@@ -315,7 +317,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 
 				//-- PLAYER: [Open Valve #3]
 				boolean hasResponse0 = false;
-				if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+				if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 				{
 					++numberOfResponses;
 					hasResponse = true;
@@ -324,7 +326,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 
 				//-- PLAYER: [Close Valve #3]
 				boolean hasResponse1 = false;
-				if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+				if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 				{
 					++numberOfResponses;
 					hasResponse = true;
@@ -333,7 +335,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 
 				//-- PLAYER: [Return to Menu]
 				boolean hasResponse2 = false;
-				if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+				if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 				{
 					++numberOfResponses;
 					hasResponse = true;
@@ -357,14 +359,14 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 					{
 						responses [responseIndex++] = new string_id (c_stringFile, "s_25");
 					}
-					utils.setScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId", 11);
+					utils.setScriptVar (player, "conversation.third_character_room_three_water_controls.branchId", 11);
 
 					npcSpeak (player, message);
 					npcSetConversationResponses (player, responses);
 				}
 				else
 				{
-					utils.removeScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId");
+					utils.removeScriptVar (player, "conversation.third_character_room_three_water_controls.branchId");
 
 					npcEndConversationWithMessage (player, message);
 				}
@@ -379,11 +381,11 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		if (response.equals("s_11"))
 		{
 			//-- [NOTE] System shutting down
-			if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+			if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 			{
 				//-- NPC: System shutting down
 				string_id message = new string_id (c_stringFile, "s_35");
-				utils.removeScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId");
+				utils.removeScriptVar (player, "conversation.third_character_room_three_water_controls.branchId");
 
 				npcEndConversationWithMessage (player, message);
 
@@ -395,9 +397,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		return SCRIPT_DEFAULT;
 	}
 
-	// ----------------------------------------------------------------------
-
-	int 3rd_character_room_three_water_controls_handleBranch3 (obj_id player, obj_id npc, string_id response)
+	public int third_character_room_three_water_controls_handleBranch3 (obj_id player, obj_id npc, string_id response) throws InterruptedException
 	{
 		//-- [BRANCH NOTE] Please select an option:
 		//-- NPC: Please select an option:
@@ -407,11 +407,11 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		if (response.equals("s_14"))
 		{
 			//-- [NOTE] Return to Access Valve #1 Controls
-			if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+			if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 			{
 				//-- NPC: Return to Access Valve #1 Controls
 				string_id message = new string_id (c_stringFile, "s_26");
-				utils.removeScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId");
+				utils.removeScriptVar (player, "conversation.third_character_room_three_water_controls.branchId");
 
 				npcEndConversationWithMessage (player, message);
 
@@ -425,11 +425,11 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		if (response.equals("s_15"))
 		{
 			//-- [NOTE] Return to Access Valve #1 Controls
-			if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+			if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 			{
 				//-- NPC: Return to Access Valve #1 Controls
 				string_id message = new string_id (c_stringFile, "s_27");
-				utils.removeScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId");
+				utils.removeScriptVar (player, "conversation.third_character_room_three_water_controls.branchId");
 
 				npcEndConversationWithMessage (player, message);
 
@@ -443,11 +443,11 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		if (response.equals("s_16"))
 		{
 			//-- [NOTE] Return to Current Waterflow Status
-			if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+			if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 			{
 				//-- NPC: Return to Current Waterflow Status
 				string_id message = new string_id (c_stringFile, "s_28");
-				utils.removeScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId");
+				utils.removeScriptVar (player, "conversation.third_character_room_three_water_controls.branchId");
 
 				npcEndConversationWithMessage (player, message);
 
@@ -459,9 +459,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		return SCRIPT_DEFAULT;
 	}
 
-	// ----------------------------------------------------------------------
-
-	int 3rd_character_room_three_water_controls_handleBranch7 (obj_id player, obj_id npc, string_id response)
+	public int third_character_room_three_water_controls_handleBranch7 (obj_id player, obj_id npc, string_id response) throws InterruptedException
 	{
 		//-- [BRANCH NOTE] Please select an option:
 		//-- NPC: Please select an option:
@@ -471,11 +469,11 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		if (response.equals("s_18"))
 		{
 			//-- [NOTE] Return to Access Valve #2 Controls
-			if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+			if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 			{
 				//-- NPC: Return to Access Valve #2 Controls
 				string_id message = new string_id (c_stringFile, "s_29");
-				utils.removeScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId");
+				utils.removeScriptVar (player, "conversation.third_character_room_three_water_controls.branchId");
 
 				npcEndConversationWithMessage (player, message);
 
@@ -489,11 +487,11 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		if (response.equals("s_20"))
 		{
 			//-- [NOTE] Return to Access Valve #2 Controls
-			if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+			if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 			{
 				//-- NPC: Return to Access Valve #2 Controls
 				string_id message = new string_id (c_stringFile, "s_30");
-				utils.removeScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId");
+				utils.removeScriptVar (player, "conversation.third_character_room_three_water_controls.branchId");
 
 				npcEndConversationWithMessage (player, message);
 
@@ -507,11 +505,11 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		if (response.equals("s_21"))
 		{
 			//-- [NOTE] Return to Current Waterflow Status
-			if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+			if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 			{
 				//-- NPC: Return to Current Waterflow Status
 				string_id message = new string_id (c_stringFile, "s_31");
-				utils.removeScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId");
+				utils.removeScriptVar (player, "conversation.third_character_room_three_water_controls.branchId");
 
 				npcEndConversationWithMessage (player, message);
 
@@ -523,9 +521,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		return SCRIPT_DEFAULT;
 	}
 
-	// ----------------------------------------------------------------------
-
-	int 3rd_character_room_three_water_controls_handleBranch11 (obj_id player, obj_id npc, string_id response)
+	public int third_character_room_three_water_controls_handleBranch11 (obj_id player, obj_id npc, string_id response) throws InterruptedException
 	{
 		//-- [BRANCH NOTE] Please select an option:
 		//-- NPC: Please select an option:
@@ -535,11 +531,11 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		if (response.equals("s_23"))
 		{
 			//-- [NOTE] Return to Access Valve #3 Controls
-			if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+			if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 			{
 				//-- NPC: Return to Access Valve #3 Controls
 				string_id message = new string_id (c_stringFile, "s_32");
-				utils.removeScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId");
+				utils.removeScriptVar (player, "conversation.third_character_room_three_water_controls.branchId");
 
 				npcEndConversationWithMessage (player, message);
 
@@ -553,11 +549,11 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		if (response.equals("s_24"))
 		{
 			//-- [NOTE] Return to Access Valve #3 Controls
-			if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+			if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 			{
 				//-- NPC: Return to Access Valve #3 Controls
 				string_id message = new string_id (c_stringFile, "s_33");
-				utils.removeScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId");
+				utils.removeScriptVar (player, "conversation.third_character_room_three_water_controls.branchId");
 
 				npcEndConversationWithMessage (player, message);
 
@@ -571,11 +567,11 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		if (response.equals("s_25"))
 		{
 			//-- [NOTE] Return to Current Waterflow Status
-			if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+			if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 			{
 				//-- NPC: Return to Current Waterflow Status
 				string_id message = new string_id (c_stringFile, "s_34");
-				utils.removeScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId");
+				utils.removeScriptVar (player, "conversation.third_character_room_three_water_controls.branchId");
 
 				npcEndConversationWithMessage (player, message);
 
@@ -587,31 +583,25 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		return SCRIPT_DEFAULT;
 	}
 
-	// ----------------------------------------------------------------------
-
-	// ======================================================================
-	// User Script Triggers
-	// ======================================================================
-
-	trigger OnInitialize ()
+	public int OnInitialize (obj_id self) throws InterruptedException
 	{
 		if ((!isTangible (self)) || (isPlayer (self)))
 		{
-			detachScript(self, "conversation.3rd_character_room_three_water_controls");
+			detachScript(self, "conversation.third_character_room_three_water_controls");
 		}
 		setCondition (self, CONDITION_CONVERSABLE);
 
 		return SCRIPT_CONTINUE;
 	}
 
-	trigger OnAttach ()
+	public int OnAttach (obj_id self) throws InterruptedException
 	{
 		setCondition (self, CONDITION_CONVERSABLE);
 
 		return SCRIPT_CONTINUE;
 	}
 
-	trigger OnObjectMenuRequest (obj_id player, menu_info menuInfo)
+	public int OnObjectMenuRequest (obj_id self, obj_id player, menu_info menuInfo) throws InterruptedException
 	{
 		int menu = menuInfo.addRootMenu (menu_info_types.CONVERSE_START, null);
 		menu_info_data menuInfoData = menuInfo.getMenuItemById (menu);
@@ -621,10 +611,10 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		return SCRIPT_CONTINUE;
 	}
 
-	trigger OnIncapacitated (obj_id killer)
+	public int OnIncapacitated (obj_id self, obj_id killer) throws InterruptedException
 	{
 		clearCondition (self, CONDITION_CONVERSABLE);
-		detachScript (self, "conversation.3rd_character_room_three_water_controls");
+		detachScript (self, "conversation.third_character_room_three_water_controls");
 
 		return SCRIPT_CONTINUE;
 	}
@@ -635,16 +625,14 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 	// ======================================================================
 
 	//-- This function should move to base_class.java
-	boolean npcStartConversation(obj_id player, obj_id npc, string convoName, string_id greetingId, prose_package greetingProse, string_id[] responses)
+	public boolean npcStartConversation(obj_id player, obj_id npc, String convoName, string_id greetingId, prose_package greetingProse, string_id[] responses) throws InterruptedException
 	{
 		Object[] objects = new Object[responses.length];
 		System.arraycopy(responses, 0, objects, 0, responses.length);
 		return npcStartConversation(player, npc, convoName, greetingId, greetingProse, objects);
 	}
 
-	// ----------------------------------------------------------------------
-
-	trigger OnStartNpcConversation (obj_id player)
+	public int OnStartNpcConversation (obj_id self, obj_id player) throws InterruptedException
 	{
 		obj_id npc = self;
 
@@ -653,7 +641,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 			return SCRIPT_OVERRIDE;
 		}
 		//-- [NOTE] Initial Weclome Screen:
-		if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+		if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 		{
 			//-- NPC: Initial Weclome Screen:
 			string_id message = new string_id (c_stringFile, "s_3");
@@ -663,7 +651,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 
 			//-- PLAYER: [Access Water Controls]
 			boolean hasResponse0 = false;
-			if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+			if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 			{
 				++numberOfResponses;
 				hasResponse = true;
@@ -672,7 +660,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 
 			//-- PLAYER: [Smash Controls]
 			boolean hasResponse1 = false;
-			if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+			if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 			{
 				++numberOfResponses;
 				hasResponse = true;
@@ -681,7 +669,7 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 
 			//-- PLAYER: [Log off]
 			boolean hasResponse2 = false;
-			if (3rd_character_room_three_water_controls_condition__defaultCondition (player, npc))
+			if (third_character_room_three_water_controls_condition__defaultCondition (player, npc))
 			{
 				++numberOfResponses;
 				hasResponse = true;
@@ -705,9 +693,9 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 				{
 					responses [responseIndex++] = new string_id (c_stringFile, "s_5");
 				}
-				utils.setScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId", 1);
+				utils.setScriptVar (player, "conversation.third_character_room_three_water_controls.branchId", 1);
 
-				npcStartConversation (player, npc, "3rd_character_room_three_water_controls", message, responses);
+				npcStartConversation (player, npc, "third_character_room_three_water_controls", message, responses);
 			}
 			else
 			{
@@ -722,41 +710,39 @@ public class 3rd_character_room_three_water_controls extends script.base_script
 		return SCRIPT_CONTINUE;
 	}
 
-	// ----------------------------------------------------------------------
-
-	public int OnNpcConversationResponse (string conversationId, obj_id player, string_id response) throws InterruptedException
+	public int OnNpcConversationResponse (String conversationId, obj_id self, obj_id player, string_id response) throws InterruptedException
 	{
-		if (conversationId != "3rd_character_room_three_water_controls")
+		if (conversationId != "third_character_room_three_water_controls")
 		{
 			return SCRIPT_CONTINUE;
 		}
 		obj_id npc = self;
 
-		int branchId = utils.getIntScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId");
+		int branchId = utils.getIntScriptVar (player, "conversation.third_character_room_three_water_controls.branchId");
 
-		if (branchId == 1 && 3rd_character_room_three_water_controls_handleBranch1 (player, npc, response) == SCRIPT_CONTINUE)
+		if (branchId == 1 && third_character_room_three_water_controls_handleBranch1 (player, npc, response) == SCRIPT_CONTINUE)
 		{
 			return SCRIPT_CONTINUE;
 		}
-		if (branchId == 2 && 3rd_character_room_three_water_controls_handleBranch2 (player, npc, response) == SCRIPT_CONTINUE)
+		if (branchId == 2 && third_character_room_three_water_controls_handleBranch2 (player, npc, response) == SCRIPT_CONTINUE)
 		{
 			return SCRIPT_CONTINUE;
 		}
-		if (branchId == 3 && 3rd_character_room_three_water_controls_handleBranch3 (player, npc, response) == SCRIPT_CONTINUE)
+		if (branchId == 3 && third_character_room_three_water_controls_handleBranch3 (player, npc, response) == SCRIPT_CONTINUE)
 		{
 			return SCRIPT_CONTINUE;
 		}
-		if (branchId == 7 && 3rd_character_room_three_water_controls_handleBranch7 (player, npc, response) == SCRIPT_CONTINUE)
+		if (branchId == 7 && third_character_room_three_water_controls_handleBranch7 (player, npc, response) == SCRIPT_CONTINUE)
 		{
 			return SCRIPT_CONTINUE;
 		}
-		if (branchId == 11 && 3rd_character_room_three_water_controls_handleBranch11 (player, npc, response) == SCRIPT_CONTINUE)
+		if (branchId == 11 && third_character_room_three_water_controls_handleBranch11 (player, npc, response) == SCRIPT_CONTINUE)
 		{
 			return SCRIPT_CONTINUE;
 		}
 		chat.chat (npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
 
-		utils.removeScriptVar (player, "conversation.3rd_character_room_three_water_controls.branchId");
+		utils.removeScriptVar (player, "conversation.third_character_room_three_water_controls.branchId");
 
 		return SCRIPT_CONTINUE;
 	}
