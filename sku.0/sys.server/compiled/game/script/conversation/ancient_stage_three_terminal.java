@@ -86,7 +86,7 @@ public class ancient_stage_three_terminal extends script.base_script
 	public String valveOneStatus(obj_id player, obj_id npc) throws InterruptedException
 	{
         String status = utils.getStringScriptVar(npc, ValveOneOpen);
-		if (status.equals("jammed"))
+		if (status.equals("v1jammed"))
 		{
 			return new String("Jammed");
 		}
@@ -99,7 +99,7 @@ public class ancient_stage_three_terminal extends script.base_script
 	public String valveTwoStatus(obj_id player, obj_id npc) throws InterruptedException
 	{
 		String status = utils.getStringScriptVar(npc, ValveOneOpen);
-		if (status.equals("jammed"))
+		if (status.equals("v2jammed"))
 		{
 			return new String("Jammed");
 		}
@@ -112,7 +112,7 @@ public class ancient_stage_three_terminal extends script.base_script
 	public String valveThreeStatus(obj_id player, obj_id npc) throws InterruptedException
 	{
 		String status = utils.getStringScriptVar(npc, ValveOneOpen);
-		if (status.equals("jammed"))
+		if (status.equals("v3jammed"))
 		{
 			return new String("Jammed");
 		}
@@ -512,7 +512,7 @@ public class ancient_stage_three_terminal extends script.base_script
 		//-- PLAYER:[Open Valve #1]
 		if (response.equals("s_14"))
 		{
-			utils.setScriptVar(npc, ValveOneOpen, "true");
+			utils.setScriptVar(npc, ValveOneOpen, "v1open");
 			//--[NOTE] Return to Access Valve #1 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 			{
@@ -575,7 +575,7 @@ public class ancient_stage_three_terminal extends script.base_script
 		//-- PLAYER:[Close Valve #1]
 		if (response.equals("s_17"))
 		{
-            utils.setScriptVar(npc, ValveOneOpen, "false");
+            utils.setScriptVar(npc, ValveOneOpen, "v1closed");
 			//--[NOTE] Return to Access Valve #1 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 			{
@@ -715,7 +715,7 @@ public class ancient_stage_three_terminal extends script.base_script
 		//-- PLAYER:[Open Valve #2]
 		if (response.equals("s_30"))
 		{
-            utils.setScriptVar(npc, ValveTwoOpen, "true");
+            utils.setScriptVar(npc, ValveTwoOpen, "v2open");
 			//--[NOTE] Return to Access Valve #2 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 			{
@@ -778,7 +778,7 @@ public class ancient_stage_three_terminal extends script.base_script
 		//-- PLAYER:[Close Valve #2]
 		if (response.equals("s_34"))
 		{
-            utils.setScriptVar(npc, ValveTwoOpen, "false");
+            utils.setScriptVar(npc, ValveTwoOpen, "v2closed");
 			//--[NOTE] Return to Access Valve #2 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 			{
@@ -920,7 +920,7 @@ public class ancient_stage_three_terminal extends script.base_script
 		//-- PLAYER:[Open Valve #3]
 		if (response.equals("s_46"))
 		{
-            utils.setScriptVar(npc, ValveThreeOpen, "true");
+            utils.setScriptVar(npc, ValveThreeOpen, "v3open");
 			//--[NOTE] Return to Access Valve #3 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 			{
@@ -983,7 +983,7 @@ public class ancient_stage_three_terminal extends script.base_script
 		//-- PLAYER:[Close Valve #3]
 		if (response.equals("s_50"))
 		{
-            utils.setScriptVar(npc, ValveThreeOpen, "false");
+            utils.setScriptVar(npc, ValveThreeOpen, "v3closed");
 			//--[NOTE] Return to Access Valve #3 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 			{
@@ -1125,9 +1125,9 @@ public class ancient_stage_three_terminal extends script.base_script
 	{
 		//set assign here
 		setCondition(self, CONDITION_CONVERSABLE);
-		utils.setScriptVar(self, ValveOneOpen, "jammed");
-		utils.setScriptVar(self, ValveTwoOpen, "jammed");
-		utils.setScriptVar(self, ValveThreeOpen, "jammed");
+		utils.setScriptVar(self, ValveOneOpen, "v1jammed");
+		utils.setScriptVar(self, ValveTwoOpen, "v2jammed");
+		utils.setScriptVar(self, ValveThreeOpen, "v3jammed");
 		return SCRIPT_CONTINUE;
 	}
 
