@@ -85,6 +85,46 @@ public class ancient_stage_three_terminal extends script.base_script
 	}
 	public String valveOneStatus(obj_id player, obj_id npc) throws InterruptedException
 	{
+        String status = utils.getScriptVar(npc, ValveOneOpen);
+		if (status.equals("jammed"))
+		{
+			return new String("jammed");
+		}
+		if (status.equals("true"))
+		{
+			return new String("Open");
+		}
+		return new String("Closed");
+	}
+	public String valveTwoStatus(obj_id player, obj_id npc) throws InterruptedException
+	{
+		String status = utils.getScriptVar(npc, ValveOneOpen);
+		if (status.equals("jammed"))
+		{
+			return new String("jammed");
+		}
+		if (status.equals("true"))
+		{
+			return new String("Open");
+		}
+		return new String("Closed");
+	}
+	public String valveThreeStatus(obj_id player, obj_id npc) throws InterruptedException
+	{
+		String status = utils.getScriptVar(npc, ValveOneOpen);
+		if (status.equals("jammed"))
+		{
+			return new String("jammed");
+		}
+		if (status.equals("true"))
+		{
+			return new String("Open");
+		}
+		return new String("Closed");
+	}
+	/*
+	public String valveOneStatus(obj_id player, obj_id npc) throws InterruptedException
+	{
         boolean status = utils.getBooleanScriptVar(npc, ValveOneOpen);
 		if (!status)
 		{
@@ -121,7 +161,7 @@ public class ancient_stage_three_terminal extends script.base_script
 			return new String("Open");
 		}
 		return new String("Jammed");
-	}
+	}*/
 
 	public int ancient_stage_three_terminal_handleBranch1(obj_id player, obj_id npc, string_id response) throws InterruptedException
 	{
