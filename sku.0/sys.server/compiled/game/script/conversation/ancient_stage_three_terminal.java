@@ -78,9 +78,10 @@ public class ancient_stage_three_terminal extends script.base_script
 
 	public int assignValveStatus() throws InterruptedException
 	{
-		utils.setScriptVar(getSelf(), ValveOneAnswer, rand(0,1));
-		utils.setScriptVar(getSelf(), ValveTwoAnswer, rand(0,1));
-		utils.setScriptVar(getSelf(), ValveThreeAnswer, rand(0,1));
+
+		utils.setScriptVar(getSelf(), ValveOneAnswer, rand(1,2));
+		utils.setScriptVar(getSelf(), ValveTwoAnswer, rand(1,2));
+		utils.setScriptVar(getSelf(), ValveThreeAnswer, rand(1,2));
 		return SCRIPT_CONTINUE;
 	}
 
