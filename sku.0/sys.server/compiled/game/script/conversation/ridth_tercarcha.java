@@ -657,11 +657,13 @@ public class ridth_tercarcha extends script.base_script
 				    string_id responses[] = new string_id[numberOfResponses];
 
 				    if (hasResponse0)
+					{
     					responses[responseIndex++] = new string_id(c_stringFile, "s_86");
-
+					}
 				    if (hasResponse1)
+					{
     					responses[responseIndex++] = new string_id(c_stringFile, "s_102");
-
+					}
 				    utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 25);
 
     				npcSpeak(player, message);
@@ -717,8 +719,9 @@ public class ridth_tercarcha extends script.base_script
 				    string_id responses[] = new string_id[numberOfResponses];
 
 				    if (hasResponse0)
+					{
     					responses[responseIndex++] = new string_id(c_stringFile, "s_90");
-
+					}
 				    utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 26);
 
 				    npcSpeak(player, message);
