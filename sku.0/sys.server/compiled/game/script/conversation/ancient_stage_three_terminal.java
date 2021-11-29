@@ -90,7 +90,7 @@ public class ancient_stage_three_terminal extends script.base_script
 		{
 			return new String("Jammed");
 		}
-		else if (status.equals("true"))
+		else if (status.equals("v1open"))
 		{
 			return new String("Open");
 		}
@@ -103,7 +103,7 @@ public class ancient_stage_three_terminal extends script.base_script
 		{
 			return new String("Jammed");
 		}
-		else if (status.equals("true"))
+		else if (status.equals("v2open"))
 		{
 			return new String("Open");
 		}
@@ -116,7 +116,7 @@ public class ancient_stage_three_terminal extends script.base_script
 		{
 			return new String("Jammed");
 		}
-		else if (status.equals("true"))
+		else if (status.equals("v3open"))
 		{
 			return new String("Open");
 		}
