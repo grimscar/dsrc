@@ -14,6 +14,9 @@ public class ancient_stage_three_terminal extends script.base_script
     public static final String ValveOneOpen = "valveOne";
     public static final String ValveTwoOpen = "valveTwo";
     public static final String ValveThreeOpen = "valveThree";
+	public static final String ValveOneAnswer = "valveOneAnswer";
+    public static final String ValveTwoAnswer = "valveTwoAnswer";
+    public static final String ValveThreeAnswer = "valveThreeAnswer";
 
 	/*
 	Puzzle Logic to make.
@@ -75,11 +78,26 @@ public class ancient_stage_three_terminal extends script.base_script
 
 	public int assignValveStatus() throws InterruptedException
 	{
-		utils.setScriptVar(getSelf(), ValveOneOpen, rand(0,1));
-		utils.setScriptVar(getSelf(), ValveTwoOpen, rand(0,1));
-		utils.setScriptVar(getSelf(), ValveThreeOpen, rand(0,1));
+		utils.setScriptVar(getSelf(), ValveOneAnswer, rand(0,1));
+		utils.setScriptVar(getSelf(), ValveTwoAnswer, rand(0,1));
+		utils.setScriptVar(getSelf(), ValveThreeAnswer, rand(0,1));
 		display();
 		return SCRIPT_CONTINUE;
+	}
+
+	public boolean valveAnswerCheck(obj_id self) throws InterruptedException
+	{
+		int v1 = utils.getIntScriptVar(getSelf(), ValveOneOpen);
+		int v2 = utils.getIntScriptVar(getSelf(), ValveTwoOpen);
+		int v3 = utils.getIntScriptVar(getSelf(), ValveThreeOpen);
+		int v1a = utils.getIntScriptVar(getSelf(), ValveOneAnswer);
+		int v2a = utils.getIntScriptVar(getSelf(), ValveTwoAnswer);
+		int v3a = utils.getIntScriptVar(getSelf(), ValveThreeAnswer);
+		if (v1 == v1a && v2 == v2a && v3 == v3a)
+		{
+			return true;
+		}
+		return false;
 	}
 
 	public void display() throws InterruptedException
@@ -560,7 +578,13 @@ public class ancient_stage_three_terminal extends script.base_script
 		//-- PLAYER:[Open Valve #1]
 		if (response.equals("s_14"))
 		{
-			utils.setScriptVar(npc, ValveOneOpen, "v1open");
+			if (valveAnswerCheck(npc))
+			{
+				string_id message = new string_id(c_stringFile, "puzzle_finished");
+				utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
+				npcEndConversationWithMessage(player, message);
+			}
+			utils.setScriptVar(npc, ValveOneOpen, "");
 			//--[NOTE] Return to Access Valve #1 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 			{
@@ -623,6 +647,12 @@ public class ancient_stage_three_terminal extends script.base_script
 		//-- PLAYER:[Close Valve #1]
 		if (response.equals("s_17"))
 		{
+			if (valveAnswerCheck(npc))
+			{
+				string_id message = new string_id(c_stringFile, "puzzle_finished");
+				utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
+				npcEndConversationWithMessage(player, message);
+			}
             utils.setScriptVar(npc, ValveOneOpen, "v1closed");
 			//--[NOTE] Return to Access Valve #1 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
@@ -968,6 +998,12 @@ public class ancient_stage_three_terminal extends script.base_script
 		//-- PLAYER:[Open Valve #3]
 		if (response.equals("s_46"))
 		{
+			if (valveAnswerCheck(npc))
+			{
+				string_id message = new string_id(c_stringFile, "puzzle_finished");
+				utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
+				npcEndConversationWithMessage(player, message);
+			}
             utils.setScriptVar(npc, ValveThreeOpen, "v3open");
 			//--[NOTE] Return to Access Valve #3 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
@@ -1031,6 +1067,12 @@ public class ancient_stage_three_terminal extends script.base_script
 		//-- PLAYER:[Close Valve #3]
 		if (response.equals("s_50"))
 		{
+			if (valveAnswerCheck(npc))
+			{
+				string_id message = new string_id(c_stringFile, "puzzle_finished");
+				utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
+				npcEndConversationWithMessage(player, message);
+			}
             utils.setScriptVar(npc, ValveThreeOpen, "v3closed");
 			//--[NOTE] Return to Access Valve #3 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
@@ -1174,9 +1216,9 @@ public class ancient_stage_three_terminal extends script.base_script
 		//set assign here
 		setCondition(self, CONDITION_CONVERSABLE);
 		assignValveStatus();
-		utils.setScriptVar(self, ValveOneOpen, "v1jammed");
-		utils.setScriptVar(self, ValveTwoOpen, "v2jammed");
-		utils.setScriptVar(self, ValveThreeOpen, "v3jammed");
+		utils.setScriptVar(self, ValveOneOpen, 0);
+		utils.setScriptVar(self, ValveTwoOpen, 0);
+		utils.setScriptVar(self, ValveThreeOpen, 0);
 		return SCRIPT_CONTINUE;
 	}
 
@@ -1218,6 +1260,12 @@ public class ancient_stage_three_terminal extends script.base_script
 		//--[NOTE] Initial Weclome Screen:
 		if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 		{
+			if (valveAnswerCheck(npc))
+			{
+				string_id message = new string_id(c_stringFile, "puzzle_finished");
+				utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
+				npcEndConversationWithMessage(player, message);
+			}
 			//-- NPC: Initial Weclome Screen:
 			string_id message = new string_id(c_stringFile, "s_4");
 			int numberOfResponses = 0;
