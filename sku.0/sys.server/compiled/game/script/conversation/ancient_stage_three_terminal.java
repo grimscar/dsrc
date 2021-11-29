@@ -129,7 +129,7 @@ public class ancient_stage_three_terminal extends script.base_script
 				valveStr = ValveThreeOpen;
 			break;
 		}
-        int status = utils.getIntScriptVar(self, ValveOneOpen);
+        int status = utils.getIntScriptVar(self, valveStr);
 		if (status == 2)
 		{
 			return new String("Open");
