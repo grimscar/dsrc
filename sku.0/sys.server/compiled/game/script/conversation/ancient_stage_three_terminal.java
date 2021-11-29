@@ -68,16 +68,16 @@ public class ancient_stage_three_terminal extends script.base_script
 	ISD Heroic for floor fires
 	*/
 
-	public int assignRandom() throws InterruptedException
+	/*public int assignRandom() throws InterruptedException
 	{
 		return rand(0,1);
-	}
+	}*/
 
 	public int assignValveStatus() throws InterruptedException
 	{
-		utils.setScriptVar(getSelf(), ValveOneOpen, assignRandom());
-		utils.setScriptVar(getSelf(), ValveTwoOpen, assignRandom());
-		utils.setScriptVar(getSelf(), ValveThreeOpen, assignRandom());
+		utils.setScriptVar(getSelf(), ValveOneOpen, rand(0,1));
+		utils.setScriptVar(getSelf(), ValveTwoOpen, rand(0,1));
+		utils.setScriptVar(getSelf(), ValveThreeOpen, rand(0,1));
 		display();
 		return SCRIPT_CONTINUE;
 	}
