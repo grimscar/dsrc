@@ -20,69 +20,13 @@ public class ancient_stage_three_terminal extends script.base_script
 
 /* Stopper
 	if (valveAnswerCheck(npc))
-		{
-			string_id message = new string_id(c_stringFile, "puzzle_finished");
-			utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
-			npcEndConversationWithMessage(player, message);
-		}
+	{
+		string_id message = new string_id(c_stringFile, "puzzle_finished");
+		utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
+		npcEndConversationWithMessage(player, message);
+	}
 */
-	/*
-	Puzzle Logic to make.
-	Possible answers are:
-	Valve 1: off  |  Valve 1: off  |  Valve 1: off  |  Valve 1: on
-	Valve 2: off  |  Valve 2: off  |  Valve 2: on   |  Valve 2: off
-	Valve 3: off  |  Valve 3: on   |  Valve 3: off  |  Valve 3: off
 
-	Valve 1: off  |  Valve 1: on   |  Valve 1: on   |  Valve 1: on
-	Valve 2: on   |  Valve 2: off  |  Valve 2: on   |  Valve 2: on
-	Valve 3: on   |  Valve 3: on   |  Valve 3: off  |  Valve 3: on
-
-	Need to set at random on generation 1 combination.
-
-	Example psuedo code based on the answer being on, off, on
-
-	if (valveOneStatus() = true (open) && valveTwoStatus() = false (close) && valveThreeStatus = true (open))
-	{
-		puzzleStatus() = true (Operational)
-		else
-		{
-			puzzlestatus() = false (Malfunctioning)
-		}
-	}
-
-	and if (puzzleStatus() = true (opertional))
-	{
-		Turn off the fire or solve the puzzle whatever
-		else
-		{
-			keep the fires raging below
-		}
-	}
-
-	int v1 random = rand(0,1)
-	int v2 random = rand(0,1)
-	int v3 random = rand(0,1)
-
-	objvar / scriptvar
-
-	utils.setscriptvar()
-
-	int smash random = rand(5%)
-	setscript to smash it
-
-	int random 0 - 10 if random = 0 then setscriptvar(smash) success
-	setscriptvar(smash) 1 saying its done
-	then return
-
-	trials.makecellpublic
-	basement
-	ISD Heroic for floor fires
-	*/
-
-	/*public int assignRandom() throws InterruptedException
-	{
-		return rand(0,1);
-	}*/
 
 	public int assignValveStatus() throws InterruptedException
 	{
@@ -109,6 +53,10 @@ public class ancient_stage_three_terminal extends script.base_script
 	}
 
 	public boolean ancient_stage_three_terminal_condition__defaultCondition(obj_id player, obj_id npc) throws InterruptedException
+	{
+		return true;
+	}
+	public boolean ancient_stage_three_terminal_condition_canAttemptSmash(obj_id player, obj_id npc) throws InterruptedException
 	{
 		return true;
 	}
@@ -148,87 +96,6 @@ public class ancient_stage_three_terminal extends script.base_script
 		}
 		return new String("Jammed");
 	}
-
-	/*public String valveOneStatus(obj_id player, obj_id npc) throws InterruptedException
-	{
-        String status = utils.getStringScriptVar(npc, ValveOneOpen);
-		if (status.equals("v1jammed"))
-		{
-			return new String("Jammed");
-		}
-		else if (status.equals("v1open"))
-		{
-			return new String("Open");
-		}
-		return new String("Closed");
-	}
-	public String valveTwoStatus(obj_id player, obj_id npc) throws InterruptedException
-	{
-		String status = utils.getStringScriptVar(npc, ValveTwoOpen);
-		if (status.equals("v2jammed"))
-		{
-			return new String("Jammed");
-		}
-		else if (status.equals("v2open"))
-		{
-			return new String("Open");
-		}
-		return new String("Closed");
-	}
-	public String valveThreeStatus(obj_id player, obj_id npc) throws InterruptedException
-	{
-		String status = utils.getStringScriptVar(npc, ValveThreeOpen);
-		if (status.equals("v3jammed"))
-		{
-			return new String("Jammed");
-		}
-		else if (status.equals("v3open"))
-		{
-			return new String("Open");
-		}
-		return new String("Closed");
-	}*/
-	/*
-	public String valveOneStatus(obj_id player, obj_id npc) throws InterruptedException
-	{
-        boolean status = utils.getBooleanScriptVar(npc, ValveOneOpen);
-		if (!status)
-		{
-			return new String("Closed");
-		}
-		if (status)
-		{
-			return new String("Open");
-		}
-		return new String("Jammed");
-	}
-	public String valveTwoStatus(obj_id player, obj_id npc) throws InterruptedException
-	{
-		boolean status = utils.getBooleanScriptVar(npc, ValveTwoOpen);
-		if (!status)
-		{
-			return new String("Closed");
-		}
-		if (status)
-		{
-			return new String("Open");
-		}
-		return new String("Jammed");
-	}
-	public String valveThreeStatus(obj_id player, obj_id npc) throws InterruptedException
-	{
-		boolean status = utils.getBooleanScriptVar(npc, ValveThreeOpen);
-		if (!status)
-		{
-			return new String("Closed");
-		}
-		if (status)
-		{
-			return new String("Open");
-		}
-		return new String("Jammed");
-	}*/
-
 	public int ancient_stage_three_terminal_handleBranch1(obj_id player, obj_id npc, string_id response) throws InterruptedException
 	{
 		//--[BRANCH NOTE] Initial Weclome Screen:
@@ -325,10 +192,16 @@ public class ancient_stage_three_terminal extends script.base_script
 		if (response.equals("s_62"))
 		{
 			//--[NOTE] 5% chance this auto-solves otherwise this causes flooding that drastically slows down the player but after XX seconds a water system kicks in to drain allowing them through.
-			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
+			if (ancient_stage_three_terminal_condition_canAttemptSmash(player, npc))
 			{
 				//-- NPC: 5% chance this auto-solves otherwise this causes flooding that drastically slows down the player but after XX seconds a water system kicks in to drain allowing them through.
 				string_id message = new string_id(c_stringFile, "s_64");
+				if (valveAnswerCheck(npc))
+					{
+						message = new string_id(c_stringFile, "puzzle_finished");
+						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
+						npcEndConversationWithMessage(player, message);
+					}
 				utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 
 				npcEndConversationWithMessage(player, message);
@@ -405,6 +278,12 @@ public class ancient_stage_three_terminal extends script.base_script
 					{
 						responses[responseIndex++] = new string_id(c_stringFile, "s_20");
 					}
+					if (valveAnswerCheck(npc))
+					{
+						message = new string_id(c_stringFile, "puzzle_finished");
+						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
+						npcEndConversationWithMessage(player, message);
+					}
 					utils.setScriptVar(player, "conversation.ancient_stage_three_terminal.branchId", 3);
 					npcSpeak(player, message);
 					npcSetConversationResponses(player, responses);
@@ -476,6 +355,12 @@ public class ancient_stage_three_terminal extends script.base_script
 					if (hasResponse2)
 					{
 						responses[responseIndex++] = new string_id(c_stringFile, "s_38");
+					}
+					if (valveAnswerCheck(npc))
+					{
+						message = new string_id(c_stringFile, "puzzle_finished");
+						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
+						npcEndConversationWithMessage(player, message);
 					}
 					utils.setScriptVar(player, "conversation.ancient_stage_three_terminal.branchId", 7);
 					npcSpeak(player, message);
@@ -549,6 +434,12 @@ public class ancient_stage_three_terminal extends script.base_script
 					if (hasResponse2)
 					{
 						responses[responseIndex++] = new string_id(c_stringFile, "s_54");
+					}
+					if (valveAnswerCheck(npc))
+					{
+						message = new string_id(c_stringFile, "puzzle_finished");
+						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
+						npcEndConversationWithMessage(player, message);
 					}
 					utils.setScriptVar(player, "conversation.ancient_stage_three_terminal.branchId", 11);
 					npcSpeak(player, message);
@@ -631,6 +522,12 @@ public class ancient_stage_three_terminal extends script.base_script
 					{
 						responses[responseIndex++] = new string_id(c_stringFile, "s_20");
 					}
+					if (valveAnswerCheck(npc))
+					{
+						message = new string_id(c_stringFile, "puzzle_finished");
+						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
+						npcEndConversationWithMessage(player, message);
+					}
 					utils.setScriptVar(player, "conversation.ancient_stage_three_terminal.branchId", 3);
 					npcSpeak(player, message);
 					npcSetConversationResponses(player, responses);
@@ -693,6 +590,12 @@ public class ancient_stage_three_terminal extends script.base_script
 					if(hasResponse2)
 					{
 						responses[responseIndex++] = new string_id(c_stringFile, "s_20");
+					}
+					if (valveAnswerCheck(npc))
+					{
+						message = new string_id(c_stringFile, "puzzle_finished");
+						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
+						npcEndConversationWithMessage(player, message);
 					}
 					utils.setScriptVar(player, "conversation.ancient_stage_three_terminal.branchId", 3);
 					npcSpeak(player, message);
@@ -840,6 +743,12 @@ public class ancient_stage_three_terminal extends script.base_script
 					{
 						responses[responseIndex++] = new string_id(c_stringFile, "s_38");
 					}
+					if (valveAnswerCheck(npc))
+					{
+						message = new string_id(c_stringFile, "puzzle_finished");
+						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
+						npcEndConversationWithMessage(player, message);
+					}
 					utils.setScriptVar(player, "conversation.ancient_stage_three_terminal.branchId", 7);
 					npcSpeak(player, message);
 					npcSetConversationResponses(player, responses);
@@ -902,6 +811,12 @@ public class ancient_stage_three_terminal extends script.base_script
 					if(hasResponse2)
 					{
 						responses[responseIndex++] = new string_id(c_stringFile, "s_38");
+					}
+					if (valveAnswerCheck(npc))
+					{
+						message = new string_id(c_stringFile, "puzzle_finished");
+						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
+						npcEndConversationWithMessage(player, message);
 					}
 					utils.setScriptVar(player, "conversation.ancient_stage_three_terminal.branchId", 7);
 					npcSpeak(player, message);
@@ -1055,6 +970,12 @@ public class ancient_stage_three_terminal extends script.base_script
 					{
 						responses[responseIndex++] = new string_id(c_stringFile, "s_54");
 					}
+					if (valveAnswerCheck(npc))
+					{
+						message = new string_id(c_stringFile, "puzzle_finished");
+						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
+						npcEndConversationWithMessage(player, message);
+					}
 					utils.setScriptVar(player, "conversation.ancient_stage_three_terminal.branchId", 11);
 					npcSpeak(player, message);
 					npcSetConversationResponses(player, responses);
@@ -1123,6 +1044,12 @@ public class ancient_stage_three_terminal extends script.base_script
 					if(hasResponse2)
 					{
 						responses[responseIndex++] = new string_id(c_stringFile, "s_54");
+					}
+					if (valveAnswerCheck(npc))
+					{
+						message = new string_id(c_stringFile, "puzzle_finished");
+						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
+						npcEndConversationWithMessage(player, message);
 					}
 					utils.setScriptVar(player, "conversation.ancient_stage_three_terminal.branchId", 11);
 					npcSpeak(player, message);
@@ -1308,8 +1235,13 @@ public class ancient_stage_three_terminal extends script.base_script
 				{
 					responses[responseIndex++] = new string_id(c_stringFile, "s_62");
 				}
+				if (valveAnswerCheck(npc))
+				{
+					message = new string_id(c_stringFile, "puzzle_finished");
+					utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
+					npcEndConversationWithMessage(player, message);
+				}
 				utils.setScriptVar(player, "conversation.ancient_stage_three_terminal.branchId", 1);
-
 				npcStartConversation(player, npc, "ancient_stage_three_terminal", message, responses);
 			}
 			else
