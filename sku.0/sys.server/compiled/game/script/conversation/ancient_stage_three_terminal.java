@@ -18,19 +18,8 @@ public class ancient_stage_three_terminal extends script.base_script
     public static final String ValveTwoAnswer = "valveTwoAnswer";
     public static final String ValveThreeAnswer = "valveThreeAnswer";
 
-/* Stopper
-	if (valveAnswerCheck(npc))
-	{
-		string_id message = new string_id(c_stringFile, "puzzle_finished");
-		utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
-		npcEndConversationWithMessage(player, message);
-	}
-*/
-
-
 	public int assignValveStatus() throws InterruptedException
 	{
-
 		utils.setScriptVar(getSelf(), ValveOneAnswer, rand(1,2));
 		utils.setScriptVar(getSelf(), ValveTwoAnswer, rand(1,2));
 		utils.setScriptVar(getSelf(), ValveThreeAnswer, rand(1,2));
@@ -56,10 +45,11 @@ public class ancient_stage_three_terminal extends script.base_script
 	{
 		return true;
 	}
-	public boolean ancient_stage_three_terminal_condition_canAttemptSmash(obj_id player, obj_id npc) throws InterruptedException
+	public boolean ancient_stage_three_terminal_condition_puzzleSolved(obj_id player, obj_id npc) throws InterruptedException
 	{
 		return true;
 	}
+
 	public String puzzleStatus(obj_id player, obj_id npc) throws InterruptedException
 	{
         boolean status = utils.getBooleanScriptVar(npc, PuzzleStatus);
@@ -187,7 +177,7 @@ public class ancient_stage_three_terminal extends script.base_script
 
 		}
 
-		//--[RESPONSE NOTE][Smash Controls]
+		/*--[RESPONSE NOTE][Smash Controls]
 		//-- PLAYER:[Smash Controls]
 		if (response.equals("s_62"))
 		{
@@ -209,12 +199,10 @@ public class ancient_stage_three_terminal extends script.base_script
 				return SCRIPT_CONTINUE;
 			}
 
-		}
+		}*/
 
 		return SCRIPT_DEFAULT;
 	}
-
-	// ----------------------------------------------------------------------
 
 	public int ancient_stage_three_terminal_handleBranch2(obj_id player, obj_id npc, string_id response) throws InterruptedException
 	{
@@ -1187,8 +1175,6 @@ public class ancient_stage_three_terminal extends script.base_script
 		return npcStartConversation(player, npc, convoName, greetingId, greetingProse, objects);
 	}
 
-	// ----------------------------------------------------------------------
-
 	public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
 	{
 		obj_id npc = self;
@@ -1201,9 +1187,7 @@ public class ancient_stage_three_terminal extends script.base_script
 			//-- NPC: Initial Weclome Screen:
 			string_id message = new string_id(c_stringFile, "s_4");
 			int numberOfResponses = 0;
-
 			boolean hasResponse = false;
-
 			//-- PLAYER:[Access Water Controls]
 			boolean hasResponse0 = false;
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
@@ -1212,16 +1196,14 @@ public class ancient_stage_three_terminal extends script.base_script
 				hasResponse = true;
 				hasResponse0 = true;
 			}
-
-			//-- PLAYER:[Smash Controls]
+			/*-- PLAYER:[Smash Controls]
 			boolean hasResponse1 = false;
-			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
+			if (ancient_stage_three_terminal_condition_canAttemptSmash(player, npc))
 			{
 				++numberOfResponses;
 				hasResponse = true;
 				hasResponse1 = true;
-			}
-
+			}*/
 			if (hasResponse)
 			{
 				int responseIndex = 0;
@@ -1231,16 +1213,11 @@ public class ancient_stage_three_terminal extends script.base_script
 				{
 					responses[responseIndex++] = new string_id(c_stringFile, "s_6");
 				}
+				/* Smash Controls
 				if (hasResponse1)
 				{
 					responses[responseIndex++] = new string_id(c_stringFile, "s_62");
-				}
-				if (valveAnswerCheck(npc))
-				{
-					message = new string_id(c_stringFile, "puzzle_finished");
-					utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
-					npcEndConversationWithMessage(player, message);
-				}
+				}*/
 				utils.setScriptVar(player, "conversation.ancient_stage_three_terminal.branchId", 1);
 				npcStartConversation(player, npc, "ancient_stage_three_terminal", message, responses);
 			}
@@ -1248,16 +1225,12 @@ public class ancient_stage_three_terminal extends script.base_script
 			{
 				chat.chat(npc, player, message);
 			}
-
 			return SCRIPT_CONTINUE;
 		}
-
 		chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
-
 		return SCRIPT_CONTINUE;
 	}
 
-	// ----------------------------------------------------------------------
 
 	public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
 	{
