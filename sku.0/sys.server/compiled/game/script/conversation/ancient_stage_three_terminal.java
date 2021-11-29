@@ -84,9 +84,9 @@ public class ancient_stage_three_terminal extends script.base_script
 
 	public void display() throws InterruptedException
 	{
-		boolean v1 = utils.getBooleanScriptVar(getSelf(), ValveOneOpen);
-		boolean v2 = utils.getBooleanScriptVar(getSelf(), ValveTwoOpen);
-		boolean v3 = utils.getBooleanScriptVar(getSelf(), ValveThreeOpen);
+		int v1 = utils.getIntScriptVar(getSelf(), ValveOneOpen);
+		int v2 = utils.getIntScriptVar(getSelf(), ValveTwoOpen);
+		int v3 = utils.getIntScriptVar(getSelf(), ValveThreeOpen);
 		System.out.println("Valve 1 "+v1+"Valve 2 "+v2+"Valve 3 "+v3);
 	}
 
