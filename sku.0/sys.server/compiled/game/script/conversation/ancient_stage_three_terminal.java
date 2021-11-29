@@ -5,6 +5,8 @@ import script.library.chat;
 import script.library.prose;
 import script.library.utils;
 
+import javax.lang.model.util.ElementScanner6;
+
 import script.*;
 
 public class ancient_stage_three_terminal extends script.base_script
@@ -88,7 +90,11 @@ public class ancient_stage_three_terminal extends script.base_script
 		{
 			return new String("Open");
 		}
-		return new String("Closed");
+		if (!status)
+		{
+			return new String("Closed");
+		}
+		return new String("Jammed");
 	}
 	public String valveTwoStatus(obj_id player, obj_id npc) throws InterruptedException
 	{
@@ -97,7 +103,11 @@ public class ancient_stage_three_terminal extends script.base_script
 		{
 			return new String("Open");
 		}
-		return new String("Closed");
+		if (!status)
+		{
+			return new String("Closed");
+		}
+		return new String("Jammed");
 	}
 	public String valveThreeStatus(obj_id player, obj_id npc) throws InterruptedException
 	{
@@ -106,7 +116,11 @@ public class ancient_stage_three_terminal extends script.base_script
 		{
 			return new String("Open");
 		}
-		return new String("Closed");
+		if (!status)
+		{
+			return new String("Closed");
+		}
+		return new String("Jammed");
 	}
 
 	public int ancient_stage_three_terminal_handleBranch1(obj_id player, obj_id npc, string_id response) throws InterruptedException
@@ -1071,9 +1085,9 @@ public class ancient_stage_three_terminal extends script.base_script
 	{
 		//set assign here
 		setCondition(self, CONDITION_CONVERSABLE);
-		utils.setScriptVar(self, ValveOneOpen, true);
-		utils.setScriptVar(self, ValveTwoOpen, true);
-		utils.setScriptVar(self, ValveThreeOpen, true);
+		utils.setScriptVar(self, ValveOneOpen, "jammed");
+		utils.setScriptVar(self, ValveTwoOpen, "jammed");
+		utils.setScriptVar(self, ValveThreeOpen, "jammed");
 		return SCRIPT_CONTINUE;
 	}
 
