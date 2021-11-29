@@ -112,9 +112,9 @@ public class ancient_stage_three_terminal extends script.base_script
                     prose_package pp = new prose_package();
                     message = new string_id(c_stringFile, "s_8");
                     pp.stringId = message;
-                    //pp.other.set(valveOneStatus(player, npc));
-                    //pp.other.set(valveTwoStatus(player, npc));
-                    //pp.other.set(valveThreeStatus(player, npc));
+                    pp.other.set(valveOneStatus(player, npc));
+                    pp.other.set(valveTwoStatus(player, npc));
+                    pp.other.set(valveThreeStatus(player, npc));
                     System.out.print("pp 1\n"+message);
 					npcSpeak(player, pp);
 					npcSetConversationResponses(player, responses);
