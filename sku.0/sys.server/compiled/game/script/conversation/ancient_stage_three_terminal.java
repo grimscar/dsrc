@@ -81,7 +81,6 @@ public class ancient_stage_three_terminal extends script.base_script
 		utils.setScriptVar(getSelf(), ValveOneAnswer, rand(0,1));
 		utils.setScriptVar(getSelf(), ValveTwoAnswer, rand(0,1));
 		utils.setScriptVar(getSelf(), ValveThreeAnswer, rand(0,1));
-		display();
 		return SCRIPT_CONTINUE;
 	}
 
@@ -98,14 +97,6 @@ public class ancient_stage_three_terminal extends script.base_script
 			return true;
 		}
 		return false;
-	}
-
-	public void display() throws InterruptedException
-	{
-		int v1 = utils.getIntScriptVar(getSelf(), ValveOneOpen);
-		int v2 = utils.getIntScriptVar(getSelf(), ValveTwoOpen);
-		int v3 = utils.getIntScriptVar(getSelf(), ValveThreeOpen);
-		System.out.println("Valve 1 "+v1+"Valve 2 "+v2+"Valve 3 "+v3);
 	}
 
 	public boolean ancient_stage_three_terminal_condition__defaultCondition(obj_id player, obj_id npc) throws InterruptedException
@@ -584,7 +575,7 @@ public class ancient_stage_three_terminal extends script.base_script
 				utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 				npcEndConversationWithMessage(player, message);
 			}
-			utils.setScriptVar(npc, ValveOneOpen, "");
+			utils.setScriptVar(npc, ValveOneOpen, 2);
 			//--[NOTE] Return to Access Valve #1 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 			{
@@ -653,7 +644,7 @@ public class ancient_stage_three_terminal extends script.base_script
 				utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 				npcEndConversationWithMessage(player, message);
 			}
-            utils.setScriptVar(npc, ValveOneOpen, "v1closed");
+            utils.setScriptVar(npc, ValveOneOpen, 1);
 			//--[NOTE] Return to Access Valve #1 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 			{
@@ -793,7 +784,7 @@ public class ancient_stage_three_terminal extends script.base_script
 		//-- PLAYER:[Open Valve #2]
 		if (response.equals("s_30"))
 		{
-            utils.setScriptVar(npc, ValveTwoOpen, "v2open");
+            utils.setScriptVar(npc, ValveTwoOpen, 2);
 			//--[NOTE] Return to Access Valve #2 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 			{
@@ -856,7 +847,7 @@ public class ancient_stage_three_terminal extends script.base_script
 		//-- PLAYER:[Close Valve #2]
 		if (response.equals("s_34"))
 		{
-            utils.setScriptVar(npc, ValveTwoOpen, "v2closed");
+            utils.setScriptVar(npc, ValveTwoOpen, 1);
 			//--[NOTE] Return to Access Valve #2 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 			{
@@ -1004,7 +995,7 @@ public class ancient_stage_three_terminal extends script.base_script
 				utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 				npcEndConversationWithMessage(player, message);
 			}
-            utils.setScriptVar(npc, ValveThreeOpen, "v3open");
+            utils.setScriptVar(npc, ValveThreeOpen, 2);
 			//--[NOTE] Return to Access Valve #3 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 			{
@@ -1073,7 +1064,7 @@ public class ancient_stage_three_terminal extends script.base_script
 				utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 				npcEndConversationWithMessage(player, message);
 			}
-            utils.setScriptVar(npc, ValveThreeOpen, "v3closed");
+            utils.setScriptVar(npc, ValveThreeOpen, 1);
 			//--[NOTE] Return to Access Valve #3 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 			{
