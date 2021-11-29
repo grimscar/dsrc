@@ -512,7 +512,7 @@ public class ancient_stage_three_terminal extends script.base_script
 		//-- PLAYER:[Open Valve #1]
 		if (response.equals("s_14"))
 		{
-			utils.setScriptVar(npc, ValveOneOpen, true);
+			utils.setScriptVar(npc, ValveOneOpen, "true");
 			//--[NOTE] Return to Access Valve #1 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 			{
@@ -575,7 +575,7 @@ public class ancient_stage_three_terminal extends script.base_script
 		//-- PLAYER:[Close Valve #1]
 		if (response.equals("s_17"))
 		{
-            utils.setScriptVar(npc, ValveOneOpen, false);
+            utils.setScriptVar(npc, ValveOneOpen, "false");
 			//--[NOTE] Return to Access Valve #1 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 			{
@@ -715,7 +715,7 @@ public class ancient_stage_three_terminal extends script.base_script
 		//-- PLAYER:[Open Valve #2]
 		if (response.equals("s_30"))
 		{
-            utils.setScriptVar(npc, ValveTwoOpen, true);
+            utils.setScriptVar(npc, ValveTwoOpen, "true");
 			//--[NOTE] Return to Access Valve #2 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 			{
@@ -778,7 +778,7 @@ public class ancient_stage_three_terminal extends script.base_script
 		//-- PLAYER:[Close Valve #2]
 		if (response.equals("s_34"))
 		{
-            utils.setScriptVar(npc, ValveTwoOpen, false);
+            utils.setScriptVar(npc, ValveTwoOpen, "false");
 			//--[NOTE] Return to Access Valve #2 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 			{
@@ -920,7 +920,7 @@ public class ancient_stage_three_terminal extends script.base_script
 		//-- PLAYER:[Open Valve #3]
 		if (response.equals("s_46"))
 		{
-            utils.setScriptVar(npc, ValveThreeOpen, true);
+            utils.setScriptVar(npc, ValveThreeOpen, "true");
 			//--[NOTE] Return to Access Valve #3 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 			{
@@ -983,7 +983,7 @@ public class ancient_stage_three_terminal extends script.base_script
 		//-- PLAYER:[Close Valve #3]
 		if (response.equals("s_50"))
 		{
-            utils.setScriptVar(npc, ValveThreeOpen, false);
+            utils.setScriptVar(npc, ValveThreeOpen, "false");
 			//--[NOTE] Return to Access Valve #3 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 			{
