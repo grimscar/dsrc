@@ -15,6 +15,59 @@ public class ancient_stage_three_terminal extends script.base_script
     public static final String ValveTwoOpen = "valveTwo";
     public static final String ValveThreeOpen = "valveThree";
 
+	/*
+	Puzzle Logic to make.
+	Possible answers are:
+	Valve 1: off  |  Valve 1: off  |  Valve 1: off  |  Valve 1: on
+	Valve 2: off  |  Valve 2: off  |  Valve 2: on   |  Valve 2: off
+	Valve 3: off  |  Valve 3: on   |  Valve 3: off  |  Valve 3: off
+
+	Valve 1: off  |  Valve 1: on   |  Valve 1: on   |  Valve 1: on
+	Valve 2: on   |  Valve 2: off  |  Valve 2: on   |  Valve 2: on
+	Valve 3: on   |  Valve 3: on   |  Valve 3: off  |  Valve 3: on
+
+	Need to set at random on generation 1 combination.
+
+	Example psuedo code based on the answer being on, off, on
+
+	if (valveOneStatus() = true (open) && valveTwoStatus() = false (close) && valveThreeStatus = true (open))
+	{
+		puzzleStatus() = true (Operational)
+		else
+		{
+			puzzlestatus() = false (Malfunctioning)
+		}
+	}
+
+	and if (puzzleStatus() = true (opertional))
+	{
+		Turn off the fire or solve the puzzle whatever
+		else
+		{
+			keep the fires raging below
+		}
+	}
+
+	int v1 random = rand(0,1)
+	int v2 random = rand(0,1)
+	int v3 random = rand(0,1)
+
+	objvar / scriptvar
+
+	utils.setscriptvar()
+
+	int smash random = rand(5%)
+	setscript to smash it
+
+	int random 0 - 10 if random = 0 then setscriptvar(smash) success
+	setscriptvar(smash) 1 saying its done
+	then return
+
+	trials.makecellpublic
+	basement
+	ISD Heroic for floor fires
+	*/
+
 	public boolean ancient_stage_three_terminal_condition__defaultCondition(obj_id player, obj_id npc) throws InterruptedException
 	{
 		return true;
@@ -1016,7 +1069,11 @@ public class ancient_stage_three_terminal extends script.base_script
 
 	public int OnAttach(obj_id self) throws InterruptedException
 	{
+		//set assign here
 		setCondition(self, CONDITION_CONVERSABLE);
+		utils.setScriptVar(self, ValveOneOpen, true);
+		utils.setScriptVar(self, ValveTwoOpen, true);
+		utils.setScriptVar(self, ValveThreeOpen, true);
 		return SCRIPT_CONTINUE;
 	}
 
