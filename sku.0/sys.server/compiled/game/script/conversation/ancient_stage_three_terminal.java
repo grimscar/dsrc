@@ -1145,6 +1145,7 @@ public class ancient_stage_three_terminal extends script.base_script
 	{
 		//set assign here
 		setCondition(self, CONDITION_CONVERSABLE);
+		valveAssignRandom();
 		utils.setScriptVar(self, ValveOneOpen, "v1jammed");
 		utils.setScriptVar(self, ValveTwoOpen, "v2jammed");
 		utils.setScriptVar(self, ValveThreeOpen, "v3jammed");
