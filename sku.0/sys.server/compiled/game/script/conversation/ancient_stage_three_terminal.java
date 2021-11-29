@@ -110,7 +110,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					}
 					utils.setScriptVar(player, "conversation.ancient_stage_three_terminal.branchId", 2);
                     prose_package pp = new prose_package();
-                    message = new string_id(c_stringFile, "s_8");
+                    //message = new string_id(c_stringFile, "s_8");
                     pp.stringId = message;
                     pp = prose.setTO(pp, valveOneStatus(player, npc));
                     pp = prose.setTO(pp, valveTwoStatus(player, npc));
@@ -567,7 +567,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					}
 					utils.setScriptVar(player, "conversation.ancient_stage_three_terminal.branchId", 2);
                     prose_package pp = new prose_package();
-                    message = new string_id(c_stringFile, "s_8");
+                    //message = new string_id(c_stringFile, "s_8");
                     pp.stringId = message;
                     pp = prose.setTO(pp, valveOneStatus(player, npc));
                     pp = prose.setTO(pp, valveTwoStatus(player, npc));
@@ -770,7 +770,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					}
 					utils.setScriptVar(player, "conversation.ancient_stage_three_terminal.branchId", 2);
                     prose_package pp = new prose_package();
-                    message = new string_id(c_stringFile, "s_8");
+                    //message = new string_id(c_stringFile, "s_8");
                     pp.stringId = message;
                     pp = prose.setTO(pp, valveOneStatus(player, npc));
                     pp = prose.setTO(pp, valveTwoStatus(player, npc));
