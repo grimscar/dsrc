@@ -532,7 +532,6 @@ public class ancient_stage_three_terminal extends script.base_script
 		//-- PLAYER:[Open Valve #1]
 		if (response.equals("s_14"))
 		{
-			assignValveStatus();
 			utils.setScriptVar(npc, ValveOneOpen, "v1open");
 			//--[NOTE] Return to Access Valve #1 Controls
 			if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
