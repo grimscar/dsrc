@@ -103,7 +103,35 @@ public class ancient_stage_three_terminal extends script.base_script
 		}
 		return new String("Malfunctioning");
 	}
-	public String valveOneStatus(obj_id player, obj_id npc) throws InterruptedException
+
+	public String valveUpdateStatus(obj_id self, int valve) throws InterruptedException
+	{
+		String valveStr = "filler";
+		switch (valve)
+		{
+			case 1:
+				valveStr = ValveOneOpen;
+			break;
+			case 2:
+				valveStr = ValveTwoOpen;
+			break;
+			case 3:
+				valveStr = ValveThreeOpen;
+			break;
+		}
+        int status = utils.getIntScriptVar(self, ValveOneOpen);
+		if (status == 2)
+		{
+			return new String("Open");
+		}
+		else if (status == 1)
+		{
+			return new String("Closed");
+		}
+		return new String("Jammed");
+	}
+
+	/*public String valveOneStatus(obj_id player, obj_id npc) throws InterruptedException
 	{
         String status = utils.getStringScriptVar(npc, ValveOneOpen);
 		if (status.equals("v1jammed"))
@@ -141,7 +169,7 @@ public class ancient_stage_three_terminal extends script.base_script
 			return new String("Open");
 		}
 		return new String("Closed");
-	}
+	}*/
 	/*
 	public String valveOneStatus(obj_id player, obj_id npc) throws InterruptedException
 	{
@@ -249,7 +277,7 @@ public class ancient_stage_three_terminal extends script.base_script
                     prose_package pp = new prose_package();
                     message = new string_id(c_stringFile, "s_8");
                     pp.stringId = message;
-					String status = "Current Waterflow Status: ["+puzzleStatus(player, npc)+"]"+"\n\nValve 1: "+valveOneStatus(player, npc)+"\nValve 2: "+valveTwoStatus(player, npc)+"\nValve 3: "+valveThreeStatus(player, npc);
+					String status = "Current Waterflow Status: ["+puzzleStatus(player, npc)+"]"+"\n\nValve 1: "+valveUpdateStatus(npc, 1)+"\nValve 2: "+valveUpdateStatus(npc, 2)+"\nValve 3: "+valveUpdateStatus(npc, 3);
                     pp.other.set(status);
                     //pp.other.set(valveTwoStatus(player, npc));
                     //pp.other.set(valveThreeStatus(player, npc));
@@ -706,7 +734,7 @@ public class ancient_stage_three_terminal extends script.base_script
                     prose_package pp = new prose_package();
                     message = new string_id(c_stringFile, "s_8");
                     pp.stringId = message;
-                    String status = "Current Waterflow Status: ["+puzzleStatus(player, npc)+"]"+"\n\nValve 1: "+valveOneStatus(player, npc)+"\nValve 2: "+valveTwoStatus(player, npc)+"\nValve 3: "+valveThreeStatus(player, npc);
+                    String status = "Current Waterflow Status: ["+puzzleStatus(player, npc)+"]"+"\n\nValve 1: "+valveUpdateStatus(npc, 1)+"\nValve 2: "+valveUpdateStatus(npc, 2)+"\nValve 3: "+valveUpdateStatus(npc, 3);
                     pp.other.set(status);
                     //pp.other.set(valveTwoStatus(player, npc));
                     //pp.other.set(valveThreeStatus(player, npc));
@@ -909,7 +937,7 @@ public class ancient_stage_three_terminal extends script.base_script
                     prose_package pp = new prose_package();
                     message = new string_id(c_stringFile, "s_8");
                     pp.stringId = message;
-                    String status = "Current Waterflow Status: ["+puzzleStatus(player, npc)+"]"+"\n\nValve 1: "+valveOneStatus(player, npc)+"\nValve 2: "+valveTwoStatus(player, npc)+"\nValve 3: "+valveThreeStatus(player, npc);
+                    String status = "Current Waterflow Status: ["+puzzleStatus(player, npc)+"]"+"\n\nValve 1: "+valveUpdateStatus(npc, 1)+"\nValve 2: "+valveUpdateStatus(npc, 2)+"\nValve 3: "+valveUpdateStatus(npc, 3);
                     pp.other.set(status);
                     //pp.other.set(valveTwoStatus(player, npc));
                     //pp.other.set(valveThreeStatus(player, npc));
@@ -1113,7 +1141,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					utils.setScriptVar(player, "conversation.ancient_stage_three_terminal.branchId", 2);
                     prose_package pp = new prose_package();
                     pp.stringId = message;
-                    String status = "Current Waterflow Status: ["+puzzleStatus(player, npc)+"]"+"\n\nValve 1: "+valveOneStatus(player, npc)+"\nValve 2: "+valveTwoStatus(player, npc)+"\nValve 3: "+valveThreeStatus(player, npc);
+                    String status = "Current Waterflow Status: ["+puzzleStatus(player, npc)+"]"+"\n\nValve 1: "+valveUpdateStatus(npc, 1)+"\nValve 2: "+valveUpdateStatus(npc, 2)+"\nValve 3: "+valveUpdateStatus(npc, 3);
                     pp.other.set(status);
 					npcSpeak(player, pp);
 					npcSetConversationResponses(player, responses);
