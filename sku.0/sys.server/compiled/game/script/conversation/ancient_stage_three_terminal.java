@@ -67,6 +67,18 @@ public class ancient_stage_three_terminal extends script.base_script
 	basement
 	ISD Heroic for floor fires
 	*/
+
+	public int valveAssignRandom() throws InterruptedException
+	{
+		return rand(0,1);
+	}
+
+	public int assignValveStatus() throws InterruptedException
+	{
+		utils.setScriptVar(ValveOneOpen, valveAssignRandom());
+		return SCRIPT_CONTINUE;
+	}
+
 	public boolean ancient_stage_three_terminal_condition__defaultCondition(obj_id player, obj_id npc) throws InterruptedException
 	{
 		return true;
