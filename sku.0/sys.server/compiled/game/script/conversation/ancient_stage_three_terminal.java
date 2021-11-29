@@ -293,7 +293,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					}
 					if (valveAnswerCheck(npc))
 					{
-						string_id message = new string_id(c_stringFile, "puzzle_finished");
+						message = new string_id(c_stringFile, "puzzle_finished");
 						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 						npcEndConversationWithMessage(player, message);
 					}
@@ -758,7 +758,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					}
 					if (valveAnswerCheck(npc))
 					{
-						string_id message = new string_id(c_stringFile, "puzzle_finished");
+						message = new string_id(c_stringFile, "puzzle_finished");
 						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 						npcEndConversationWithMessage(player, message);
 					}
@@ -967,7 +967,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					}
 					if (valveAnswerCheck(npc))
 					{
-						string_id message = new string_id(c_stringFile, "puzzle_finished");
+						message = new string_id(c_stringFile, "puzzle_finished");
 						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 						npcEndConversationWithMessage(player, message);
 					}
@@ -1188,7 +1188,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					}
 					if (valveAnswerCheck(npc))
 					{
-						string_id message = new string_id(c_stringFile, "puzzle_finished");
+						message = new string_id(c_stringFile, "puzzle_finished");
 						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 						npcEndConversationWithMessage(player, message);
 					}
