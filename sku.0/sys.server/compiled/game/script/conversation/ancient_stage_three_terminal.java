@@ -86,39 +86,39 @@ public class ancient_stage_three_terminal extends script.base_script
 	public String valveOneStatus(obj_id player, obj_id npc) throws InterruptedException
 	{
         boolean status = utils.getBooleanScriptVar(npc, ValveOneOpen);
-		if (status)
-		{
-			return new String("Open");
-		}
 		if (!status)
 		{
 			return new String("Closed");
+		}
+		if (status)
+		{
+			return new String("Open");
 		}
 		return new String("Jammed");
 	}
 	public String valveTwoStatus(obj_id player, obj_id npc) throws InterruptedException
 	{
 		boolean status = utils.getBooleanScriptVar(npc, ValveTwoOpen);
-		if (status)
-		{
-			return new String("Open");
-		}
 		if (!status)
 		{
 			return new String("Closed");
+		}
+		if (status)
+		{
+			return new String("Open");
 		}
 		return new String("Jammed");
 	}
 	public String valveThreeStatus(obj_id player, obj_id npc) throws InterruptedException
 	{
 		boolean status = utils.getBooleanScriptVar(npc, ValveThreeOpen);
-		if (status)
-		{
-			return new String("Open");
-		}
 		if (!status)
 		{
 			return new String("Closed");
+		}
+		if (status)
+		{
+			return new String("Open");
 		}
 		return new String("Jammed");
 	}
