@@ -1245,19 +1245,18 @@ public class ancient_stage_three_terminal extends script.base_script
 	public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
 	{
 		obj_id npc = self;
-
+		if (valveAnswerCheck(npc))
+			{
+				string_id message = new string_id(c_stringFile, "puzzle_finished");
+				utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
+				npcEndConversationWithMessage(player, message);
+			}
 		if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
 			return SCRIPT_OVERRIDE;
 
 		//--[NOTE] Initial Weclome Screen:
 		if (ancient_stage_three_terminal_condition__defaultCondition(player, npc))
 		{
-			if (valveAnswerCheck(npc))
-			{
-				string_id message = new string_id(c_stringFile, "puzzle_finished");
-				utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
-				npcEndConversationWithMessage(player, message);
-			}
 			//-- NPC: Initial Weclome Screen:
 			string_id message = new string_id(c_stringFile, "s_4");
 			int numberOfResponses = 0;
