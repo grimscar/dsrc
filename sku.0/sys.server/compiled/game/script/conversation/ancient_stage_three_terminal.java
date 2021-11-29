@@ -5,8 +5,6 @@ import script.library.chat;
 import script.library.prose;
 import script.library.utils;
 
-import javax.lang.model.util.ElementScanner6;
-
 import script.*;
 
 public class ancient_stage_three_terminal extends script.base_script
@@ -69,7 +67,6 @@ public class ancient_stage_three_terminal extends script.base_script
 	basement
 	ISD Heroic for floor fires
 	*/
-
 	public boolean ancient_stage_three_terminal_condition__defaultCondition(obj_id player, obj_id npc) throws InterruptedException
 	{
 		return true;
