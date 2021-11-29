@@ -10,6 +10,7 @@ import script.*;
 public class ancient_stage_three_terminal extends script.base_script
 {
 	public static final String c_stringFile = "conversation/ancient_stage_three_terminal";
+	public static final String PuzzleStatus = "puzzleStatus";
     public static final String ValveOneOpen = "valveOne";
     public static final String ValveTwoOpen = "valveTwo";
     public static final String ValveThreeOpen = "valveThree";
@@ -17,6 +18,15 @@ public class ancient_stage_three_terminal extends script.base_script
 	public boolean ancient_stage_three_terminal_condition__defaultCondition(obj_id player, obj_id npc) throws InterruptedException
 	{
 		return true;
+	}
+	public String puzzleStatus(obj_id player, obj_id npc) throws InterruptedException
+	{
+        boolean status = utils.getBooleanScriptVar(npc, PuzzleStatus);
+		if (status)
+		{
+			return new String("Malfunctioning");
+		}
+		return new String("Operational");
 	}
 	public String valveOneStatus(obj_id player, obj_id npc) throws InterruptedException
 	{
@@ -112,7 +122,7 @@ public class ancient_stage_three_terminal extends script.base_script
                     prose_package pp = new prose_package();
                     message = new string_id(c_stringFile, "s_8");
                     pp.stringId = message;
-					String status = "Valve 1: "+valveOneStatus(player, npc)+"\nValve 2: "+valveTwoStatus(player, npc)+"\nValve 3: "+valveThreeStatus(player, npc);
+					String status = "Current Waterflow Status:Valve 1: "+valveOneStatus(player, npc)+"\nValve 2: "+valveTwoStatus(player, npc)+"\nValve 3: "+valveThreeStatus(player, npc);
                     pp.other.set(status);
                     //pp.other.set(valveTwoStatus(player, npc));
                     //pp.other.set(valveThreeStatus(player, npc));
