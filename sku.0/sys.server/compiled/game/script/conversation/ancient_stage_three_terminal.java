@@ -85,7 +85,7 @@ public class ancient_stage_three_terminal extends script.base_script
 	}
 	public String valveOneStatus(obj_id player, obj_id npc) throws InterruptedException
 	{
-        String status = utils.getScriptVar(npc, ValveOneOpen);
+        String status = utils.getStringScriptVar(npc, ValveOneOpen);
 		if (status.equals("jammed"))
 		{
 			return new String("jammed");
@@ -98,7 +98,7 @@ public class ancient_stage_three_terminal extends script.base_script
 	}
 	public String valveTwoStatus(obj_id player, obj_id npc) throws InterruptedException
 	{
-		String status = utils.getScriptVar(npc, ValveOneOpen);
+		String status = utils.getStringScriptVar(npc, ValveOneOpen);
 		if (status.equals("jammed"))
 		{
 			return new String("jammed");
@@ -111,7 +111,7 @@ public class ancient_stage_three_terminal extends script.base_script
 	}
 	public String valveThreeStatus(obj_id player, obj_id npc) throws InterruptedException
 	{
-		String status = utils.getScriptVar(npc, ValveOneOpen);
+		String status = utils.getStringScriptVar(npc, ValveOneOpen);
 		if (status.equals("jammed"))
 		{
 			return new String("jammed");
