@@ -9,14 +9,18 @@ import script.*;
 public class third_character_room_three_water_controls extends script.base_script
 {
 	public static String c_stringFile = "conversation/third_character_room_three_water_controls";
-		public boolean third_character_room_three_water_controls_condition__defaultCondition(obj_id player, obj_id npc) throws InterruptedException
+	public static final String ValveOneOpen = "valveOne";
+    public static final String ValveTwoOpen = "valveTwo";
+    public static final String ValveThreeOpen = "valveThree";
+
+	public boolean third_character_room_three_water_controls_condition__defaultCondition(obj_id player, obj_id npc) throws InterruptedException
 	{
 		return true;
 	}
-	/*
 	public String valveOneStatus(obj_id player, obj_id npc) throws InterruptedException
 	{
-		if (v1Status)
+        boolean status = utils.getBooleanScriptVar(npc, ValveOneOpen);
+		if (status)
 		{
 			return new String("Open");
 		}
@@ -24,7 +28,8 @@ public class third_character_room_three_water_controls extends script.base_scrip
 	}
 	public String valveTwoStatus(obj_id player, obj_id npc) throws InterruptedException
 	{
-		if (v2Status)
+		boolean status = utils.getBooleanScriptVar(npc, ValveTwoOpen);
+		if (status)
 		{
 			return new String("Open");
 		}
@@ -32,13 +37,13 @@ public class third_character_room_three_water_controls extends script.base_scrip
 	}
 	public String valveThreeStatus(obj_id player, obj_id npc) throws InterruptedException
 	{
-		if (v3Status)
+		boolean status = utils.getBooleanScriptVar(npc, ValveThreeOpen);
+		if (status)
 		{
 			return new String("Open");
 		}
 		return new String("Closed");
 	}
-	*/
 
 	public int third_character_room_three_water_controls_handleBranch1(obj_id player, obj_id npc, string_id response) throws InterruptedException
 	{
@@ -383,8 +388,7 @@ public class third_character_room_three_water_controls extends script.base_scrip
 		//-- PLAYER:[Open Valve #1]
 		if (response.equals("s_14"))
 		{
-			prose_package pp = new prose_package();
-			pp.other.set("Open");
+			utils.setScriptVar(npc, ValveOneOpen, true);
 			//--[NOTE] Return to Access Valve #1 Controls
 			if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
 			{
@@ -447,6 +451,7 @@ public class third_character_room_three_water_controls extends script.base_scrip
 		//-- PLAYER:[Close Valve #1]
 		if (response.equals("s_17"))
 		{
+			utils.setScriptVar(npc, ValveOneOpen, false);
 			//--[NOTE] Return to Access Valve #1 Controls
 			if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
 			{
@@ -579,6 +584,7 @@ public class third_character_room_three_water_controls extends script.base_scrip
 		//-- PLAYER:[Open Valve #2]
 		if (response.equals("s_30"))
 		{
+			utils.setScriptVar(npc, ValveTwoOpen, true);
 			//--[NOTE] Return to Access Valve #2 Controls
 			if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
 			{
@@ -641,6 +647,7 @@ public class third_character_room_three_water_controls extends script.base_scrip
 		//-- PLAYER:[Close Valve #2]
 		if (response.equals("s_34"))
 		{
+			utils.setScriptVar(npc, ValveTwoOpen, false);
 			//--[NOTE] Return to Access Valve #2 Controls
 			if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
 			{
@@ -775,6 +782,7 @@ public class third_character_room_three_water_controls extends script.base_scrip
 		//-- PLAYER:[Open Valve #3]
 		if (response.equals("s_46"))
 		{
+			utils.setScriptVar(npc, ValveThreeOpen, true);
 			//--[NOTE] Return to Access Valve #3 Controls
 			if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
 			{
@@ -837,6 +845,7 @@ public class third_character_room_three_water_controls extends script.base_scrip
 		//-- PLAYER:[Close Valve #3]
 		if (response.equals("s_50"))
 		{
+			utils.setScriptVar(npc, ValveThreeOpen, false);
 			//--[NOTE] Return to Access Valve #3 Controls
 			if (third_character_room_three_water_controls_condition__defaultCondition(player, npc))
 			{
