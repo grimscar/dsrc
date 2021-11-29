@@ -75,8 +75,19 @@ public class ancient_stage_three_terminal extends script.base_script
 
 	public int assignValveStatus() throws InterruptedException
 	{
-		utils.setScriptVar(ValveOneOpen, valveAssignRandom());
+		utils.setScriptVar(getSelf(), ValveOneOpen, valveAssignRandom());
+		utils.setScriptVar(getSelf(), ValveTwoOpen, valveAssignRandom());
+		utils.setScriptVar(getSelf(), ValveThreeOpen, valveAssignRandom());
+		display();
 		return SCRIPT_CONTINUE;
+	}
+
+	public void display() throws InterruptedException
+	{
+		boolean v1 = utils.getBooleanScriptVar(getSelf(), ValveOneOpen);
+		boolean v2 = utils.getBooleanScriptVar(getSelf(), ValveTwoOpen);
+		boolean v3 = utils.getBooleanScriptVar(getSelf(), ValveThreeOpen);
+		System.out.println("Valve 1 "+v1+"Valve 2 "+v2+"Valve 3 "+v3);
 	}
 
 	public boolean ancient_stage_three_terminal_condition__defaultCondition(obj_id player, obj_id npc) throws InterruptedException
