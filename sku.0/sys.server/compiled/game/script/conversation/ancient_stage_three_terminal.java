@@ -88,9 +88,9 @@ public class ancient_stage_three_terminal extends script.base_script
         String status = utils.getStringScriptVar(npc, ValveOneOpen);
 		if (status.equals("jammed"))
 		{
-			return new String("jammed");
+			return new String("Jammed");
 		}
-		if (status.equals("true"))
+		else if (status.equals("true"))
 		{
 			return new String("Open");
 		}
@@ -101,9 +101,9 @@ public class ancient_stage_three_terminal extends script.base_script
 		String status = utils.getStringScriptVar(npc, ValveOneOpen);
 		if (status.equals("jammed"))
 		{
-			return new String("jammed");
+			return new String("Jammed");
 		}
-		if (status.equals("true"))
+		else if (status.equals("true"))
 		{
 			return new String("Open");
 		}
@@ -114,9 +114,9 @@ public class ancient_stage_three_terminal extends script.base_script
 		String status = utils.getStringScriptVar(npc, ValveOneOpen);
 		if (status.equals("jammed"))
 		{
-			return new String("jammed");
+			return new String("Jammed");
 		}
-		if (status.equals("true"))
+		else if (status.equals("true"))
 		{
 			return new String("Open");
 		}
