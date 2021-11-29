@@ -980,7 +980,7 @@ public class ancient_stage_three_terminal extends script.base_script
                     //pp.other.set(valveTwoStatus(player, npc));
                     //pp.other.set(valveThreeStatus(player, npc));
                     System.out.print("pp 4\n");
-					npcSpeak(player, message);
+					npcSpeak(player, pp);
 					npcSetConversationResponses(player, responses);
 				}
 				else
