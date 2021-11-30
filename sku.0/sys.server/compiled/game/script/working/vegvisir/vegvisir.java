@@ -8,7 +8,7 @@ public class vegvisir extends script.base_script
 {
     public int OnSpeaking(obj_id self, String text) throws InterruptedException
     {
-        if (text.equals("bunkerSpawn"))
+        if (text.equals("bunker"))
         {
             location loc = getLocation(self);
             obj_id container = create.object("object/building/general/boss_nass_dungeon.iff", loc);
