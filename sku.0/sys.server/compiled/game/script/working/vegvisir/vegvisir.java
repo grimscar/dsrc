@@ -1,8 +1,8 @@
 package script.working.vegvisir;
 
-import script.location;
-import script.obj_id;
-import script.library.create;
+import java.util.StringTokenizer;
+import script.*;
+import script.library.*;
 
 public class vegvisir extends script.base_script
 {
