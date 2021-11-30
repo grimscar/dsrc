@@ -2,6 +2,7 @@ package script.conversation;
 
 import script.library.ai_lib;
 import script.library.chat;
+import script.library.groundquests;
 import script.library.trial;
 import script.library.utils;
 
@@ -157,6 +158,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					}
 					if (valveAnswerCheck(npc))
 					{
+						groundquests.sendSignal(player, "waterFixed");
 						message = new string_id(c_stringFile, "puzzle_finished");
 						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 						npcEndConversationWithMessage(player, message);
@@ -193,6 +195,7 @@ public class ancient_stage_three_terminal extends script.base_script
 				string_id message = new string_id(c_stringFile, "s_64");
 				if (valveAnswerCheck(npc))
 					{
+						groundquests.sendSignal(player, "waterFixed");
 						message = new string_id(c_stringFile, "puzzle_finished");
 						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 						npcEndConversationWithMessage(player, message);
@@ -273,6 +276,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					}
 					if (valveAnswerCheck(npc))
 					{
+						groundquests.sendSignal(player, "waterFixed");
 						message = new string_id(c_stringFile, "puzzle_finished");
 						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 						npcEndConversationWithMessage(player, message);
@@ -351,6 +355,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					}
 					if (valveAnswerCheck(npc))
 					{
+						groundquests.sendSignal(player, "waterFixed");
 						message = new string_id(c_stringFile, "puzzle_finished");
 						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 						npcEndConversationWithMessage(player, message);
@@ -430,6 +435,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					}
 					if (valveAnswerCheck(npc))
 					{
+						groundquests.sendSignal(player, "waterFixed");
 						message = new string_id(c_stringFile, "puzzle_finished");
 						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 						npcEndConversationWithMessage(player, message);
@@ -517,6 +523,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					}
 					if (valveAnswerCheck(npc))
 					{
+						groundquests.sendSignal(player, "waterFixed");
 						message = new string_id(c_stringFile, "puzzle_finished");
 						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 						npcEndConversationWithMessage(player, message);
@@ -586,6 +593,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					}
 					if (valveAnswerCheck(npc))
 					{
+						groundquests.sendSignal(player, "waterFixed");
 						message = new string_id(c_stringFile, "puzzle_finished");
 						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 						npcEndConversationWithMessage(player, message);
@@ -654,6 +662,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					}
 					if (valveAnswerCheck(npc))
 					{
+						groundquests.sendSignal(player, "waterFixed");
 						message = new string_id(c_stringFile, "puzzle_finished");
 						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 						npcEndConversationWithMessage(player, message);
@@ -736,6 +745,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					}
 					if (valveAnswerCheck(npc))
 					{
+						groundquests.sendSignal(player, "waterFixed");
 						message = new string_id(c_stringFile, "puzzle_finished");
 						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 						npcEndConversationWithMessage(player, message);
@@ -805,6 +815,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					}
 					if (valveAnswerCheck(npc))
 					{
+						groundquests.sendSignal(player, "waterFixed");
 						message = new string_id(c_stringFile, "puzzle_finished");
 						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 						npcEndConversationWithMessage(player, message);
@@ -873,6 +884,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					}
 					if (valveAnswerCheck(npc))
 					{
+						groundquests.sendSignal(player, "waterFixed");
 						message = new string_id(c_stringFile, "puzzle_finished");
 						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 						npcEndConversationWithMessage(player, message);
@@ -963,6 +975,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					}
 					if (valveAnswerCheck(npc))
 					{
+						groundquests.sendSignal(player, "waterFixed");
 						message = new string_id(c_stringFile, "puzzle_finished");
 						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 						npcEndConversationWithMessage(player, message);
@@ -1038,6 +1051,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					}
 					if (valveAnswerCheck(npc))
 					{
+						groundquests.sendSignal(player, "waterFixed");
 						message = new string_id(c_stringFile, "puzzle_finished");
 						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 						npcEndConversationWithMessage(player, message);
@@ -1106,6 +1120,7 @@ public class ancient_stage_three_terminal extends script.base_script
 					}
 					if (valveAnswerCheck(npc))
 					{
+						groundquests.sendSignal(player, "waterFixed");
 						message = new string_id(c_stringFile, "puzzle_finished");
 						utils.removeScriptVar(player, "conversation.ancient_stage_three_terminal.branchId");
 						npcEndConversationWithMessage(player, message);
@@ -1181,6 +1196,7 @@ public class ancient_stage_three_terminal extends script.base_script
 	public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
 	{
 		obj_id npc = self;
+		groundquests.sendSignal(player, "fixWater");
 		if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
 			return SCRIPT_OVERRIDE;
 

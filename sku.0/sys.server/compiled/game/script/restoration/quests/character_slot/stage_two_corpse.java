@@ -4,6 +4,7 @@ import script.menu_info;
 import script.obj_id;
 import script.string_id;
 import script.library.create;
+import script.library.groundquests;
 import script.library.utils;
 
 public class stage_two_corpse extends script.base_script
@@ -20,6 +21,7 @@ public class stage_two_corpse extends script.base_script
         obj_id playerInv = utils.getInventoryContainer(player);
         if (instructions == null)
         {
+            groundquests.sendSignal(player, "searchCorpse");
             obj_id papers = create.object(INSTRUCTIONS_TEMPLATE, playerInv, false, false);
             setName(papers, INSTRUCTIONS);
             String part1 = getStringObjVar(self, "part_1");
@@ -33,7 +35,7 @@ public class stage_two_corpse extends script.base_script
             setObjVar(papers, "ancient", 1);
             sendSystemMessageTestingOnly(player, LOOT+getName(papers));
         }
-        else 
+        else
         {
             sendSystemMessage(player, NO_LOOT);
         }

@@ -7,6 +7,7 @@ import script.menu_info_types;
 import script.obj_id;
 import script.string_id;
 import script.library.create;
+import script.library.groundquests;
 import script.library.trial;
 
 public class stage_one_terminal extends script.base_script
@@ -38,7 +39,7 @@ public class stage_one_terminal extends script.base_script
         {
             mi.addRootMenu(menu_info_types.ITEM_USE, SID_LOCKED);
         }
-        else 
+        else
         {
             mi.addRootMenu(menu_info_types.ITEM_USE, SID_NOT_LOCKED);
         }
@@ -91,11 +92,11 @@ public class stage_one_terminal extends script.base_script
         {
             if (passkey.equals(result))
             {
-                //groundquests.sendSignal(player, "mustafar_droidfactory_final");
+                groundquests.sendSignal(player, "correctCode");
                 trial.makeCellPublic(getTopMostContainer(self), ROOM_AHEAD);
                 return SCRIPT_CONTINUE;
             }
-            else 
+            else
             {
                 sendSystemMessage(player, WRONG_CODE);
             }
