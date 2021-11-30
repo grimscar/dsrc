@@ -6,1343 +6,1284 @@ import script.library.utils;
 
 import script.*;
 
+
 public class ridth_tercarcha extends script.base_script
 {
 	public ridth_tercarcha()
 	{
 	}
-
 	public static String c_stringFile = "conversation/ridth_tercarcha";
 
 	public boolean ridth_tercarcha_condition__defaultCondition(obj_id player, obj_id npc) throws InterruptedException
 	{
-	return true;
-	}
-
-	public boolean ridth_tercarcha_condition_collectionCompleted(obj_id player, obj_id npc) throws InterruptedException
-	{
-		/*
-		This is true when the whole questline is finished. Collection is obtained. Player has their 3rd character.
-		*/
 		return true;
 	}
 
-	public boolean ridth_tercarcha_condition_isOnBunkerQuest(obj_id player, obj_id npc) throws InterruptedException
+	public boolean ridth_tercarcha_condition_rejectedFirstTime(obj_id player, obj_id npc) throws InterruptedException
 	{
-		/*
-		This is true when the follow has happened:
-		Player has talked to the crazy scientist
-		Player has completed the crazed scientists tutorial quest
-		Player has accepted to go into ancient bunkers to obtain the DNA for him
-		*/
+	// rejected his initial quest
 		return true;
 	}
 
-    public boolean ridth_tercarcha_condition_tutorialFinished(obj_id player, obj_id npc) throws InterruptedException
-    {
-        /*
-        This is true after the player has completed the tutorial mission from the crazed scientist.
-        */
-	    return true;
-    }
-
-    public boolean ridth_tercarcha_condition_isOnTutorial(obj_id player, obj_id npc) throws InterruptedException
-    {
-        /*
-        This is true after the player has talked to crazed scientist and accepted the quest
-        */
-	    return true;
-    }
-
-    public boolean ridth_tercarcha_condition_rejectedTutorial(obj_id player, obj_id npc) throws InterruptedException
-    {
-        /*
-        This is true if the player tried to talk but rejected his help.
-        This allows the player to get an immersive response when they talk to him
-        again. He acknowledges their change in heart to help him.
-        */
-    	return true;
-    }
-
-    public boolean ridth_tercarcha_condition_rejectedBunkerMission(obj_id player, obj_id npc) throws InterruptedException
-    {
-        /*
-        This is true if the player rejects the mission and doesn't help.
-        */
-	    return true;
-    }
-
-    public boolean ridth_tercarcha_condition_bunkerQuestComplete(obj_id player, obj_id npc) throws InterruptedException
-    {
-        /*
-        This is true when the 5th DNA sample is returned.
-        */
-	    return true;
-    }
-
-    public boolean ridth_tercarcha_condition_isOnBunkerRepeat(obj_id player, obj_id npc) throws InterruptedException
-    {
-        /*
-        This is true when the player finishes the intial main bunker and only has the 4 to do.
-        */
-	    return true;
-    }
-
-
-    public int ridth_tercarcha_tokenDI_bunkersCompletedCounter(obj_id player, obj_id npc) throws InterruptedException
-    {
-        /*
-        This keeps track of how many bunkers have been completed.
-        There are 5 total so the value should be 0, 1, 2, 3, 4 or 5.
-        */
-	    return 0;
-    }
-
-    public int ridth_tercarcha_handleBranch2(obj_id player, obj_id npc, string_id response) throws InterruptedException
-    {
-	    //--[BRANCH NOTE] You have done a wonderful job!(he exclaims out taking the final sample from you. Turning away from you, the man walks over, placing the DNA into a large device. His arms raise high for a moment showing off a large incubation tube as he pulls al ever that sets the event into motion. Electricity sparks from the machines as small crackles and pop erupt.)
-	    //-- NPC: You have done a wonderful job!(he exclaims out taking the final sample from you. Turning away from you, the man walks over, placing the DNA into a large device. His arms raise high for a moment showing off a large incubation tube as he pulls al ever that sets the event into motion. Electricity sparks from the machines as small crackles and pop erupt.)
-
-	    //--[RESPONSE NOTE](Continue watching...)
-	    //-- PLAYER:(Continue watching...)
-	    if (response.equals("s_33"))
-	    {
-		//--[NOTE](After a moment, all grow silent. A door opens, and a being steps out.) Behold, we have created LIFE!(he shouts out happily.) Everyone said I was crazy, but I have ascended beyond anything they could ever dream of doing. You will be remembered and immortalized in history; go now before someone finds us here.
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-			    //-- NPC:(After a moment, all grow silent. A door opens, and a being steps out.) Behold, we have created LIFE!(he shouts out happily.) Everyone said I was crazy, but I have ascended beyond anything they could ever dream of doing. You will be remembered and immortalized in history; go now before someone finds us here.
-			    string_id message = new string_id(c_stringFile, "s_34");
-			    utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
-
-			    npcEndConversationWithMessage(player, message);
-
-    			return SCRIPT_CONTINUE;
-		    }
-
-	    }
-
-	    return SCRIPT_DEFAULT;
-    }
-
-    public int ridth_tercarcha_handleBranch5(obj_id player, obj_id npc, string_id response) throws InterruptedException
-    {
-    	//--[BRANCH NOTE] You are back sooner than I thought. Have you gathered the DNA?
-    	//-- NPC: You are back sooner than I thought. Have you gathered the DNA?
-
-	    //--[RESPONSE NOTE] No, not yet.
-	    //-- PLAYER: No, not yet.
-	    if (response.equals("s_37"))
-	    {
-    		//--[NOTE] Then get back out there. You're wasting our time!
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			doAnimationAction(npc, "shoo");
-
-			    //-- NPC: Then get back out there. You're wasting our time!
-			    string_id message = new string_id(c_stringFile, "s_38");
-			    utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
-
-			    npcEndConversationWithMessage(player, message);
-
-			    return SCRIPT_CONTINUE;
-		    }
-
-	    }
-
-	    return SCRIPT_DEFAULT;
-    }
-
-    public int ridth_tercarcha_handleBranch7(obj_id player, obj_id npc, string_id response) throws InterruptedException
-    {
-    	//--[BRANCH NOTE] I told you, you would return. We are too close to creating life itself! So you will help me, yes?
-    	//-- NPC: I told you, you would return. We are too close to creating life itself! So you will help me, yes?
-
-	    //--[RESPONSE NOTE] Yes.
-	    //-- PLAYER: Yes.
-	    if (response.equals("s_40"))
-	    {
-    		//--[NOTE] Perfect, here is the chip that contains all of the information you need for the location of the bunkers.(He hands you the chip and waves you off.) Hurry along now; time is of the essence, my friend!
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			//-- NPC: Perfect, here is the chip that contains all of the information you need for the location of the bunkers.(He hands you the chip and waves you off.) Hurry along now; time is of the essence, my friend!
-			    string_id message = new string_id(c_stringFile, "s_42");
-			    utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
-
-			    npcEndConversationWithMessage(player, message);
-
-			    return SCRIPT_CONTINUE;
-		    }
-
-	    }
-
-	    //--[RESPONSE NOTE]
-	    //-- PLAYER: No.
-    	if (response.equals("s_41"))
-    	{
-		    //--[NOTE] Then why would you waste either of our time by acting like you were going to help? Begone from here.
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			//-- NPC: Then why would you waste either of our time by acting like you were going to help? Begone from here.
-			    string_id message = new string_id(c_stringFile, "s_43");
-			    utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
-
-			    npcEndConversationWithMessage(player, message);
-
-			    return SCRIPT_CONTINUE;
-		    }
-
-	    }
-
-	    return SCRIPT_DEFAULT;
-    }
-
-    public int ridth_tercarcha_handleBranch10(obj_id player, obj_id npc, string_id response) throws InterruptedException
-    {
-    	//--[BRANCH NOTE](The man eagerly looks towards you) Have you retrieved the device?(he asks as he peers around, clearly in a mix of his insanity and looking out for unwanted attention.)
-    	//-- NPC:(The man eagerly looks towards you) Have you retrieved the device?(he asks as he peers around, clearly in a mix of his insanity and looking out for unwanted attention.)
-
-	    //--[RESPONSE NOTE] Yes, here you go.
-	    //-- PLAYER: Yes, here you go.
-	    if (response.equals("s_45"))
-	    {
-    		//--[NOTE] Excellent!(he exclaims, grabbing the device from you. He frantically starts manipulating buttons and levers on it while he compares information from his datapad. After a few moments, he ejects a small disc from his datapad and hands it towards you.) If you take this, then you will be able to find the location of the next bunker. You will still help me, won't you?
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			doAnimationAction(npc, "fiddle");
-
-			    //-- NPC: Excellent!(he exclaims, grabbing the device from you. He frantically starts manipulating buttons and levers on it while he compares information from his datapad. After a few moments, he ejects a small disc from his datapad and hands it towards you.) If you take this, then you will be able to find the location of the next bunker. You will still help me, won't you?
-			    string_id message = new string_id(c_stringFile, "s_46");
-			    int numberOfResponses = 0;
-
-			    boolean hasResponse = false;
-
-			    //-- PLAYER:(Take the data chip)
-			    boolean hasResponse0 = false;
-			    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-			    {
-    				++numberOfResponses;
-				    hasResponse = true;
-				    hasResponse0 = true;
-			    }
-
-			    //-- PLAYER: No, that was way too dangerous.
-			    boolean hasResponse1 = false;
-			    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-			    {
-    				++numberOfResponses;
-				    hasResponse = true;
-				    hasResponse1 = true;
-			    }
-
-			    if (hasResponse)
-			    {
-    				int responseIndex = 0;
-				    string_id responses[] = new string_id[numberOfResponses];
-
-				    if (hasResponse0)
-                    {
-					    responses[responseIndex++] = new string_id(c_stringFile, "s_47");
-                    }
-				    if (hasResponse1)
-    				{
-                    	responses[responseIndex++] = new string_id(c_stringFile, "s_49");
-                    }
-				    utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 11);
-
-				    npcSpeak(player, message);
-				    npcSetConversationResponses(player, responses);
-			    }
-			    else
-			    {
-    				utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
-
-				    npcEndConversationWithMessage(player, message);
-			    }
-
-			    return SCRIPT_CONTINUE;
-		    }
-
-	    }
-
-	    return SCRIPT_DEFAULT;
-    }
-
-    public int ridth_tercarcha_handleBranch11(obj_id player, obj_id npc, string_id response) throws InterruptedException
-    {
-    	//--[BRANCH NOTE] Excellent!(he exclaims, grabbing the device from you. He frantically starts manipulating buttons and levers on it while he compares information from his datapad. After a few moments, he ejects a small disc from his datapad and hands it towards you.) If you take this, then you will be able to find the location of the next bunker. You will still help me, won't you?
-    	//-- NPC: Excellent!(he exclaims, grabbing the device from you. He frantically starts manipulating buttons and levers on it while he compares information from his datapad. After a few moments, he ejects a small disc from his datapad and hands it towards you.) If you take this, then you will be able to find the location of the next bunker. You will still help me, won't you?
-
-	    //--[RESPONSE NOTE](Take the data chip)
-	    //-- PLAYER:(Take the data chip)
-	    if (response.equals("s_47"))
-	    {
-    		//--[NOTE] Thank you so much. I am sure these bunkers will pose a more significant threat than before. Please be safe and hurry!
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			//-- NPC: Thank you so much. I am sure these bunkers will pose a more significant threat than before. Please be safe and hurry!
-			    string_id message = new string_id(c_stringFile, "s_48");
-			    utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
-
-			    npcEndConversationWithMessage(player, message);
-
-			    return SCRIPT_CONTINUE;
-		    }
-
-	    }
-
-	    //--[RESPONSE NOTE] No, that was way too dangerous.
-	    //-- PLAYER: No, that was way too dangerous.
-	    if (response.equals("s_49"))
-	    {
-    		//--[NOTE] I can't believe you would turn away after coming so far. Are you sure?
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			//-- NPC: I can't believe you would turn away after coming so far. Are you sure?
-			    string_id message = new string_id(c_stringFile, "s_50");
-			    int numberOfResponses = 0;
-
-			    boolean hasResponse = false;
-
-			    //-- PLAYER: Fine.(Take the data chip)
-			    boolean hasResponse0 = false;
-			    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-			    {
-    				++numberOfResponses;
-				    hasResponse = true;
-				    hasResponse0 = true;
-			    }
-
-			    //-- PLAYER: Yes, I value my life more.
-			    boolean hasResponse1 = false;
-			    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-			    {
-    				++numberOfResponses;
-				    hasResponse = true;
-				    hasResponse1 = true;
-			    }
-
-			    if (hasResponse)
-			    {
-    				int responseIndex = 0;
-				    string_id responses[] = new string_id[numberOfResponses];
-
-				    if (hasResponse0)
-                    {
-    					responses[responseIndex++] = new string_id(c_stringFile, "s_51");
-                    }
-				    if (hasResponse1)
-                    {
-    					responses[responseIndex++] = new string_id(c_stringFile, "s_53");
-                    }
-				    utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 13);
-
-				    npcSpeak(player, message);
-				    npcSetConversationResponses(player, responses);
-			    }
-			    else
-			    {
-    				utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
-
-				    npcEndConversationWithMessage(player, message);
-			    }
-
-			    return SCRIPT_CONTINUE;
-		    }
-
-	    }
-
-	    return SCRIPT_DEFAULT;
-    }
-
-    public int ridth_tercarcha_handleBranch13(obj_id player, obj_id npc, string_id response) throws InterruptedException
-    {
-    	//--[BRANCH NOTE] I can't believe you would turn away after coming so far. Are you sure?
-    	//-- NPC: I can't believe you would turn away after coming so far. Are you sure?
-
-	    //--[RESPONSE NOTE] Fine.(Take the data chip)
-	    //-- PLAYER: Fine.(Take the data chip)
-	    if (response.equals("s_51"))
-	    {
-    		//--[NOTE] Thank you so much. I am sure these bunkers will pose a more significant threat than before. Please be safe and hurry!
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			//-- NPC: Thank you so much. I am sure these bunkers will pose a more significant threat than before. Please be safe and hurry!
-			    string_id message = new string_id(c_stringFile, "s_52");
-			    utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
-
-			    npcEndConversationWithMessage(player, message);
-
-			    return SCRIPT_CONTINUE;
-		    }
-
-	    }
-
-	    //--[RESPONSE NOTE] Yes, I value my life more.
-	    //-- PLAYER: Yes, I value my life more.
-	    if (response.equals("s_53"))
-	    {
-    		//--[NOTE] Be that way, but should you change your mind...
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			//-- NPC: Be that way, but should you change your mind...
-			    string_id message = new string_id(c_stringFile, "s_54");
-			    utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
-
-			    npcEndConversationWithMessage(player, message);
-
-			    return SCRIPT_CONTINUE;
-    		    }
-
-	    }
-
-	    return SCRIPT_DEFAULT;
-    }
-
-    public int ridth_tercarcha_handleBranch16(obj_id player, obj_id npc, string_id response) throws InterruptedException
-    {
-    	//--[BRANCH NOTE] I gave you a task. Have you retrieved the item?!
-    	//-- NPC: I gave you a task. Have you retrieved the item?!
-
-	    //--[RESPONSE NOTE] No, not yet.
-	    //-- PLAYER: No, not yet.
-	    if (response.equals("s_56"))
-	    {
-    		//--[NOTE] Then what are you wasting your time here then? Time is of the essence!
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-			    //-- NPC: Then what are you wasting your time here then? Time is of the essence!
-			    string_id message = new string_id(c_stringFile, "s_57");
+	public boolean ridth_tercarcha_condition_doesPlayerQualify(obj_id player, obj_id npc) throws InterruptedException
+	{
+	//Are they old enough?
+		return true;
+	}
+
+	public boolean ridth_tercarcha_condition_isOnQuest(obj_id player, obj_id npc) throws InterruptedException
+	{
+	// Player is actively on the main quest to collect his 5 DNA collections
+		return true;
+	}
+
+	public boolean ridth_tercarcha_condition_completedCollection(obj_id player, obj_id npc) throws InterruptedException
+	{
+	// Completed the collection, now talking to him will grant the 3rd Character Slot
+		return true;
+	}
+
+	public boolean ridth_tercarcha_condition_questDoneRepeat(obj_id player, obj_id npc) throws InterruptedException
+	{
+	// Player has already finished collection and have a 3rd character slot. Just want to repeat.
+		return true;
+	}
+
+	public boolean ridth_tercarcha_condition_isOnQuestRepeat(obj_id player, obj_id npc) throws InterruptedException
+	{
+	// Player is on the quest, but the repeat version. So varies his conversation some from before
+		return true;
+	}
+
+	public boolean ridth_tercarcha_condition_loopingQuestLine(obj_id player, obj_id npc) throws InterruptedException
+	{
+		return true;
+	}
+
+	public int ridth_tercarcha_handleBranch2(obj_id player, obj_id npc, string_id response) throws InterruptedException
+	{
+		//--[BRANCH NOTE] *Back for more work?*
+		//-- NPC: *Back for more work?*
+
+		//--[RESPONSE NOTE] No, I'm still looking for the bunker.
+		//-- PLAYER: No, I'm still looking for the bunker.
+		if (response.equals("s_46"))
+		{
+			//--[NOTE] *Wasting time as usual, however, it is your own time you waste so it doesn't affect me now.* He chuckles slightly as he turns back to his work.
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				//-- NPC: *Wasting time as usual, however, it is your own time you waste so it doesn't affect me now.* He chuckles slightly as he turns back to his work.
+				string_id message = new string_id(c_stringFile, "s_47");
 				utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
-            	npcEndConversationWithMessage(player, message);
+
+				npcEndConversationWithMessage(player, message);
+
+				return SCRIPT_CONTINUE;
 			}
-			return SCRIPT_CONTINUE;
 
-    	}
+		}
 
-    	return SCRIPT_DEFAULT;
-    }
+		return SCRIPT_DEFAULT;
+	}
 
-    public int ridth_tercarcha_handleBranch18(obj_id player, obj_id npc, string_id response) throws InterruptedException
-    {
-    	//--[BRANCH NOTE] See! I knew you would return. Are you interested in hearing me out this time?
-    	//-- NPC: See! I knew you would return. Are you interested in hearing me out this time?
+	public int ridth_tercarcha_handleBranch4(obj_id player, obj_id npc, string_id response) throws InterruptedException
+	{
+		//--[BRANCH NOTE] *Good to see you again; how has your research gone.* He looks you over. *Are you needing another bunker location?*
+		//-- NPC: *Good to see you again; how has your research gone.* He looks you over. *Are you needing another bunker location?*
 
-	    //--[RESPONSE NOTE] Yes, let's hear it.
-	    //-- PLAYER: Yes, let's hear it.
-	    if (response.equals("s_60"))
-	    {
-    		//--[NOTE] Excellent! Excellent!(he exclaims as he pulls out a datapad. Reviewing the material closely, he begins to speak again.) I have triangulated a location that is near here. First, I need you to assist in gathering an ancient device that holds the key to finding the five other bunkers, which contain DNA samples that have the key to creating life itself.(He presses a few buttons on the datapad and brings up a map displaying the location to you.)
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			doAnimationAction(npc, "celebrate1");
+		//--[RESPONSE NOTE] Yes please.
+		//-- PLAYER: Yes please.
+		if (response.equals("s_40"))
+		{
+			//--[NOTE] He nods his head pulling out a small data disc to transfer to you. *Here are the coordinates just like before. Be safe out there.*
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				//-- NPC: He nods his head pulling out a small data disc to transfer to you. *Here are the coordinates just like before. Be safe out there.*
+				string_id message = new string_id(c_stringFile, "s_41");
+				utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
 
-			    //-- NPC: Excellent! Excellent!(he exclaims as he pulls out a datapad. Reviewing the material closely, he begins to speak again.) I have triangulated a location that is near here. First, I need you to assist in gathering an ancient device that holds the key to finding the five other bunkers, which contain DNA samples that have the key to creating life itself.(He presses a few buttons on the datapad and brings up a map displaying the location to you.)
-			    string_id message = new string_id(c_stringFile, "s_62");
-			    int numberOfResponses = 0;
+				npcEndConversationWithMessage(player, message);
 
-			    boolean hasResponse = false;
+				return SCRIPT_CONTINUE;
+			}
 
-			    //-- PLAYER:(Continue to listen...)
-			    boolean hasResponse0 = false;
-			    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-			    {
-    				++numberOfResponses;
-				    hasResponse = true;
-				    hasResponse0 = true;
-			    }
+		}
 
-			    if (hasResponse)
-			    {
-    				int responseIndex = 0;
-				    string_id responses[] = new string_id[numberOfResponses];
+		//--[RESPONSE NOTE] Good just wanted to say hi.
+		//-- PLAYER: Good just wanted to say hi.
+		if (response.equals("s_43"))
+		{
+			//--[NOTE] *Oh, uh hi then?* he shrugs as he turns back to his work. *I don't have time for idle chatter.*
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				//-- NPC: *Oh, uh hi then?* he shrugs as he turns back to his work. *I don't have time for idle chatter.*
+				string_id message = new string_id(c_stringFile, "s_44");
+				utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
 
-				    if (hasResponse0)
-				    {
-                        responses[responseIndex++] = new string_id(c_stringFile, "s_64");
-                    }
-				    utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 19);
+				npcEndConversationWithMessage(player, message);
 
-				    npcSpeak(player, message);
-				    npcSetConversationResponses(player, responses);
-			    }
-			    else
-			    {
-    				utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
+				return SCRIPT_CONTINUE;
+			}
 
-				    npcEndConversationWithMessage(player, message);
-			    }
+		}
 
-			    return SCRIPT_CONTINUE;
-		    }
+		return SCRIPT_DEFAULT;
+	}
 
-	    }
+	public int ridth_tercarcha_handleBranch7(obj_id player, obj_id npc, string_id response) throws InterruptedException
+	{
+		//--[BRANCH NOTE]
+		//-- NPC: *You've gathered everything we need?* the man asks, turning to you with an eager look.
 
-	    //--[RESPONSE NOTE] On second thought, I still don't have time.
-	    //-- PLAYER: On second thought, I still don't have time.
-	    if (response.equals("s_76"))
-	    {
-    		//--[NOTE] You will know where you can find me.
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			//-- NPC: You will know where you can find me.
-			    string_id message = new string_id(c_stringFile, "s_78");
-			    utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
+		//--[RESPONSE NOTE] Yes, here are the samples.
+		//-- PLAYER: Yes, here are the samples.
+		if (response.equals("s_32"))
+		{
+			//--[NOTE] *Excellent!* he echoes out as he grabs them from you, quickly turning to his machines. *You have done a wonderful job! I have everything already set up and ready. Let me insert this right here.* He states as he slides the samples into position. Pulling a nearby lever on the machine causes electricity to flow through the room as the lights dim.
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				//-- NPC: *Excellent!* he echoes out as he grabs them from you, quickly turning to his machines. *You have done a wonderful job! I have everything already set up and ready. Let me insert this right here.* He states as he slides the samples into position. Pulling a nearby lever on the machine causes electricity to flow through the room as the lights dim.
+				string_id message = new string_id(c_stringFile, "s_33");
+				int numberOfResponses = 0;
 
-			    npcEndConversationWithMessage(player, message);
+				boolean hasResponse = false;
 
-			    return SCRIPT_CONTINUE;
-		    }
+				//-- PLAYER:[Continue watching]
+				boolean hasResponse0 = false;
+				if (ridth_tercarcha_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse0 = true;
+				}
 
-	    }
+				if (hasResponse)
+				{
+					int responseIndex = 0;
+					string_id responses[] = new string_id[numberOfResponses];
 
-	    return SCRIPT_DEFAULT;
-    }
-
-    public int ridth_tercarcha_handleBranch19(obj_id player, obj_id npc, string_id response) throws InterruptedException
-    {
-    	//--[BRANCH NOTE] Excellent! Excellent!(he exclaims as he pulls out a datapad. Reviewing the material closely, he begins to speak again.) I have triangulated a location that is near here. First, I need you to assist in gathering an ancient device that holds the key to finding the five other bunkers, which contain DNA samples that have the key to creating life itself.(He presses a few buttons on the datapad and brings up a map displaying the location to you.)
-    	//-- NPC: Excellent! Excellent!(he exclaims as he pulls out a datapad. Reviewing the material closely, he begins to speak again.) I have triangulated a location that is near here. First, I need you to assist in gathering an ancient device that holds the key to finding the five other bunkers, which contain DNA samples that have the key to creating life itself.(He presses a few buttons on the datapad and brings up a map displaying the location to you.)
-
-	    //--[RESPONSE NOTE](Continue to listen...)
-	    //-- PLAYER:(Continue to listen...)
-	    if (response.equals("s_64"))
-	    {
-    		//--[NOTE] Go to this bunker; you will find that it has a series of traps meant to keep people out. You could bring friends that specialize in an array of talents that could prove to be useful. Once the bunker's security discovers you, you won't have much time to finish. Else all my life's work would be lost to the ruins. Failure is not an option.
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-    		    {
-			    //-- NPC: Go to this bunker; you will find that it has a series of traps meant to keep people out. You could bring friends that specialize in an array of talents that could prove to be useful. Once the bunker's security discovers you, you won't have much time to finish. Else all my life's work would be lost to the ruins. Failure is not an option.
-			    string_id message = new string_id(c_stringFile, "s_66");
-			    int numberOfResponses = 0;
-
-			    boolean hasResponse = false;
-
-			    //-- PLAYER: Okay, I am off then.
-			    boolean hasResponse0 = false;
-			    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-			    {
-    				++numberOfResponses;
-    				hasResponse = true;
-    				hasResponse0 = true;
-			    }
-
-			    //-- PLAYER: No, that sounds too dangerous.
-			    boolean hasResponse1 = false;
-			    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-			    {
-    				++numberOfResponses;
-				    hasResponse = true;
-				    hasResponse1 = true;
-			    }
-
-			    if (hasResponse)
-			    {
-    				int responseIndex = 0;
-				    string_id responses[] = new string_id[numberOfResponses];
-
-				    if (hasResponse0)
-    				{
-                    	responses[responseIndex++] = new string_id(c_stringFile, "s_68");
-                    }
-				    if (hasResponse1)
-    				{
-                        responses[responseIndex++] = new string_id(c_stringFile, "s_72");
-                    }
-				    utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 20);
-
-				    npcSpeak(player, message);
-				    npcSetConversationResponses(player, responses);
-			    }
-			    else
-			    {
-    				utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
-
-				    npcEndConversationWithMessage(player, message);
-			    }
-
-			    return SCRIPT_CONTINUE;
-		    }
-
-	    }
-
-	    return SCRIPT_DEFAULT;
-    }
-
-    public int ridth_tercarcha_handleBranch20(obj_id player, obj_id npc, string_id response) throws InterruptedException
-    {
-    	//--[BRANCH NOTE] Go to this bunker; you will find that it has a series of traps meant to keep people out. You could bring friends that specialize in an array of talents that could prove to be useful. Once the bunker's security discovers you, you won't have much time to finish. Else all my life's work would be lost to the ruins. Failure is not an option.
-    	//-- NPC: Go to this bunker; you will find that it has a series of traps meant to keep people out. You could bring friends that specialize in an array of talents that could prove to be useful. Once the bunker's security discovers you, you won't have much time to finish. Else all my life's work would be lost to the ruins. Failure is not an option.
-
-	    //--[RESPONSE NOTE] Okay, I am off then.
-	    //-- PLAYER: Okay, I am off then.
-	    if (response.equals("s_68"))
-	    {
-    		//--[NOTE] Excellent! Please hurry back once you have the device.
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			doAnimationAction(npc, "bow");
-
-			    //-- NPC: Excellent! Please hurry back once you have the device.
-			    string_id message = new string_id(c_stringFile, "s_70");
-			    utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
-
-			    npcEndConversationWithMessage(player, message);
-
-			    return SCRIPT_CONTINUE;
-		    }
-
-	    }
-
-	    //--[RESPONSE NOTE] No, that sounds too dangerous.
-	    //-- PLAYER: No, that sounds too dangerous.
-	    if (response.equals("s_72"))
-	    {
-    		//--[NOTE] You're no better than the rest. Begone!
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			doAnimationAction(npc, "wildpanic");
-
-			    //-- NPC: You're no better than the rest. Begone!
-			    string_id message = new string_id(c_stringFile, "s_74");
-			    utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
-
-			    npcEndConversationWithMessage(player, message);
-
-			    return SCRIPT_CONTINUE;
-		    }
-
-	    }
-
-	    return SCRIPT_DEFAULT;
-    }
-
-    public int ridth_tercarcha_handleBranch24(obj_id player, obj_id npc, string_id response) throws InterruptedException
-    {
-    	//--[BRANCH NOTE](Waving his arms wildly over his head, the crazed scientist motions you over.) They said I was crazy. No one believes in the power of my work.(He glances around the area as if looking for someone.) The Empire would try to claim the credit if they knew the true powers that I'm on the brink of unlocking!(He motions you closer in.)
-    	//-- NPC:(Waving his arms wildly over his head, the crazed scientist motions you over.) They said I was crazy. No one believes in the power of my work.(He glances around the area as if looking for someone.) The Empire would try to claim the credit if they knew the true powers that I'm on the brink of unlocking!(He motions you closer in.)
-
-	    //--[RESPONSE NOTE](Lean in to listen...)
-	    //-- PLAYER:(Lean in to listen...)
-	    if (response.equals("s_82"))
-	    {
-    		//--[NOTE] I could create a new lifeform for you. You could live an alternative life and do anything you wished with it!
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			//-- NPC: I could create a new lifeform for you. You could live an alternative life and do anything you wished with it!
-			    string_id message = new string_id(c_stringFile, "s_84");
-    			int numberOfResponses = 0;
-
-			    boolean hasResponse = false;
-
-			    //-- PLAYER: Sure, you have my interest.
-			    boolean hasResponse0 = false;
-			    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-			    {
-    				++numberOfResponses;
-				    hasResponse = true;
-				    hasResponse0 = true;
-			    }
-
-			    //-- PLAYER: I don't have time right now.
-			    boolean hasResponse1 = false;
-			    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-			    {
-    				++numberOfResponses;
-				    hasResponse = true;
-				    hasResponse1 = true;
-			    }
-
-			    if (hasResponse)
-			    {
-				    int responseIndex = 0;
-				    string_id responses[] = new string_id[numberOfResponses];
-
-				    if (hasResponse0)
+					if (hasResponse0)
 					{
-    					responses[responseIndex++] = new string_id(c_stringFile, "s_86");
+						responses[responseIndex++] = new string_id(c_stringFile, "s_34");
 					}
-				    if (hasResponse1)
+					utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 8);
+
+					npcSpeak(player, message);
+					npcSetConversationResponses(player, responses);
+				}
+				else
+				{
+					utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
+
+					npcEndConversationWithMessage(player, message);
+				}
+
+				return SCRIPT_CONTINUE;
+			}
+
+		}
+
+		return SCRIPT_DEFAULT;
+	}
+
+	public int ridth_tercarcha_handleBranch8(obj_id player, obj_id npc, string_id response) throws InterruptedException
+	{
+		//--[BRANCH NOTE] *Excellent!* he echoes out as he grabs them from you, quickly turning to his machines. *You have done a wonderful job! I have everything already set up and ready. Let me insert this right here.* He states as he slides the samples into position. Pulling a nearby lever on the machine causes electricity to flow through the room as the lights dim.
+		//-- NPC: *Excellent!* he echoes out as he grabs them from you, quickly turning to his machines. *You have done a wonderful job! I have everything already set up and ready. Let me insert this right here.* He states as he slides the samples into position. Pulling a nearby lever on the machine causes electricity to flow through the room as the lights dim.
+
+		//--[RESPONSE NOTE][Continue watching]
+		//-- PLAYER:[Continue watching]
+		if (response.equals("s_34"))
+		{
+			//--[NOTE] Loud sparks sound off as the lights flicker rapidly. After some time, the process ends as the man walks over towards a chamber. The man pushes some buttons as shielding around one of the containers open. You see the floating figure of a being in the Bacta tank. *Behold! We have created life itself and not just a clone replica!*
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				//-- NPC: Loud sparks sound off as the lights flicker rapidly. After some time, the process ends as the man walks over towards a chamber. The man pushes some buttons as shielding around one of the containers open. You see the floating figure of a being in the Bacta tank. *Behold! We have created life itself and not just a clone replica!*
+				string_id message = new string_id(c_stringFile, "s_35");
+				int numberOfResponses = 0;
+
+				boolean hasResponse = false;
+
+				//-- PLAYER:[Continue to listen]
+				boolean hasResponse0 = false;
+				if (ridth_tercarcha_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse0 = true;
+				}
+
+				if (hasResponse)
+				{
+					int responseIndex = 0;
+					string_id responses[] = new string_id[numberOfResponses];
+
+					if (hasResponse0)
 					{
-    					responses[responseIndex++] = new string_id(c_stringFile, "s_102");
+						responses[responseIndex++] = new string_id(c_stringFile, "s_36");
 					}
-				    utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 25);
+					utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 9);
 
-    				npcSpeak(player, message);
-				    npcSetConversationResponses(player, responses);
-			    }
-			    else
-			    {
-				    utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
+					npcSpeak(player, message);
+					npcSetConversationResponses(player, responses);
+				}
+				else
+				{
+					utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
 
-				    npcEndConversationWithMessage(player, message);
-			    }
+					npcEndConversationWithMessage(player, message);
+				}
 
-			    return SCRIPT_CONTINUE;
-		    }
+				return SCRIPT_CONTINUE;
+			}
 
-	    }
+		}
 
-	    return SCRIPT_DEFAULT;
-    }
+		return SCRIPT_DEFAULT;
+	}
 
-    public int ridth_tercarcha_handleBranch25(obj_id player, obj_id npc, string_id response) throws InterruptedException
-    {
-    	//--[BRANCH NOTE] I could create a new lifeform for you. You could live an alternative life and do anything you wished with it!
-    	//-- NPC: I could create a new lifeform for you. You could live an alternative life and do anything you wished with it!
+	public int ridth_tercarcha_handleBranch9(obj_id player, obj_id npc, string_id response) throws InterruptedException
+	{
+		//--[BRANCH NOTE] Loud sparks sound off as the lights flicker rapidly. After some time, the process ends as the man walks over towards a chamber. The man pushes some buttons as shielding around one of the containers open. You see the floating figure of a being in the Bacta tank. *Behold! We have created life itself and not just a clone replica!*
+		//-- NPC: Loud sparks sound off as the lights flicker rapidly. After some time, the process ends as the man walks over towards a chamber. The man pushes some buttons as shielding around one of the containers open. You see the floating figure of a being in the Bacta tank. *Behold! We have created life itself and not just a clone replica!*
 
-	    //--[RESPONSE NOTE] Sure, you have my interest.
-	    //-- PLAYER: Sure, you have my interest.
-	    if (response.equals("s_86"))
-	    {
-    		//--[NOTE] Excellent! Excellent!(he exclaims as he pulls out a datapad. Reviewing the material closely, he begins to speak again.) I have triangulated a location that is near here. First, I need you to assist in gathering an ancient device that holds the key to finding the five other bunkers, which contain DNA samples that have the key to creating life itself.(He presses a few buttons on the datapad and brings up a map displaying the location to you.)
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			doAnimationAction(npc, "celebrate1");
+		//--[RESPONSE NOTE][Continue to listen]
+		//-- PLAYER:[Continue to listen]
+		if (response.equals("s_36"))
+		{
+			//--[NOTE] *We will go down in history for this, and the possibilities are endless at this point. I will never forget you and your deeds to prove that my theory was not crazy. They are all the crazy ones. If you wish to continue the research with me. I can give you locations as I gather them for you to gather more samples.*
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				//-- NPC: *We will go down in history for this, and the possibilities are endless at this point. I will never forget you and your deeds to prove that my theory was not crazy. They are all the crazy ones. If you wish to continue the research with me. I can give you locations as I gather them for you to gather more samples.*
+				string_id message = new string_id(c_stringFile, "s_37");
+				utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
 
-			    //-- NPC: Excellent! Excellent!(he exclaims as he pulls out a datapad. Reviewing the material closely, he begins to speak again.) I have triangulated a location that is near here. First, I need you to assist in gathering an ancient device that holds the key to finding the five other bunkers, which contain DNA samples that have the key to creating life itself.(He presses a few buttons on the datapad and brings up a map displaying the location to you.)
-			    string_id message = new string_id(c_stringFile, "s_88");
-			    int numberOfResponses = 0;
+				npcEndConversationWithMessage(player, message);
 
-			    boolean hasResponse = false;
+				return SCRIPT_CONTINUE;
+			}
 
-			    //-- PLAYER:(Continue to listen...)
-			    boolean hasResponse0 = false;
-			    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-			    {
-    				++numberOfResponses;
-				    hasResponse = true;
-				    hasResponse0 = true;
-			    }
+		}
 
-			    if (hasResponse)
-			    {
-    				int responseIndex = 0;
-				    string_id responses[] = new string_id[numberOfResponses];
+		return SCRIPT_DEFAULT;
+	}
 
-				    if (hasResponse0)
+	public int ridth_tercarcha_handleBranch11(obj_id player, obj_id npc, string_id response) throws InterruptedException
+	{
+		//--[BRANCH NOTE] *You've gathered everything we need?* the man asks turning to you with an eager look.
+		//-- NPC: *You've gathered everything we need?* the man asks turning to you with an eager look.
+
+		//--[RESPONSE NOTE] No, not yet.
+		//-- PLAYER: No, not yet.
+		if (response.equals("s_29"))
+		{
+			//--[NOTE] *You enjoy wasting time, don't you?* He lets out a sigh shaking his head at you. *Please don't disturb me while you still have a task to complete.*
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				//-- NPC: *You enjoy wasting time, don't you?* He lets out a sigh shaking his head at you. *Please don't disturb me while you still have a task to complete.*
+				string_id message = new string_id(c_stringFile, "s_30");
+				utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
+
+				npcEndConversationWithMessage(player, message);
+
+				return SCRIPT_CONTINUE;
+			}
+
+		}
+
+		return SCRIPT_DEFAULT;
+	}
+
+	public int ridth_tercarcha_handleBranch13(obj_id player, obj_id npc, string_id response) throws InterruptedException
+	{
+		//--[BRANCH NOTE] *Welcome back! Ready to go to the next location?*
+		//-- NPC: *Welcome back! Ready to go to the next location?*
+
+		//--[RESPONSE NOTE] Yes
+		//-- PLAYER: Yes
+		if (response.equals("s_49"))
+		{
+			//--[NOTE] He nods his head while loading the next bunker up to your datapad. *Coordinates are set, make haste and be safe as always!*
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				//-- NPC: He nods his head while loading the next bunker up to your datapad. *Coordinates are set, make haste and be safe as always!*
+				string_id message = new string_id(c_stringFile, "s_52");
+				utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
+
+				npcEndConversationWithMessage(player, message);
+
+				return SCRIPT_CONTINUE;
+			}
+
+		}
+
+		//--[RESPONSE NOTE] Not at this time.
+		//-- PLAYER: Not at this time.
+		if (response.equals("s_50"))
+		{
+			//--[NOTE] *When you are ready just return to me then.*
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				//-- NPC: *When you are ready just return to me then.*
+				string_id message = new string_id(c_stringFile, "s_51");
+				utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
+
+				npcEndConversationWithMessage(player, message);
+
+				return SCRIPT_CONTINUE;
+			}
+
+		}
+
+		return SCRIPT_DEFAULT;
+	}
+
+	public int ridth_tercarcha_handleBranch16(obj_id player, obj_id npc, string_id response) throws InterruptedException
+	{
+		//--[BRANCH NOTE] *You are too predictable; I knew you would return.* He pulls some equipment out and looks over at you. *Are you ready to commit now?*
+		//-- NPC: *You are too predictable; I knew you would return.* He pulls some equipment out and looks over at you. *Are you ready to commit now?*
+
+		//--[RESPONSE NOTE] Yes
+		//-- PLAYER: Yes
+		if (response.equals("s_20"))
+		{
+			//--[NOTE] *Take this device, and it will help guide you to the locations around the Galaxy. If you allow me, your Biological data will be scanned by these bunkers, and I found a way to spoof part of this security to allow you entry. Without it would mean sure death, though you will have to rush before the bunkers self-destruct protocol can finish.*
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				//-- NPC: *Take this device, and it will help guide you to the locations around the Galaxy. If you allow me, your Biological data will be scanned by these bunkers, and I found a way to spoof part of this security to allow you entry. Without it would mean sure death, though you will have to rush before the bunkers self-destruct protocol can finish.*
+				string_id message = new string_id(c_stringFile, "s_21");
+				int numberOfResponses = 0;
+
+				boolean hasResponse = false;
+
+				//-- PLAYER:[Step closer]
+				boolean hasResponse0 = false;
+				if (ridth_tercarcha_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse0 = true;
+				}
+
+				if (hasResponse)
+				{
+					int responseIndex = 0;
+					string_id responses[] = new string_id[numberOfResponses];
+
+					if (hasResponse0)
 					{
-    					responses[responseIndex++] = new string_id(c_stringFile, "s_90");
+						responses[responseIndex++] = new string_id(c_stringFile, "s_22");
 					}
-				    utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 26);
-
-				    npcSpeak(player, message);
-				    npcSetConversationResponses(player, responses);
-			    }
-			    else
-			    {
-    				utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
-
-				    npcEndConversationWithMessage(player, message);
-			    }
-
-			    return SCRIPT_CONTINUE;
-		    }
-
-	    }
-
-	    //--[RESPONSE NOTE] I don't have time right now.
-	    //-- PLAYER: I don't have time right now.
-	    if (response.equals("s_102"))
-	    {
-    		doAnimationAction(player, "shake_head_no");
-
-		    //--[NOTE] Whatever, begone, I don't have time to waste either if you aren't interested. You'll be back, though; I know it.
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			doAnimationAction(npc, "wildpanic");
-
-			    //-- NPC: Whatever, begone, I don't have time to waste either if you aren't interested. You'll be back, though; I know it.
-			    string_id message = new string_id(c_stringFile, "s_104");
-			    utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
-
-			    npcEndConversationWithMessage(player, message);
-
-			    return SCRIPT_CONTINUE;
-		    }
-
-	    }
-
-	    return SCRIPT_DEFAULT;
-    }
-
-    public int ridth_tercarcha_handleBranch26(obj_id player, obj_id npc, string_id response) throws InterruptedException
-    {
-    	//--[BRANCH NOTE] Excellent! Excellent!(he exclaims as he pulls out a datapad. Reviewing the material closely, he begins to speak again.) I have triangulated a location that is near here. First, I need you to assist in gathering an ancient device that holds the key to finding the five other bunkers, which contain DNA samples that have the key to creating life itself.(He presses a few buttons on the datapad and brings up a map displaying the location to you.)
-    	//-- NPC: Excellent! Excellent!(he exclaims as he pulls out a datapad. Reviewing the material closely, he begins to speak again.) I have triangulated a location that is near here. First, I need you to assist in gathering an ancient device that holds the key to finding the five other bunkers, which contain DNA samples that have the key to creating life itself.(He presses a few buttons on the datapad and brings up a map displaying the location to you.)
-
-	    //--[RESPONSE NOTE](Continue to listen...)
-	    //-- PLAYER:(Continue to listen...)
-	    if (response.equals("s_90"))
-	    {
-    		//--[NOTE] Go to this bunker; you will find that it has a series of traps meant to keep people out. You could bring friends that specialize in an array of talents that could prove to be useful. Once the bunker's security discovers you, you won't have much time to finish. Else all my life's work would be lost to the ruins. Failure is not an option.
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			//-- NPC: Go to this bunker; you will find that it has a series of traps meant to keep people out. You could bring friends that specialize in an array of talents that could prove to be useful. Once the bunker's security discovers you, you won't have much time to finish. Else all my life's work would be lost to the ruins. Failure is not an option.
-			    string_id message = new string_id(c_stringFile, "s_92");
-			    int numberOfResponses = 0;
-
-			    boolean hasResponse = false;
-
-			    //-- PLAYER: Okay, I am off then.
-			    boolean hasResponse0 = false;
-			    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-			    {
-    				++numberOfResponses;
-				    hasResponse = true;
-				    hasResponse0 = true;
-			    }
-
-			    //-- PLAYER: No, that sounds too dangerous.
-			    boolean hasResponse1 = false;
-			    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-			    {
-    				++numberOfResponses;
-				    hasResponse = true;
-				    hasResponse1 = true;
-			    }
-
-			    if (hasResponse)
-			    {
-    				int responseIndex = 0;
-				    string_id responses[] = new string_id[numberOfResponses];
-
-				    if (hasResponse0)
-    				{
-                    	responses[responseIndex++] = new string_id(c_stringFile, "s_94");
-                    }
-				    if (hasResponse1)
-    				{
-                    	responses[responseIndex++] = new string_id(c_stringFile, "s_98");
-                    }
-				    utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 27);
-
-				    npcSpeak(player, message);
-				    npcSetConversationResponses(player, responses);
-			    }
-			    else
-			    {
-    				utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
-
-				    npcEndConversationWithMessage(player, message);
-			    }
-
-			    return SCRIPT_CONTINUE;
-		    }
-
-	    }
-
-	    return SCRIPT_DEFAULT;
-    }
-
-    public int ridth_tercarcha_handleBranch27(obj_id player, obj_id npc, string_id response) throws InterruptedException
-    {
-    	//--[BRANCH NOTE] Go to this bunker; you will find that it has a series of traps meant to keep people out. You could bring friends that specialize in an array of talents that could prove to be useful. Once the bunker's security discovers you, you won't have much time to finish. Else all my life's work would be lost to the ruins. Failure is not an option.
-    	//-- NPC: Go to this bunker; you will find that it has a series of traps meant to keep people out. You could bring friends that specialize in an array of talents that could prove to be useful. Once the bunker's security discovers you, you won't have much time to finish. Else all my life's work would be lost to the ruins. Failure is not an option.
-
-	    //--[RESPONSE NOTE] Okay, I am off then.
-	    //-- PLAYER: Okay, I am off then.
-	    if (response.equals("s_94"))
-	    {
-    		doAnimationAction(player, "nod");
-
-		    //--[NOTE] Excellent! Please hurry back once you have the device.
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			doAnimationAction(npc, "celebrate");
-
-			    //-- NPC: Excellent! Please hurry back once you have the device.
-			    string_id message = new string_id(c_stringFile, "s_96");
-    			utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
-
-			    npcEndConversationWithMessage(player, message);
-
-			    return SCRIPT_CONTINUE;
-		    }
-
-	    }
-
-	    //--[RESPONSE NOTE] No, that sounds too dangerous.
-	    //-- PLAYER: No, that sounds too dangerous.
-	    if (response.equals("s_98"))
-	    {
-    		doAnimationAction(player, "shake_head_no");
-
-		    //--[NOTE] You're no better than the rest. Begone!
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			doAnimationAction(npc, "fakepunch");
-
-			    //-- NPC: You're no better than the rest. Begone!
-			    string_id message = new string_id(c_stringFile, "s_100");
-			    utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
-
-			    npcEndConversationWithMessage(player, message);
-
-			    return SCRIPT_CONTINUE;
-		    }
-
-	    }
-
-	    return SCRIPT_DEFAULT;
-    }
-
-    public int OnInitialize(obj_id self) throws InterruptedException
-    {
-    	if ((!isTangible(self)) ||(isPlayer(self)))
-		    detachScript(self, "conversation.ridth_tercarcha");
-
-	    setCondition(self, CONDITION_CONVERSABLE);
-
-	    return SCRIPT_CONTINUE;
-    }
-
-    public int OnAttach(obj_id self) throws InterruptedException
-    {
-	    setCondition(self, CONDITION_CONVERSABLE);
-        /*
-        setObjVar(self, "convo.appearance", "object/mobile/space_comm_hutt_02.iff");
-        detachScript(self, "space.content_tools.spacestation");
-        */
-    	return SCRIPT_CONTINUE;
-    }
-
-    public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info menuInfo) throws InterruptedException
-    {
-    	int menu = menuInfo.addRootMenu(menu_info_types.CONVERSE_START, null);
-    	menu_info_data menuInfoData = menuInfo.getMenuItemById(menu);
-    	menuInfoData.setServerNotify(false);
-    	setCondition(self, CONDITION_CONVERSABLE);
-
-	    return SCRIPT_CONTINUE;
-    }
-
-    public int OnIncapacitated(obj_id self, obj_id killer) throws InterruptedException
-    {
-    	clearCondition(self, CONDITION_CONVERSABLE);
-    	detachScript(self, "conversation.ridth_tercarcha");
-
-	    return SCRIPT_CONTINUE;
-    }
-
-    public boolean npcStartConversation(obj_id player, obj_id npc, String convoName, string_id greetingId, prose_package greetingProse, string_id[] responses) throws InterruptedException
-    {
-    	Object[] objects = new Object[responses.length];
-    	System.arraycopy(responses, 0, objects, 0, responses.length);
-    	return npcStartConversation(player, npc, convoName, greetingId, greetingProse, objects);
-    }
-
-    public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
-    {
-	    obj_id npc = self;
-    	if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
-        {
-		    return SCRIPT_OVERRIDE;
-        }
-	    //--[NOTE] It's d-d-done.... N-n-now make y-y-yourself scarce, if th-th-the Empire finds out w-w-what we have done, we're d-d-d-dead!
-	    if (ridth_tercarcha_condition_collectionCompleted(player, npc))
-	    {
-		    doAnimationAction(npc, "nervous");
-
-		    //-- NPC: It's d-d-done.... N-n-now make y-y-yourself scarce, if th-th-the Empire finds out w-w-what we have done, we're d-d-d-dead!
-		    string_id message = new string_id(c_stringFile, "s_31");
-		    chat.chat(npc, player, message);
-
-		    return SCRIPT_CONTINUE;
-	    }
-
-	    //--[NOTE] You have done a wonderful job!(he exclaims out taking the final sample from you. Turning away from you, the man walks over, placing the DNA into a large device. His arms raise high for a moment showing off a large incubation tube as he pulls al ever that sets the event into motion. Electricity sparks from the machines as small crackles and pop erupt.)
-	    if (ridth_tercarcha_condition_bunkerQuestComplete(player, npc))
-	    {
-    		doAnimationAction(npc, "pose_proudly");
-
-		    //-- NPC: You have done a wonderful job!(he exclaims out taking the final sample from you. Turning away from you, the man walks over, placing the DNA into a large device. His arms raise high for a moment showing off a large incubation tube as he pulls al ever that sets the event into motion. Electricity sparks from the machines as small crackles and pop erupt.)
-		    string_id message = new string_id(c_stringFile, "s_32");
-		    int numberOfResponses = 0;
-
-		    boolean hasResponse = false;
-
-		    //-- PLAYER:(Continue watching...)
-		    boolean hasResponse0 = false;
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			++numberOfResponses;
-			    hasResponse = true;
-			    hasResponse0 = true;
-		    }
-
-		    if (hasResponse)
-		    {
-    			int responseIndex = 0;
-			    string_id responses[] = new string_id[numberOfResponses];
-
-			    if (hasResponse0)
-                {
-    				responses[responseIndex++] = new string_id(c_stringFile, "s_33");
-                }
-			    utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 2);
-
-			    npcStartConversation(player, npc, "ridth_tercarcha", message, responses);
-		    }
-		    else
-		    {
-    			chat.chat(npc, player, message);
-		    }
-
-		    return SCRIPT_CONTINUE;
-	    }
-
-	    //--[NOTE](Peering around to see if anyone else is about, the man looks at you.) Welcome back! You are doing well, and you have collected %DI so far. Please return once you have collected another!
-	    if (ridth_tercarcha_condition_isOnBunkerRepeat(player, npc))
-	    {
-    		//-- NPC:(Peering around to see if anyone else is about, the man looks at you.) Welcome back! You are doing well, and you have collected %DI so far. Please return once you have collected another!
-		    string_id message = new string_id(c_stringFile, "s_35");
-    		prose_package pp = new prose_package();
-			pp.stringId = message;
-			pp.actor.set(player);
-		    pp.target.set(npc);
-		    pp.digitInteger = ridth_tercarcha_tokenDI_bunkersCompletedCounter(player, npc);
-
-    		chat.chat(npc, player, null, null, pp);
-		    return SCRIPT_CONTINUE;
-	    }
-
-	    //--[NOTE] You are back sooner than I thought. Have you gathered the DNA?
-	    if (ridth_tercarcha_condition_isOnBunkerQuest(player, npc))
-	    {
-    		//-- NPC: You are back sooner than I thought. Have you gathered the DNA?
-		    string_id message = new string_id(c_stringFile, "s_36");
-		    int numberOfResponses = 0;
-
-		    boolean hasResponse = false;
-
-		    //-- PLAYER: No, not yet.
-		    boolean hasResponse0 = false;
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			++numberOfResponses;
-			    hasResponse = true;
-			    hasResponse0 = true;
-		    }
-
-		    if (hasResponse)
-		    {
-    			int responseIndex = 0;
-			    string_id responses[] = new string_id[numberOfResponses];
-
-			    if (hasResponse0)
-                {
-    				responses[responseIndex++] = new string_id(c_stringFile, "s_37");
-                }
-			    utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 5);
-
-			    npcStartConversation(player, npc, "ridth_tercarcha", message, responses);
-		    }
-		    else
-		    {
-    			chat.chat(npc, player, message);
-		    }
-
-		    return SCRIPT_CONTINUE;
-	    }
-
-	    //--[NOTE] I told you, you would return. We are too close to creating life itself! So you will help me, yes?
-	    if (ridth_tercarcha_condition_rejectedBunkerMission(player, npc))
-	    {
-    		//-- NPC: I told you, you would return. We are too close to creating life itself! So you will help me, yes?
-		    string_id message = new string_id(c_stringFile, "s_39");
-		    int numberOfResponses = 0;
-
-		    boolean hasResponse = false;
-
-		    //-- PLAYER: Yes.
-		    boolean hasResponse0 = false;
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			++numberOfResponses;
-			    hasResponse = true;
-			    hasResponse0 = true;
-		    }
-
-		    //-- PLAYER: No.
-		    boolean hasResponse1 = false;
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			++numberOfResponses;
-			    hasResponse = true;
-			    hasResponse1 = true;
-		    }
-
-		    if (hasResponse)
-		    {
-    			int responseIndex = 0;
-			    string_id responses[] = new string_id[numberOfResponses];
-
-			    if (hasResponse0)
-                {
-    				responses[responseIndex++] = new string_id(c_stringFile, "s_40");
-                }
-			    if (hasResponse1)
-                {
-    				responses[responseIndex++] = new string_id(c_stringFile, "s_41");
-                }
-			    utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 7);
-
-			    npcStartConversation(player, npc, "ridth_tercarcha", message, responses);
-		    }
-		    else
-		    {
-    			chat.chat(npc, player, message);
-		    }
-
-		    return SCRIPT_CONTINUE;
-	    }
-
-	    //--[NOTE](The man eagerly looks towards you) Have you retrieved the device?(he asks as he peers around, clearly in a mix of his insanity and looking out for unwanted attention.)
-	    if (ridth_tercarcha_condition_tutorialFinished(player, npc))
-	    {
-    		//-- NPC:(The man eagerly looks towards you) Have you retrieved the device?(he asks as he peers around, clearly in a mix of his insanity and looking out for unwanted attention.)
-		    string_id message = new string_id(c_stringFile, "s_44");
-		    int numberOfResponses = 0;
-
-		    boolean hasResponse = false;
-
-		    //-- PLAYER: Yes, here you go.
-		    boolean hasResponse0 = false;
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			++numberOfResponses;
-			    hasResponse = true;
-			    hasResponse0 = true;
-		    }
-
-		    if (hasResponse)
-		    {
-    			int responseIndex = 0;
-			    string_id responses[] = new string_id[numberOfResponses];
-
-			    if (hasResponse0)
-                {
-    				responses[responseIndex++] = new string_id(c_stringFile, "s_45");
-                }
-			    utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 10);
-
-			    npcStartConversation(player, npc, "ridth_tercarcha", message, responses);
-		    }
-		    else
-		    {
-    			chat.chat(npc, player, message);
-		    }
-
-		    return SCRIPT_CONTINUE;
-	    }
-
-	    //--[NOTE] I gave you a task. Have you retrieved the item?!
-	    if (ridth_tercarcha_condition_isOnTutorial(player, npc))
-	    {
-    		//-- NPC: I gave you a task. Have you retrieved the item?!
-		    string_id message = new string_id(c_stringFile, "s_55");
-		    int numberOfResponses = 0;
-
-		    boolean hasResponse = false;
-
-		    //-- PLAYER: No, not yet.
-		    boolean hasResponse0 = false;
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			++numberOfResponses;
-			    hasResponse = true;
-			    hasResponse0 = true;
-		    }
-
-		    if (hasResponse)
-		    {
-    			int responseIndex = 0;
-			    string_id responses[] = new string_id[numberOfResponses];
-
-			    if (hasResponse0)
-                {
-    				responses[responseIndex++] = new string_id(c_stringFile, "s_56");
-                }
-			    utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 16);
-
-			    npcStartConversation(player, npc, "ridth_tercarcha", message, responses);
-		    }
-		    else
-		    {
-    			chat.chat(npc, player, message);
-		    }
-
-		    return SCRIPT_CONTINUE;
-	    }
-
-	    //--[NOTE] See! I knew you would return. Are you interested in hearing me out this time?
-	    if (ridth_tercarcha_condition_rejectedTutorial(player, npc))
-	    {
-    		doAnimationAction(npc, "beckon");
-
-		    //-- NPC: See! I knew you would return. Are you interested in hearing me out this time?
-		    string_id message = new string_id(c_stringFile, "s_58");
-		    int numberOfResponses = 0;
-
-		    boolean hasResponse = false;
-
-		    //-- PLAYER: Yes, let's hear it.
-		    boolean hasResponse0 = false;
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			++numberOfResponses;
-			    hasResponse = true;
-			    hasResponse0 = true;
-		    }
-
-		    //-- PLAYER: On second thought, I still don't have time.
-		    boolean hasResponse1 = false;
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			++numberOfResponses;
-			    hasResponse = true;
-			    hasResponse1 = true;
-		    }
-
-		    if (hasResponse)
-		    {
-			    int responseIndex = 0;
-    			string_id responses[] = new string_id[numberOfResponses];
-
-			    if (hasResponse0)
-                {
-    				responses[responseIndex++] = new string_id(c_stringFile, "s_60");
-                }
-			    if (hasResponse1)
-                {
-    				responses[responseIndex++] = new string_id(c_stringFile, "s_76");
-                }
-			    utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 18);
-
-			    npcStartConversation(player, npc, "ridth_tercarcha", message, responses);
-		    }
-		    else
-		    {
-    			chat.chat(npc, player, message);
-		    }
-
-		    return SCRIPT_CONTINUE;
-	    }
-
-	    //--[NOTE](Waving his arms wildly over his head, the crazed scientist motions you over.) They said I was crazy. No one believes in the power of my work.(He glances around the area as if looking for someone.) The Empire would try to claim the credit if they knew the true powers that I'm on the brink of unlocking!(He motions you closer in.)
-	    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-	    {
-    		doAnimationAction(npc, "hail");
-
-		    //-- NPC:(Waving his arms wildly over his head, the crazed scientist motions you over.) They said I was crazy. No one believes in the power of my work.(He glances around the area as if looking for someone.) The Empire would try to claim the credit if they knew the true powers that I'm on the brink of unlocking!(He motions you closer in.)
-		    string_id message = new string_id(c_stringFile, "s_80");
-		    int numberOfResponses = 0;
-
-		    boolean hasResponse = false;
-
-		    //-- PLAYER:(Lean in to listen...)
-		    boolean hasResponse0 = false;
-		    if (ridth_tercarcha_condition__defaultCondition(player, npc))
-		    {
-    			++numberOfResponses;
-			    hasResponse = true;
-			    hasResponse0 = true;
-		    }
-
-		    if (hasResponse)
-		    {
-    			int responseIndex = 0;
-			    string_id responses[] = new string_id[numberOfResponses];
-
-			    if (hasResponse0)
-                {
-    				responses[responseIndex++] = new string_id(c_stringFile, "s_82");
-                }
-			    utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 24);
-
-			    npcStartConversation(player, npc, "ridth_tercarcha", message, responses);
-		    }
-		    else
-		    {
-    			chat.chat(npc, player, message);
-		    }
+					utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 17);
+
+					npcSpeak(player, message);
+					npcSetConversationResponses(player, responses);
+				}
+				else
+				{
+					utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
+
+					npcEndConversationWithMessage(player, message);
+				}
+
+				return SCRIPT_CONTINUE;
+			}
+
+		}
+
+		//--[RESPONSE NOTE] No, I can't shake this bad feeling.
+		//-- PLAYER: No, I can't shake this bad feeling.
+		if (response.equals("s_26"))
+		{
+			//--[NOTE] *Whatever, you know the drill. Once you find your spine, come back to me.* He waves you off dismissingly.
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				//-- NPC: *Whatever, you know the drill. Once you find your spine, come back to me.* He waves you off dismissingly.
+				string_id message = new string_id(c_stringFile, "s_27");
+				utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
+
+				npcEndConversationWithMessage(player, message);
+
+				return SCRIPT_CONTINUE;
+			}
+
+		}
+
+		return SCRIPT_DEFAULT;
+	}
+
+	public int ridth_tercarcha_handleBranch17(obj_id player, obj_id npc, string_id response) throws InterruptedException
+	{
+		//--[BRANCH NOTE] *Take this device, and it will help guide you to the locations around the Galaxy. If you allow me, your Biological data will be scanned by these bunkers, and I found a way to spoof part of this security to allow you entry. Without it would mean sure death, though you will have to rush before the bunkers self-destruct protocol can finish.*
+		//-- NPC: *Take this device, and it will help guide you to the locations around the Galaxy. If you allow me, your Biological data will be scanned by these bunkers, and I found a way to spoof part of this security to allow you entry. Without it would mean sure death, though you will have to rush before the bunkers self-destruct protocol can finish.*
+
+		//--[RESPONSE NOTE][Step closer]
+		//-- PLAYER:[Step closer]
+		if (response.equals("s_22"))
+		{
+			//--[NOTE] He pulls a device out and scans over your body, and you feel a warm sensation flow through you. *There, and, if you wish to bring help. Please send them to me to offer them the same as you, though do not send me anyone young of mind. I will not work with children.*
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				//-- NPC: He pulls a device out and scans over your body, and you feel a warm sensation flow through you. *There, and, if you wish to bring help. Please send them to me to offer them the same as you, though do not send me anyone young of mind. I will not work with children.*
+				string_id message = new string_id(c_stringFile, "s_23");
+				int numberOfResponses = 0;
+
+				boolean hasResponse = false;
+
+				//-- PLAYER:[Continue listening]
+				boolean hasResponse0 = false;
+				if (ridth_tercarcha_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse0 = true;
+				}
+
+				if (hasResponse)
+				{
+					int responseIndex = 0;
+					string_id responses[] = new string_id[numberOfResponses];
+
+					if (hasResponse0)
+						responses[responseIndex++] = new string_id(c_stringFile, "s_24");
+
+					utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 18);
+
+					npcSpeak(player, message);
+					npcSetConversationResponses(player, responses);
+				}
+				else
+				{
+					utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
+
+					npcEndConversationWithMessage(player, message);
+				}
+
+				return SCRIPT_CONTINUE;
+			}
+
+		}
+
+		return SCRIPT_DEFAULT;
+	}
+
+	public int ridth_tercarcha_handleBranch18(obj_id player, obj_id npc, string_id response) throws InterruptedException
+	{
+		//--[BRANCH NOTE] He pulls a device out and scans over your body, and you feel a warm sensation flow through you. *There, and, if you wish to bring help. Please send them to me to offer them the same as you, though do not send me anyone young of mind. I will not work with children.*
+		//-- NPC: He pulls a device out and scans over your body, and you feel a warm sensation flow through you. *There, and, if you wish to bring help. Please send them to me to offer them the same as you, though do not send me anyone young of mind. I will not work with children.*
+
+		//--[RESPONSE NOTE][Continue listening]
+		//-- PLAYER:[Continue listening]
+		if (response.equals("s_24"))
+		{
+			//--[NOTE] *Alright, that is all you should need then. There is a total of five unique canisters you will need to acquire. Once you finish that collection, return to me, and we can finish! One final note, again, if you bring friends. I did some research and there are various terminals detailing specific information that someone specialized in the given profession should be able to use to generate additional canisters* He nods dismissvely after.
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				//-- NPC: *Alright, that is all you should need then. There is a total of five unique canisters you will need to acquire. Once you finish that collection, return to me, and we can finish! One final note, again, if you bring friends. I did some research and there are various terminals detailing specific information that someone specialized in the given profession should be able to use to generate additional canisters* He nods dismissvely after.
+				string_id message = new string_id(c_stringFile, "s_25");
+				utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
+
+				npcEndConversationWithMessage(player, message);
+
+				return SCRIPT_CONTINUE;
+			}
+
+		}
+
+		return SCRIPT_DEFAULT;
+	}
+
+	public int ridth_tercarcha_handleBranch21(obj_id player, obj_id npc, string_id response) throws InterruptedException
+	{
+		//--[BRANCH NOTE] The man turns and looks at you. *You seem to have seen some things in your time. I have an eye for someone of age.* He nods for a moment as he glances over his datapad, looking around the room. *Everyone thinks that I am crazy, but I will be the one to have the last laugh, I tell you.* He gestures you closer.
+		//-- NPC: The man turns and looks at you. *You seem to have seen some things in your time. I have an eye for someone of age.* He nods for a moment as he glances over his datapad, looking around the room. *Everyone thinks that I am crazy, but I will be the one to have the last laugh, I tell you.* He gestures you closer.
+
+		//--[RESPONSE NOTE][Walk closer]
+		//-- PLAYER:[Walk closer]
+		if (response.equals("s_5"))
+		{
+			//--[NOTE] He grins widely as he points towards the cloning chambers. *We have been cloning people for years now, and it is nothing to take one sample and generate replicas over and over. But what if we take that a step further and generate life itself?* He glances again at his datapad, going through some menus.
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				//-- NPC: He grins widely as he points towards the cloning chambers. *We have been cloning people for years now, and it is nothing to take one sample and generate replicas over and over. But what if we take that a step further and generate life itself?* He glances again at his datapad, going through some menus.
+				string_id message = new string_id(c_stringFile, "s_6");
+				int numberOfResponses = 0;
+
+				boolean hasResponse = false;
+
+				//-- PLAYER:[Continue listening]
+				boolean hasResponse0 = false;
+				if (ridth_tercarcha_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse0 = true;
+				}
+
+				if (hasResponse)
+				{
+					int responseIndex = 0;
+					string_id responses[] = new string_id[numberOfResponses];
+
+					if (hasResponse0)
+					{
+						responses[responseIndex++] = new string_id(c_stringFile, "s_7");
+					}
+					utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 22);
+
+					npcSpeak(player, message);
+					npcSetConversationResponses(player, responses);
+				}
+				else
+				{
+					utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
+
+					npcEndConversationWithMessage(player, message);
+				}
+
+				return SCRIPT_CONTINUE;
+			}
+
+		}
+
+		return SCRIPT_DEFAULT;
+	}
+
+	public int ridth_tercarcha_handleBranch22(obj_id player, obj_id npc, string_id response) throws InterruptedException
+	{
+		//--[BRANCH NOTE] He grins widely as he points towards the cloning chambers. *We have been cloning people for years now, and it is nothing to take one sample and generate replicas over and over. But what if we take that a step further and generate life itself?* He glances again at his datapad, going through some menus.
+		//-- NPC: He grins widely as he points towards the cloning chambers. *We have been cloning people for years now, and it is nothing to take one sample and generate replicas over and over. But what if we take that a step further and generate life itself?* He glances again at his datapad, going through some menus.
+
+		//--[RESPONSE NOTE][Continue listening]
+		//-- PLAYER:[Continue listening]
+		if (response.equals("s_7"))
+		{
+			//--[NOTE] *For years, I have been studying some fragments of data that was recovered from the old archives across the Galaxy. This information leads me to believe there are numerous bunkers long forgotten that contain samples of DNA. If we combine these strands, it could unlock the potential to give us a basis to create a whole new lifeform in the design we want!*
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				//-- NPC: *For years, I have been studying some fragments of data that was recovered from the old archives across the Galaxy. This information leads me to believe there are numerous bunkers long forgotten that contain samples of DNA. If we combine these strands, it could unlock the potential to give us a basis to create a whole new lifeform in the design we want!*
+				string_id message = new string_id(c_stringFile, "s_8");
+				int numberOfResponses = 0;
+
+				boolean hasResponse = false;
+
+				//-- PLAYER:[Continue listening]
+				boolean hasResponse0 = false;
+				if (ridth_tercarcha_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse0 = true;
+				}
+
+				if (hasResponse)
+				{
+					int responseIndex = 0;
+					string_id responses[] = new string_id[numberOfResponses];
+
+					if (hasResponse0)
+					{
+						responses[responseIndex++] = new string_id(c_stringFile, "s_9");
+					}
+					utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 23);
+
+					npcSpeak(player, message);
+					npcSetConversationResponses(player, responses);
+				}
+				else
+				{
+					utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
+
+					npcEndConversationWithMessage(player, message);
+				}
+
+				return SCRIPT_CONTINUE;
+			}
+
+		}
+
+		return SCRIPT_DEFAULT;
+	}
+
+	public int ridth_tercarcha_handleBranch23(obj_id player, obj_id npc, string_id response) throws InterruptedException
+	{
+		//--[BRANCH NOTE] *For years, I have been studying some fragments of data that was recovered from the old archives across the Galaxy. This information leads me to believe there are numerous bunkers long forgotten that contain samples of DNA. If we combine these strands, it could unlock the potential to give us a basis to create a whole new lifeform in the design we want!*
+		//-- NPC: *For years, I have been studying some fragments of data that was recovered from the old archives across the Galaxy. This information leads me to believe there are numerous bunkers long forgotten that contain samples of DNA. If we combine these strands, it could unlock the potential to give us a basis to create a whole new lifeform in the design we want!*
+
+		//--[RESPONSE NOTE][Continue listening]
+		//-- PLAYER:[Continue listening]
+		if (response.equals("s_9"))
+		{
+			//--[NOTE] *If you help me gather these samples, I will make it worth your time as I can create a life form for you as you see fit to use as you will.* He tilts his head, clearly waiting for a response.
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				//-- NPC: *If you help me gather these samples, I will make it worth your time as I can create a life form for you as you see fit to use as you will.* He tilts his head, clearly waiting for a response.
+				string_id message = new string_id(c_stringFile, "s_10");
+				int numberOfResponses = 0;
+
+				boolean hasResponse = false;
+
+				//-- PLAYER: Of course, what do I need to do?
+				boolean hasResponse0 = false;
+				if (ridth_tercarcha_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse0 = true;
+				}
+
+				//-- PLAYER: On second thought, this isn't a good idea.
+				boolean hasResponse1 = false;
+				if (ridth_tercarcha_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse1 = true;
+				}
+
+				if (hasResponse)
+				{
+					int responseIndex = 0;
+					string_id responses[] = new string_id[numberOfResponses];
+
+					if (hasResponse0)
+					{
+						responses[responseIndex++] = new string_id(c_stringFile, "s_11");
+					}
+					if (hasResponse1)
+					{
+						responses[responseIndex++] = new string_id(c_stringFile, "s_12");
+					}
+					utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 24);
+
+					npcSpeak(player, message);
+					npcSetConversationResponses(player, responses);
+				}
+				else
+				{
+					utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
+
+					npcEndConversationWithMessage(player, message);
+				}
+
+				return SCRIPT_CONTINUE;
+			}
+
+		}
+
+		return SCRIPT_DEFAULT;
+	}
+
+	public int ridth_tercarcha_handleBranch24(obj_id player, obj_id npc, string_id response) throws InterruptedException
+	{
+		//--[BRANCH NOTE] *If you help me gather these samples, I will make it worth your time as I can create a life form for you as you see fit to use as you will.* He tilts his head, clearly waiting for a response.
+		//-- NPC: *If you help me gather these samples, I will make it worth your time as I can create a life form for you as you see fit to use as you will.* He tilts his head, clearly waiting for a response.
+
+		//--[RESPONSE NOTE] Of course, what do I need to do?
+		//-- PLAYER: Of course, what do I need to do?
+		if (response.equals("s_11"))
+		{
+			//--[NOTE]
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				//-- NPC: *I will upload a waypoint to your datapad of a known bunker location. If you allow me, your Biological data will be scanned by these bunkers, and I found a way to spoof part of this security to allow you entry. Without it would mean sure death, though you will have to rush before the bunkers self-destruct protocol can finish.*
+				string_id message = new string_id(c_stringFile, "s_13");
+				int numberOfResponses = 0;
+
+				boolean hasResponse = false;
+
+				//-- PLAYER:[Step closer]
+				boolean hasResponse0 = false;
+				if (ridth_tercarcha_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse0 = true;
+				}
+
+				if (hasResponse)
+				{
+					int responseIndex = 0;
+					string_id responses[] = new string_id[numberOfResponses];
+
+					if (hasResponse0)
+					{
+						responses[responseIndex++] = new string_id(c_stringFile, "s_14");
+					}
+					utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 25);
+
+					npcSpeak(player, message);
+					npcSetConversationResponses(player, responses);
+				}
+				else
+				{
+					utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
+
+					npcEndConversationWithMessage(player, message);
+				}
+
+				return SCRIPT_CONTINUE;
+			}
+
+		}
+
+		//--[RESPONSE NOTE] On second thought, this isn't a good idea.
+		//-- PLAYER: On second thought, this isn't a good idea.
+		if (response.equals("s_12"))
+		{
+			//--[NOTE] *I had high hopes for you but, if you aren't going to assist, then get out of my way because I have much work to finish. Return when you are ready.*
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				//-- NPC: *I had high hopes for you but, if you aren't going to assist, then get out of my way because I have much work to finish. Return when you are ready.*
+				string_id message = new string_id(c_stringFile, "s_18");
+				utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
+
+				npcEndConversationWithMessage(player, message);
+
+				return SCRIPT_CONTINUE;
+			}
+
+		}
+
+		return SCRIPT_DEFAULT;
+	}
+
+	public int ridth_tercarcha_handleBranch25(obj_id player, obj_id npc, string_id response) throws InterruptedException
+	{
+		//--[BRANCH NOTE]
+		//-- NPC: *I will upload a waypoint to your datapad of a known bunker location. If you allow me, your Biological data will be scanned by these bunkers, and I found a way to spoof part of this security to allow you entry. Without it would mean sure death, though you will have to rush before the bunkers self-destruct protocol can finish.*
+
+		//--[RESPONSE NOTE][Step closer]
+		//-- PLAYER:[Step closer]
+		if (response.equals("s_14"))
+		{
+			//--[NOTE] He pulls a device out and scans over your body, and you feel a warm sensation flow through you. *There, and, if you wish to bring help. Please send them to me to offer them the same as you, though do not send me anyone young of mind. I will not work with children.*
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				//-- NPC: He pulls a device out and scans over your body, and you feel a warm sensation flow through you. *There, and, if you wish to bring help. Please send them to me to offer them the same as you, though do not send me anyone young of mind. I will not work with children.*
+				string_id message = new string_id(c_stringFile, "s_15");
+				int numberOfResponses = 0;
+
+				boolean hasResponse = false;
+
+				//-- PLAYER:[Continue listening]
+				boolean hasResponse0 = false;
+				if (ridth_tercarcha_condition__defaultCondition(player, npc))
+				{
+					++numberOfResponses;
+					hasResponse = true;
+					hasResponse0 = true;
+				}
+
+				if (hasResponse)
+				{
+					int responseIndex = 0;
+					string_id responses[] = new string_id[numberOfResponses];
+
+					if (hasResponse0)
+					{
+						responses[responseIndex++] = new string_id(c_stringFile, "s_16");
+					}
+					utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 26);
+
+					npcSpeak(player, message);
+					npcSetConversationResponses(player, responses);
+				}
+				else
+				{
+					utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
+
+					npcEndConversationWithMessage(player, message);
+				}
+
+				return SCRIPT_CONTINUE;
+			}
+
+		}
+
+		return SCRIPT_DEFAULT;
+	}
+
+	public int ridth_tercarcha_handleBranch26(obj_id player, obj_id npc, string_id response) throws InterruptedException
+	{
+		//--[BRANCH NOTE] He pulls a device out and scans over your body, and you feel a warm sensation flow through you. *There, and, if you wish to bring help. Please send them to me to offer them the same as you, though do not send me anyone young of mind. I will not work with children.*
+		//-- NPC: He pulls a device out and scans over your body, and you feel a warm sensation flow through you. *There, and, if you wish to bring help. Please send them to me to offer them the same as you, though do not send me anyone young of mind. I will not work with children.*
+
+		//--[RESPONSE NOTE][Continue listening]
+		//-- PLAYER:[Continue listening]
+		if (response.equals("s_16"))
+		{
+			//--[NOTE] *Alright, that is all you should need then. There is a total of five unique canisters you will need to acquire. Once you finish that collection, return to me, and we can finish! One final note, again, if you bring friends. I did some research and there are various terminals detailing specific information that someone specialized in the given profession should be able to use to generate additional canisters* He nods dismissvely after.
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				//-- NPC: *Alright, that is all you should need then. There is a total of five unique canisters you will need to acquire. Once you finish that collection, return to me, and we can finish! One final note, again, if you bring friends. I did some research and there are various terminals detailing specific information that someone specialized in the given profession should be able to use to generate additional canisters* He nods dismissvely after.
+				string_id message = new string_id(c_stringFile, "s_17");
+				utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
+
+				npcEndConversationWithMessage(player, message);
+
+				return SCRIPT_CONTINUE;
+			}
+
+		}
+
+		return SCRIPT_DEFAULT;
+	}
+
+	public int OnInitialize(obj_id self) throws InterruptedException
+	{
+		if ((!isTangible(self)) ||(isPlayer(self)))
+			detachScript(self, "conversation.ridth_tercarcha");
+
+		setCondition(self, CONDITION_CONVERSABLE);
 
 		return SCRIPT_CONTINUE;
-	    }
+	}
 
-	    chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+	public int OnAttach(obj_id self) throws InterruptedException
+	{
+		setCondition(self, CONDITION_CONVERSABLE);
 
-	    return SCRIPT_CONTINUE;
-    }
+		return SCRIPT_CONTINUE;
+	}
 
-    public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
-    {
-    	if (!conversationId.equals("ridth_tercarcha"))
-		    return SCRIPT_CONTINUE;
+	public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info menuInfo) throws InterruptedException
+	{
+		int menu = menuInfo.addRootMenu(menu_info_types.CONVERSE_START, null);
+		menu_info_data menuInfoData = menuInfo.getMenuItemById(menu);
+		menuInfoData.setServerNotify(false);
+		setCondition(self, CONDITION_CONVERSABLE);
 
-	    obj_id npc = self;
+		return SCRIPT_CONTINUE;
+	}
 
-	    int branchId = utils.getIntScriptVar(player, "conversation.ridth_tercarcha.branchId");
+	public int OnIncapacitated(obj_id self, obj_id killer) throws InterruptedException
+	{
+		clearCondition(self, CONDITION_CONVERSABLE);
+		detachScript(self, "conversation.ridth_tercarcha");
 
-	    if (branchId == 2 && ridth_tercarcha_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
-        {
-    		return SCRIPT_CONTINUE;
-        }
-	    if (branchId == 5 && ridth_tercarcha_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
-        {
-    		return SCRIPT_CONTINUE;
-        }
-	    if (branchId == 7 && ridth_tercarcha_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
-        {
-    		return SCRIPT_CONTINUE;
-        }
-	    if (branchId == 10 && ridth_tercarcha_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
-        {
-    		return SCRIPT_CONTINUE;
-        }
-	    if (branchId == 11 && ridth_tercarcha_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
-        {
-    		return SCRIPT_CONTINUE;
-        }
-	    if (branchId == 13 && ridth_tercarcha_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
-        {
-    		return SCRIPT_CONTINUE;
-        }
-	    if (branchId == 16 && ridth_tercarcha_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
-        {
-    		return SCRIPT_CONTINUE;
-        }
-	    if (branchId == 18 && ridth_tercarcha_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
-        {
-    		return SCRIPT_CONTINUE;
-        }
-	    if (branchId == 19 && ridth_tercarcha_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
-        {
-    		return SCRIPT_CONTINUE;
-        }
-	    if (branchId == 20 && ridth_tercarcha_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
-        {
-    		return SCRIPT_CONTINUE;
-        }
-	    if (branchId == 24 && ridth_tercarcha_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
-        {
-    		return SCRIPT_CONTINUE;
-        }
-	    if (branchId == 25 && ridth_tercarcha_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
-        {
-    		return SCRIPT_CONTINUE;
-        }
-	    if (branchId == 26 && ridth_tercarcha_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
-        {
-    		return SCRIPT_CONTINUE;
-        }
-	    if (branchId == 27 && ridth_tercarcha_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
-        {
-    		return SCRIPT_CONTINUE;
-        }
-	    chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+		return SCRIPT_CONTINUE;
+	}
 
-	    utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
+	//-- This function should move to base_class.java
+	public boolean npcStartConversation(obj_id player, obj_id npc, String convoName, string_id greetingId, prose_package greetingProse, string_id[] responses) throws InterruptedException
+	{
+		Object[] objects = new Object[responses.length];
+		System.arraycopy(responses, 0, objects, 0, responses.length);
+		return npcStartConversation(player, npc, convoName, greetingId, greetingProse, objects);
+	}
 
-	    return SCRIPT_CONTINUE;
-    }
+	public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
+	{
+		obj_id npc = self;
+
+		if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+			return SCRIPT_OVERRIDE;
+
+		//--[NOTE] The man looks at you with an uninterested eye. *I can see you're still fresh. Return to me when you have some age behind you, and maybe you will be of use to my project.*
+		if (ridth_tercarcha_condition_doesPlayerQualify(player, npc))
+		{
+			//-- NPC: The man looks at you with an uninterested eye. *I can see you're still fresh. Return to me when you have some age behind you, and maybe you will be of use to my project.*
+			string_id message = new string_id(c_stringFile, "s_3");
+			chat.chat(npc, player, message);
+
+			return SCRIPT_CONTINUE;
+		}
+
+		//--[NOTE] *Back for more work?*
+		if (ridth_tercarcha_condition_isOnQuestRepeat(player, npc))
+		{
+			//-- NPC: *Back for more work?*
+			string_id message = new string_id(c_stringFile, "s_45");
+			int numberOfResponses = 0;
+
+			boolean hasResponse = false;
+
+			//-- PLAYER: No, I'm still looking for the bunker.
+			boolean hasResponse0 = false;
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				++numberOfResponses;
+				hasResponse = true;
+				hasResponse0 = true;
+			}
+
+			if (hasResponse)
+			{
+				int responseIndex = 0;
+				string_id responses[] = new string_id[numberOfResponses];
+
+				if (hasResponse0)
+				{
+					responses[responseIndex++] = new string_id(c_stringFile, "s_46");
+				}
+				utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 2);
+
+				npcStartConversation(player, npc, "ridth_tercarcha", message, responses);
+			}
+			else
+			{
+				chat.chat(npc, player, message);
+			}
+
+			return SCRIPT_CONTINUE;
+		}
+
+		//--[NOTE] *Good to see you again; how has your research gone.* He looks you over. *Are you needing another bunker location?*
+		if (ridth_tercarcha_condition_questDoneRepeat(player, npc))
+		{
+			//-- NPC: *Good to see you again; how has your research gone.* He looks you over. *Are you needing another bunker location?*
+			string_id message = new string_id(c_stringFile, "s_39");
+			int numberOfResponses = 0;
+
+			boolean hasResponse = false;
+
+			//-- PLAYER: Yes please.
+			boolean hasResponse0 = false;
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				++numberOfResponses;
+				hasResponse = true;
+				hasResponse0 = true;
+			}
+
+			//-- PLAYER: Good just wanted to say hi.
+			boolean hasResponse1 = false;
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				++numberOfResponses;
+				hasResponse = true;
+				hasResponse1 = true;
+			}
+
+			if (hasResponse)
+			{
+				int responseIndex = 0;
+				string_id responses[] = new string_id[numberOfResponses];
+
+				if (hasResponse0)
+				{
+					responses[responseIndex++] = new string_id(c_stringFile, "s_40");
+				}
+				if (hasResponse1)
+				{
+					responses[responseIndex++] = new string_id(c_stringFile, "s_43");
+				}
+				utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 4);
+
+				npcStartConversation(player, npc, "ridth_tercarcha", message, responses);
+			}
+			else
+			{
+				chat.chat(npc, player, message);
+			}
+
+			return SCRIPT_CONTINUE;
+		}
+
+		//--[NOTE]
+		if (ridth_tercarcha_condition_completedCollection(player, npc))
+		{
+			//-- NPC: *You've gathered everything we need?* the man asks, turning to you with an eager look.
+			string_id message = new string_id(c_stringFile, "s_31");
+			int numberOfResponses = 0;
+
+			boolean hasResponse = false;
+
+			//-- PLAYER: Yes, here are the samples.
+			boolean hasResponse0 = false;
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				++numberOfResponses;
+				hasResponse = true;
+				hasResponse0 = true;
+			}
+
+			if (hasResponse)
+			{
+				int responseIndex = 0;
+				string_id responses[] = new string_id[numberOfResponses];
+
+				if (hasResponse0)
+					responses[responseIndex++] = new string_id(c_stringFile, "s_32");
+
+				utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 7);
+
+				npcStartConversation(player, npc, "ridth_tercarcha", message, responses);
+			}
+			else
+			{
+				chat.chat(npc, player, message);
+			}
+
+			return SCRIPT_CONTINUE;
+		}
+
+		//--[NOTE] *You've gathered everything we need?* the man asks turning to you with an eager look.
+		if (ridth_tercarcha_condition_isOnQuest(player, npc))
+		{
+			//-- NPC: *You've gathered everything we need?* the man asks turning to you with an eager look.
+			string_id message = new string_id(c_stringFile, "s_28");
+			int numberOfResponses = 0;
+
+			boolean hasResponse = false;
+
+			//-- PLAYER: No, not yet.
+			boolean hasResponse0 = false;
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				++numberOfResponses;
+				hasResponse = true;
+				hasResponse0 = true;
+			}
+
+			if (hasResponse)
+			{
+				int responseIndex = 0;
+				string_id responses[] = new string_id[numberOfResponses];
+
+				if (hasResponse0)
+				{
+					responses[responseIndex++] = new string_id(c_stringFile, "s_29");
+				}
+				utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 11);
+
+				npcStartConversation(player, npc, "ridth_tercarcha", message, responses);
+			}
+			else
+			{
+				chat.chat(npc, player, message);
+			}
+
+			return SCRIPT_CONTINUE;
+		}
+
+		//--[NOTE] *Welcome back! Ready to go to the next location?*
+		if (ridth_tercarcha_condition_loopingQuestLine(player, npc))
+		{
+			//-- NPC: *Welcome back! Ready to go to the next location?*
+			string_id message = new string_id(c_stringFile, "s_48");
+			int numberOfResponses = 0;
+
+			boolean hasResponse = false;
+
+			//-- PLAYER: Yes
+			boolean hasResponse0 = false;
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				++numberOfResponses;
+				hasResponse = true;
+				hasResponse0 = true;
+			}
+
+			//-- PLAYER: Not at this time.
+			boolean hasResponse1 = false;
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				++numberOfResponses;
+				hasResponse = true;
+				hasResponse1 = true;
+			}
+
+			if (hasResponse)
+			{
+				int responseIndex = 0;
+				string_id responses[] = new string_id[numberOfResponses];
+
+				if (hasResponse0)
+				{
+					responses[responseIndex++] = new string_id(c_stringFile, "s_49");
+				}
+				if (hasResponse1)
+				{
+					responses[responseIndex++] = new string_id(c_stringFile, "s_50");
+				}
+				utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 13);
+
+				npcStartConversation(player, npc, "ridth_tercarcha", message, responses);
+			}
+			else
+			{
+				chat.chat(npc, player, message);
+			}
+
+			return SCRIPT_CONTINUE;
+		}
+
+		//--[NOTE] *You are too predictable; I knew you would return.* He pulls some equipment out and looks over at you. *Are you ready to commit now?*
+		if (ridth_tercarcha_condition_rejectedFirstTime(player, npc))
+		{
+			//-- NPC: *You are too predictable; I knew you would return.* He pulls some equipment out and looks over at you. *Are you ready to commit now?*
+			string_id message = new string_id(c_stringFile, "s_19");
+			int numberOfResponses = 0;
+
+			boolean hasResponse = false;
+
+			//-- PLAYER: Yes
+			boolean hasResponse0 = false;
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				++numberOfResponses;
+				hasResponse = true;
+				hasResponse0 = true;
+			}
+
+			//-- PLAYER: No, I can't shake this bad feeling.
+			boolean hasResponse1 = false;
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				++numberOfResponses;
+				hasResponse = true;
+				hasResponse1 = true;
+			}
+
+			if (hasResponse)
+			{
+				int responseIndex = 0;
+				string_id responses[] = new string_id[numberOfResponses];
+
+				if (hasResponse0)
+				{
+					responses[responseIndex++] = new string_id(c_stringFile, "s_20");
+				}
+				if (hasResponse1)
+				{
+					responses[responseIndex++] = new string_id(c_stringFile, "s_26");
+				}
+				utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 16);
+
+				npcStartConversation(player, npc, "ridth_tercarcha", message, responses);
+			}
+			else
+			{
+				chat.chat(npc, player, message);
+			}
+
+			return SCRIPT_CONTINUE;
+		}
+
+		//--[NOTE] The man turns and looks at you. *You seem to have seen some things in your time. I have an eye for someone of age.* He nods for a moment as he glances over his datapad, looking around the room. *Everyone thinks that I am crazy, but I will be the one to have the last laugh, I tell you.* He gestures you closer.
+		if (ridth_tercarcha_condition__defaultCondition(player, npc))
+		{
+			//-- NPC: The man turns and looks at you. *You seem to have seen some things in your time. I have an eye for someone of age.* He nods for a moment as he glances over his datapad, looking around the room. *Everyone thinks that I am crazy, but I will be the one to have the last laugh, I tell you.* He gestures you closer.
+			string_id message = new string_id(c_stringFile, "s_4");
+			int numberOfResponses = 0;
+
+			boolean hasResponse = false;
+
+			//-- PLAYER:[Walk closer]
+			boolean hasResponse0 = false;
+			if (ridth_tercarcha_condition__defaultCondition(player, npc))
+			{
+				++numberOfResponses;
+				hasResponse = true;
+				hasResponse0 = true;
+			}
+
+			if (hasResponse)
+			{
+				int responseIndex = 0;
+				string_id responses[] = new string_id[numberOfResponses];
+
+				if (hasResponse0)
+				{
+					responses[responseIndex++] = new string_id(c_stringFile, "s_5");
+				}
+				utils.setScriptVar(player, "conversation.ridth_tercarcha.branchId", 21);
+
+				npcStartConversation(player, npc, "ridth_tercarcha", message, responses);
+			}
+			else
+			{
+				chat.chat(npc, player, message);
+			}
+
+			return SCRIPT_CONTINUE;
+		}
+
+		chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+
+		return SCRIPT_CONTINUE;
+	}
+
+	public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
+	{
+		if (conversationId.equals("ridth_tercarcha"))
+		{
+			return SCRIPT_CONTINUE;
+		}
+		obj_id npc = self;
+
+		int branchId = utils.getIntScriptVar(player, "conversation.ridth_tercarcha.branchId");
+
+		if (branchId == 2 && ridth_tercarcha_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+		{
+			return SCRIPT_CONTINUE;
+		}
+		if (branchId == 4 && ridth_tercarcha_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+		{
+			return SCRIPT_CONTINUE;
+		}
+		if (branchId == 7 && ridth_tercarcha_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+		{
+			return SCRIPT_CONTINUE;
+		}
+		if (branchId == 8 && ridth_tercarcha_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+		{
+			return SCRIPT_CONTINUE;
+		}
+		if (branchId == 9 && ridth_tercarcha_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+		{
+			return SCRIPT_CONTINUE;
+		}
+		if (branchId == 11 && ridth_tercarcha_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+		{
+			return SCRIPT_CONTINUE;
+		}
+		if (branchId == 13 && ridth_tercarcha_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+		{
+			return SCRIPT_CONTINUE;
+		}
+		if (branchId == 16 && ridth_tercarcha_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+		{
+			return SCRIPT_CONTINUE;
+		}
+		if (branchId == 17 && ridth_tercarcha_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+		{
+			return SCRIPT_CONTINUE;
+		}
+		if (branchId == 18 && ridth_tercarcha_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+		{
+			return SCRIPT_CONTINUE;
+		}
+		if (branchId == 21 && ridth_tercarcha_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+		{
+			return SCRIPT_CONTINUE;
+		}
+		if (branchId == 22 && ridth_tercarcha_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+		{
+			return SCRIPT_CONTINUE;
+		}
+		if (branchId == 23 && ridth_tercarcha_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+		{
+			return SCRIPT_CONTINUE;
+		}
+		if (branchId == 24 && ridth_tercarcha_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+		{
+			return SCRIPT_CONTINUE;
+		}
+		if (branchId == 25 && ridth_tercarcha_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+		{
+			return SCRIPT_CONTINUE;
+		}
+		if (branchId == 26 && ridth_tercarcha_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+		{
+			return SCRIPT_CONTINUE;
+		}
+		chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+
+		utils.removeScriptVar(player, "conversation.ridth_tercarcha.branchId");
+
+		return SCRIPT_CONTINUE;
+	}
 }
