@@ -48,6 +48,7 @@ public class stage_one_terminal extends script.base_script
     }
     public int OnObjectMenuSelect(obj_id self, obj_id player, int item) throws InterruptedException
     {
+        groundquests.sendSignal(player, "accessKeypad");
         if (item == menu_info_types.ITEM_USE)
         {
             if (!trial.isCellPublic(self, ROOM_AHEAD))
