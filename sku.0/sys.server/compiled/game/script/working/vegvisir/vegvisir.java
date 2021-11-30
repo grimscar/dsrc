@@ -8,6 +8,8 @@ public class vegvisir extends script.base_script
 {
     public int OnSpeaking(obj_id self, String text) throws InterruptedException
     {
+        StringTokenizer st = new java.util.StringTokenizer(txt);
+        String command = null;
         if (text.equals("bunker"))
         {
             location loc = getLocation(self);
