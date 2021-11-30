@@ -2,7 +2,7 @@ package script.conversation;
 
 import script.library.ai_lib;
 import script.library.chat;
-import script.library.prose;
+import script.library.trial;
 import script.library.utils;
 
 import script.*;
@@ -17,6 +17,7 @@ public class ancient_stage_three_terminal extends script.base_script
 	public static final String ValveOneAnswer = "valveOneAnswer";
     public static final String ValveTwoAnswer = "valveTwoAnswer";
     public static final String ValveThreeAnswer = "valveThreeAnswer";
+    public static final String ROOM_AHEAD = "basement";
 
 	public int assignValveStatus() throws InterruptedException
 	{
@@ -25,7 +26,6 @@ public class ancient_stage_three_terminal extends script.base_script
 		utils.setScriptVar(getSelf(), ValveThreeAnswer, rand(1,2));
 		return SCRIPT_CONTINUE;
 	}
-
 	public boolean valveAnswerCheck(obj_id self) throws InterruptedException
 	{
 		int v1 = utils.getIntScriptVar(getSelf(), ValveOneOpen);
@@ -36,11 +36,19 @@ public class ancient_stage_three_terminal extends script.base_script
 		int v3a = utils.getIntScriptVar(getSelf(), ValveThreeAnswer);
 		if (v1 == v1a && v2 == v2a && v3 == v3a)
 		{
+			openBasement(self);
 			return true;
 		}
 		return false;
 	}
-
+	public void openBasement(obj_id self) throws InterruptedException
+	{
+		obj_id building = getTopMostContainer(self);
+		if (!trial.isCellPublic(self, ROOM_AHEAD))
+		{
+			trial.makeCellPublic(building, ROOM_AHEAD);
+		}
+	}
 	public boolean ancient_stage_three_terminal_condition__defaultCondition(obj_id player, obj_id npc) throws InterruptedException
 	{
 		return true;
@@ -49,7 +57,6 @@ public class ancient_stage_three_terminal extends script.base_script
 	{
 		return true;
 	}
-
 	public String puzzleStatus(obj_id player, obj_id npc) throws InterruptedException
 	{
         boolean status = utils.getBooleanScriptVar(npc, PuzzleStatus);
@@ -59,7 +66,6 @@ public class ancient_stage_three_terminal extends script.base_script
 		}
 		return new String("Malfunctioning");
 	}
-
 	public String valveUpdateStatus(obj_id self, int valve) throws InterruptedException
 	{
 		String valveStr = "filler";
@@ -86,6 +92,7 @@ public class ancient_stage_three_terminal extends script.base_script
 		}
 		return new String("Jammed");
 	}
+
 	public int ancient_stage_three_terminal_handleBranch1(obj_id player, obj_id npc, string_id response) throws InterruptedException
 	{
 		//--[BRANCH NOTE] Initial Weclome Screen:
@@ -160,8 +167,6 @@ public class ancient_stage_three_terminal extends script.base_script
                     pp.stringId = message;
 					String status = "Current Waterflow Status: ["+puzzleStatus(player, npc)+"]"+"\n\nValve 1: "+valveUpdateStatus(npc, 1)+"\nValve 2: "+valveUpdateStatus(npc, 2)+"\nValve 3: "+valveUpdateStatus(npc, 3);
                     pp.other.set(status);
-                    //pp.other.set(valveTwoStatus(player, npc));
-                    //pp.other.set(valveThreeStatus(player, npc));
 					npcSpeak(player, pp);
 					npcSetConversationResponses(player, responses);
 				}
@@ -659,8 +664,6 @@ public class ancient_stage_three_terminal extends script.base_script
                     pp.stringId = message;
                     String status = "Current Waterflow Status: ["+puzzleStatus(player, npc)+"]"+"\n\nValve 1: "+valveUpdateStatus(npc, 1)+"\nValve 2: "+valveUpdateStatus(npc, 2)+"\nValve 3: "+valveUpdateStatus(npc, 3);
                     pp.other.set(status);
-                    //pp.other.set(valveTwoStatus(player, npc));
-                    //pp.other.set(valveThreeStatus(player, npc));
 					npcSpeak(player, pp);
 					npcSetConversationResponses(player, responses);
 				}
