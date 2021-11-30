@@ -8,7 +8,7 @@ public class vegvisir extends script.base_script
 {
     public int OnSpeaking(obj_id self, String text) throws InterruptedException
     {
-        StringTokenizer st = new java.util.StringTokenizer(txt);
+        StringTokenizer st = new java.util.StringTokenizer(text);
         String command = null;
         if (text.equals("bunker"))
         {
