@@ -6,6 +6,7 @@ import script.string_id;
 public class kneel_easter_egg extends script.base_script
 {
     public static final string_id WHISPER = new string_id("mind_whisper", "You hear a faint whisper from Mother Jungle in your mind...");
+    public static final string_id FAILURE = new string_id("failure", "Something is amiss or not an Ithorian/Kneeling/Self");
     public kneel_easter_egg()
     {
     }
@@ -18,6 +19,7 @@ public class kneel_easter_egg extends script.base_script
         {
             sendSystemMessage(player, WHISPER);
         }
+        sendSystemMessage(player, FAILURE);
         return SCRIPT_CONTINUE;
     }
 }
