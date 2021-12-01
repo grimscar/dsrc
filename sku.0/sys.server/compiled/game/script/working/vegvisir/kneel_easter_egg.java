@@ -21,7 +21,8 @@ public class kneel_easter_egg extends script.base_script
         sendSystemMessage(self, FAILURE);
         return SCRIPT_CONTINUE;
     }
-    /*public int kneel(obj_id player, obj_id target) throws InterruptedException
+    /*
+    public int kneel(obj_id player, obj_id target) throws InterruptedException
     {
         int targetSpecies = getSpecies(target);
         int posture = getPosture(player);
@@ -32,8 +33,7 @@ public class kneel_easter_egg extends script.base_script
         }
         sendSystemMessage(player, FAILURE);
         return SCRIPT_CONTINUE;
-    }*/
-    /*
+    }
     public int kneel(obj_id object) throws InterruptedException
     {
         obj_id target = getIntendedTarget(object);
@@ -47,12 +47,11 @@ public class kneel_easter_egg extends script.base_script
         }
         sendSystemMessage(player, FAILURE);
         return SCRIPT_CONTINUE;
-    }*/
-
-    /*public int kneel(obj_id object) throws InterruptedException
+    }
+    public int kneel(obj_id object) throws InterruptedException
     {
         obj_id player = getSelf();
         sendSystemMessage(player, WHISPER);
         return SCRIPT_CONTINUE;
-    }/*
+    }*/
 }
