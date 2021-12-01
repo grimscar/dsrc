@@ -12,7 +12,7 @@ public class kneel_easter_egg extends script.base_script
 
     public int OnChangedPosture(obj_id self, int oldPosture, int newPosture) throws InterruptedException
     {
-        obj_id target = getTarget();
+        obj_id target = getTarget(target);
         obj_id playerKneeling = getIntendedTarget(target);
         int targetSpecies = getSpecies(target);
 
