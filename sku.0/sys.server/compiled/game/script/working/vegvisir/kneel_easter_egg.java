@@ -1,23 +1,25 @@
 package script.working.vegvisir;
 
 import script.obj_id;
-import script.string_id;
-import script.library.posture;
 
 public class kneel_easter_egg extends script.base_script
 {
-    public static final string_id WHISPER = new String("You hear a faint whisper from Mother Jungle in your mind...");
-    public static final string_id FAILURE = new String("Something is amiss or not an Ithorian/Kneeling/Self");
+    public static final String WHISPER = new String("You hear a faint whisper from Mother Jungle in your mind...");
+    public static final String FAILURE = new String("It failed the if");
     public kneel_easter_egg()
     {
     }
 
     public int OnChangedPosture(obj_id self, int oldPosture, int newPosture) throws InterruptedException
     {
-        if (newPosture == POSTURE_CROUCHED && oldPosture != POSTURE_CROUCHED)
+        obj_id target = getTarget();
+        obj_id playerKneeling = getIntendedTarget(target);
+        int targetSpecies = getSpecies(target);
+
+        if (newPosture == POSTURE_CROUCHED && oldPosture != POSTURE_CROUCHED && target != self && targetSpecies == SPECIES_ITHORIAN)
         {
             sendSystemMessage(self, WHISPER, null);
-            return SCRIPT_DEFAULT;
+            return SCRIPT_OVERRIDE;
         }
         sendSystemMessage(self, FAILURE, null);
         return SCRIPT_CONTINUE;
