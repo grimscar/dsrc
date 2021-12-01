@@ -13,7 +13,8 @@ public class kneel_easter_egg extends script.base_script
     {
         int targetSpecies = getSpecies(target);
         int posture = getPosture(player);
-        if (targetSpecies == SPECIES_ITHORIAN && posture == POSTURE_CROUCHED && target != player)
+        obj_id playerKneeling = getIntendedTarget(target);
+        if (targetSpecies == SPECIES_ITHORIAN && posture == POSTURE_CROUCHED && playerKneeling != player)
         {
             sendSystemMessage(player, WHISPER);
         }
