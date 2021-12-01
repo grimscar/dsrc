@@ -17,6 +17,7 @@ public class kneel_easter_egg extends script.base_script
         if (newPosture == POSTURE_CROUCHED && oldPosture != POSTURE_CROUCHED)
         {
             sendSystemMessage(self, WHISPER);
+            return SCRIPT_DEFAULT;
         }
         sendSystemMessage(self, FAILURE);
         return SCRIPT_CONTINUE;
