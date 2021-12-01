@@ -10,8 +10,22 @@ public class kneel_easter_egg extends script.base_script
     public kneel_easter_egg()
     {
     }
-    public int kneel(obj_id player, obj_id target) throws InterruptedException
+    /*public int kneel(obj_id player, obj_id target) throws InterruptedException
     {
+        int targetSpecies = getSpecies(target);
+        int posture = getPosture(player);
+        obj_id playerKneeling = getIntendedTarget(target);
+        if (targetSpecies == SPECIES_ITHORIAN && posture == POSTURE_CROUCHED && playerKneeling != player)
+        {
+            sendSystemMessage(player, WHISPER);
+        }
+        sendSystemMessage(player, FAILURE);
+        return SCRIPT_CONTINUE;
+    }*/
+    public int kneel(obj_id object) throws InterruptedException
+    {
+        obj_id target = getIntendedTarget(object);
+        obj_id player = getSelf();
         int targetSpecies = getSpecies(target);
         int posture = getPosture(player);
         obj_id playerKneeling = getIntendedTarget(target);
