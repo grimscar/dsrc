@@ -16,7 +16,7 @@ public class kneel_easter_egg extends script.base_script
         obj_id playerKneeling = getIntendedTarget(target);
         int targetSpecies = getSpecies(target);
 
-        if (newPosture == POSTURE_CROUCHED && oldPosture != POSTURE_CROUCHED && target != self && targetSpecies == SPECIES_ITHORIAN)
+        if (newPosture == POSTURE_CROUCHED && oldPosture != POSTURE_CROUCHED && playerKneeling != self && targetSpecies == SPECIES_ITHORIAN)
         {
             sendSystemMessage(self, WHISPER, null);
             return SCRIPT_OVERRIDE;
