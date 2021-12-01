@@ -2,6 +2,7 @@ package script.working.vegvisir;
 
 import script.obj_id;
 import script.string_id;
+import script.library.posture;
 
 public class kneel_easter_egg extends script.base_script
 {
