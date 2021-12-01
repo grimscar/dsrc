@@ -4,6 +4,8 @@ import java.util.StringTokenizer;
 import script.*;
 import script.library.*;
 
+//675531865 Corellia Cloner
+
 public class vegvisir extends script.base_script
 {
     public int OnSpeaking(obj_id self, String text) throws InterruptedException
@@ -18,6 +20,10 @@ public class vegvisir extends script.base_script
                 location loc = getLocation(self);
                 obj_id container = create.object("object/building/general/boss_nass_dungeon.iff", loc);
                 attachScript(container, "restoration.quests.character_slot.cave_master");
+            }
+            if(command.equals("test"))
+            {
+                sendSystemMessageTestingOnly(self, "LKAJSDFLJSDFL");
             }
             if(command.equals("yaw"))
             {
