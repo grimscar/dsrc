@@ -23,6 +23,14 @@ public class survivor_pathing extends script.base_script
     public static final String WAYPOINT_LIST = "wayPointList";
     public static final String WAYPOINT_LOCS = "wayPtLocs";
     public static final int RADIUS = 300;
+
+    public int setMobSpeed(obj_id self) throws InterruptedException
+    {
+        setMovementRun(self);
+        setBaseRunSpeed(self, (getBaseRunSpeed(self) - 8));
+        return SCRIPT_CONTINUE;
+    }
+
     public int OnIncapacitated(obj_id self, obj_id killer) throws InterruptedException
     {
         if (hasObjVar(self, "rescue") || hasObjVar(self, "incap"))
@@ -49,17 +57,11 @@ public class survivor_pathing extends script.base_script
     }
     public int OnMovePathComplete(obj_id self) throws InterruptedException
     {
-        setMovementRun(self);
-        setBaseRunSpeed(self, getBaseRunSpeed(self));
-        //setBaseRunSpeed(self, (getBaseRunSpeed(self) - 7.2f));
-        return SCRIPT_CONTINUE;
+       return setMobSpeed(self);
     }
     public int OnMoveMoving(obj_id self) throws InterruptedException
     {
-        setMovementRun(self);
-        setBaseRunSpeed(self, getBaseRunSpeed(self));
-        //setBaseRunSpeed(self, (getBaseRunSpeed(self) - 7.2f));
-        return SCRIPT_CONTINUE;
+        return setMobSpeed(self);
     }
     public int startSurvivorPathing(obj_id self, dictionary params) throws InterruptedException
     {
@@ -80,10 +82,7 @@ public class survivor_pathing extends script.base_script
             CustomerServiceLog("outbreak_themepark", "survivor_pathing.startSurvivorPathing() Mob: " + self + " FAILED TO FIND waypointPathNodeLocations OBJVAR.");
             return SCRIPT_CONTINUE;
         }
-
-        setMovementRun(self);
-        setBaseRunSpeed(self, getBaseRunSpeed(self));
-        //setBaseRunSpeed(self, (getBaseRunSpeed(self) - 7.2f));
+        setMobSpeed(self);
         setInvulnerable(self, false);
         utils.setScriptVar(self, ai_lib.SCRIPTVAR_CACHED_PATROL_NAMED_PATH, wayPtLocs);
         utils.setScriptVar(self, ai_lib.SCRIPTVAR_CACHED_PATROL_TYPE, 0);
