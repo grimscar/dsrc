@@ -21,12 +21,12 @@ public class vegvisir extends script.base_script
                 obj_id container = create.object("object/building/general/boss_nass_dungeon.iff", loc);
                 attachScript(container, "restoration.quests.character_slot.cave_master");
             }
-            if (text.equals("whatSpeed"))
+            /*if (text.equals("whatSpeed"))
             {
                 float speed = getBaseRunSpeed(self);
-                String speedstr = new String(speed);
+                String speedstr = new intToString(speed);
                 sendSystemMessageTestingOnly(self, speedstr);
-            }
+            }*/
             if(command.equals("test"))
             {
                 sendSystemMessageTestingOnly(self, "LKAJSDFLJSDFL");
