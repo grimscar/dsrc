@@ -1,4 +1,4 @@
-package script.working.vegvisir;
+package script.working.vegvisir_tc;
 
 import script.*;
 import script.library.*;
