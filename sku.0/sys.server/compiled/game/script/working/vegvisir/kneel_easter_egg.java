@@ -5,7 +5,6 @@ import script.obj_id;
 public class kneel_easter_egg extends script.base_script
 {
     public static final String WHISPER = new String("You hear a faint whisper from Mother Jungle in your mind...");
-    public static final String FAILURE = new String("It failed the if");
     public kneel_easter_egg()
     {
     }
@@ -20,7 +19,6 @@ public class kneel_easter_egg extends script.base_script
             sendSystemMessage(self, WHISPER, null);
             return SCRIPT_OVERRIDE;
         }
-        sendSystemMessage(self, FAILURE, null);
         return SCRIPT_CONTINUE;
     }
 }
