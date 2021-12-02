@@ -24,11 +24,10 @@ public class survivor_pathing extends script.base_script
     public static final String WAYPOINT_LOCS = "wayPtLocs";
     public static final int RADIUS = 300;
 
-    public int setMobSpeed(obj_id self) throws InterruptedException
+    public static void setMobSpeed(obj_id self) throws InterruptedException
     {
         setMovementRun(self);
         setBaseRunSpeed(self, 5.376f);
-        return SCRIPT_CONTINUE;
     }
 
     public int OnIncapacitated(obj_id self, obj_id killer) throws InterruptedException
@@ -57,11 +56,13 @@ public class survivor_pathing extends script.base_script
     }
     public int OnMovePathComplete(obj_id self) throws InterruptedException
     {
-       return setMobSpeed(self);
+       setMobSpeed(self);
+       return SCRIPT_CONTINUE;
     }
     public int OnMoveMoving(obj_id self) throws InterruptedException
     {
-        return setMobSpeed(self);
+        setMobSpeed(self);
+        return SCRIPT_CONTINUE;
     }
     public int startSurvivorPathing(obj_id self, dictionary params) throws InterruptedException
     {
