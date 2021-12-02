@@ -27,6 +27,10 @@ public class vegvisir extends script.base_script
                 String speedstr = Float.toString(speed);
                 sendSystemMessageTestingOnly(self, speedstr);
             }
+            if (text.equals("whatSpeed"))
+            {
+                //script reload theme_park.meatlump.mtp_vendor
+            }
             if(command.equals("test"))
             {
                 sendSystemMessageTestingOnly(self, "LKAJSDFLJSDFL");
