@@ -50,13 +50,13 @@ public class survivor_pathing extends script.base_script
     public int OnMovePathComplete(obj_id self) throws InterruptedException
     {
         setMovementRun(self);
-        setBaseRunSpeed(self, (getBaseRunSpeed(self) - 7));
+        setBaseRunSpeed(self, (getBaseRunSpeed(self) - 8));
         return SCRIPT_CONTINUE;
     }
     public int OnMoveMoving(obj_id self) throws InterruptedException
     {
         setMovementRun(self);
-        setBaseRunSpeed(self, (getBaseRunSpeed(self) - 7));
+        setBaseRunSpeed(self, (getBaseRunSpeed(self) - 8));
         return SCRIPT_CONTINUE;
     }
     public int startSurvivorPathing(obj_id self, dictionary params) throws InterruptedException
@@ -79,7 +79,7 @@ public class survivor_pathing extends script.base_script
             return SCRIPT_CONTINUE;
         }
         setMovementRun(self);
-        setBaseRunSpeed(self, (getBaseRunSpeed(self) - 7));
+        setBaseRunSpeed(self, (getBaseRunSpeed(self) - 8));
         setInvulnerable(self, false);
         utils.setScriptVar(self, ai_lib.SCRIPTVAR_CACHED_PATROL_NAMED_PATH, wayPtLocs);
         utils.setScriptVar(self, ai_lib.SCRIPTVAR_CACHED_PATROL_TYPE, 0);
