@@ -29,7 +29,7 @@ public class survivor_pathing extends script.base_script
         setMovementRun(self);
         //setBaseRunSpeed(self, (getBaseRunSpeed(self) - 8));
         //setMovementPercent(self, 0.25f);
-        setBaseRunSpeed(self, 5f);
+        setBaseRunSpeed(self, 6f);
         return SCRIPT_CONTINUE;
     }
 
@@ -101,7 +101,7 @@ public class survivor_pathing extends script.base_script
         {
             CustomerServiceLog("outbreak_themepark", "survivor_pathing.creditPlayerRescue() ERROR - Player could not be properly credited for rescuing this NPC.");
         }
-        else 
+        else
         {
             CustomerServiceLog("outbreak_themepark", "survivor_pathing.creditPlayerRescue() Player was properly credited for rescuing this NPC.");
             destroyObject(self);
@@ -202,7 +202,7 @@ public class survivor_pathing extends script.base_script
                 CustomerServiceLog("outbreak_themepark", "survivor_pathing.checkOwnerValidity() Mob: " + self + " is checking its very first location. Will check again later to see if stuck.");
                 setObjVar(self, "lastLocation", getLocation(self));
             }
-            else 
+            else
             {
                 location currentLocation = getLocation(self);
                 location lastLocation = getLocationObjVar(self, "lastLocation");
@@ -266,7 +266,7 @@ public class survivor_pathing extends script.base_script
                             pathTo(self, waypointLocList[waypointLocList.length - 1]);
                             return SCRIPT_CONTINUE;
                         }
-                        else 
+                        else
                         {
                             location[] newPathLocs = new location[newArrayLength];
                             System.arraycopy(waypointLocList, (pathNodePriority - 1), newPathLocs, 0, newArrayLength);
@@ -274,13 +274,13 @@ public class survivor_pathing extends script.base_script
                         }
                     }
                 }
-                else 
+                else
                 {
                     setObjVar(self, "lastLocation", getLocation(self));
                 }
             }
         }
-        else 
+        else
         {
         }
         messageTo(self, "checkOwnerValidity", null, 10, false);
