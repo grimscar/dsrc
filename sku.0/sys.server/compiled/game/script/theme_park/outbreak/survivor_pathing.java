@@ -27,7 +27,8 @@ public class survivor_pathing extends script.base_script
     public int setMobSpeed(obj_id self) throws InterruptedException
     {
         setMovementRun(self);
-        setBaseRunSpeed(self, (getBaseRunSpeed(self) - 10));
+        //setBaseRunSpeed(self, (getBaseRunSpeed(self) - 10));
+        setMovementPercent(self, 0.75f);
         return SCRIPT_CONTINUE;
     }
 
