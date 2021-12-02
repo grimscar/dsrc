@@ -29,6 +29,14 @@ public class mtp_vendor extends script.base_script
         messageTo(self, "handleInitializeVendor", null, 10, false);
         return SCRIPT_CONTINUE;
     }
+    public int OnAboutToReceiveItem(obj_id self, obj_id srcContainer, obj_id transferer, obj_id item) throws InterruptedException
+    {
+        if (utils.isNestedWithinAPlayer(item))
+        {
+            return SCRIPT_OVERRIDE;
+        }
+        return SCRIPT_CONTINUE;
+    }
     public int handleInitializeVendor(obj_id self, dictionary params) throws InterruptedException
     {
         if (!hasObjVar(self, VENDOR_TABLE_OBJVAR))
