@@ -1,5 +1,7 @@
 package script.working.vegvisir;
 
+import script.*;
+import script.library.*;
 
 public class vegvisir_tc extends script.base_script
 {
