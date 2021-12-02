@@ -28,7 +28,7 @@ public class survivor_pathing extends script.base_script
     {
         setMovementRun(self);
         //setBaseRunSpeed(self, (getBaseRunSpeed(self) - 10));
-        setMovementPercent(self, 0.75f);
+        setMovementPercent(self, 0.25f);
         return SCRIPT_CONTINUE;
     }
 
