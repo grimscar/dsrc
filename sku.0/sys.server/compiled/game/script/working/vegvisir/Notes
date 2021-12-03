@@ -1,0 +1,20 @@
+object_for_sale.java edits
+
+    public static final String BUY_LIMIT = "working.vegvisir.vendor_buy_limit";
+    public static final String LIMITED_TIME_ITEM = "item.object_for_sale.limited_time_purchase";
+
+    public boolean isLimitedTimeItem(obj_id item, obj_id player) throws InterruptedException
+    {
+        return hasScript(item, BUY_LIMIT);
+    }
+    public boolean hasPlayerPurchasedItem(int item, obj_id player) throws InterruptedException
+    {
+        int[] limitedTimeItems = getIntArrayObjVar(player, LIMITED_TIME_ITEM);
+        for (int singleItem : limitedTimeItems)
+        {
+            return singleItem == item;
+        }
+        return false;
+    }
+
+We have vendor_buy_limit.java

@@ -16,6 +16,8 @@ public class object_for_sale extends script.base_script
     }
     public static final String VENDOR_TOKEN_TYPE = "item.token.type";
     public static final string_id SID_INV_FULL = new string_id("spam", "npc_vendor_player_inv_full");
+    public static final String BUY_LIMIT = "working.vegvisir.vendor_buy_limit";
+    public static final String LIMITED_TIME_ITEM = "item.object_for_sale.limited_time_purchase";
     public int OnAttach(obj_id self) throws InterruptedException
     {
         setObjVar(self, township.OBJECT_FOR_SALE_ON_VENDOR, true);
@@ -130,7 +132,19 @@ public class object_for_sale extends script.base_script
         }
         return true;
     }
-
+    public boolean isLimitedTimeItem(obj_id item, obj_id player) throws InterruptedException
+    {
+        return hasScript(item, BUY_LIMIT);
+    }
+    public boolean hasPlayerPurchasedItem(int item, obj_id player) throws InterruptedException
+    {
+        int[] limitedTimeItems = getIntArrayObjVar(player, LIMITED_TIME_ITEM);
+        for (int singleItem : limitedTimeItems)
+        {
+            return singleItem == item;
+        }
+        return false;
+    }
     public boolean confirmFunds(obj_id self, obj_id player) throws InterruptedException {
         int creditCost = getIntObjVar(self, "item.object_for_sale.cash_cost");
         int[] tokenCosts = getIntArrayObjVar(self, "item.object_for_sale.token_cost");
