@@ -18,3 +18,6 @@ object_for_sale.java edits
     }
 
 We have vendor_buy_limit.java
+
+Master Item Tab has new item last row
+mtp_corellia_times_vendor.tab has new item bottom row
