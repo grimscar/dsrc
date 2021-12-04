@@ -27,9 +27,16 @@ public class vegvisir extends script.base_script
                 String speedstr = Float.toString(speed);
                 sendSystemMessageTestingOnly(self, speedstr);
             }
-            if (text.equals("whatSpeed"))
+            if (text.equals("whatBuildout"))
             {
-                //script reload theme_park.meatlump.mtp_vendor
+                location here = getLocation(self);
+                obj_id containingBuilding = getTopMostContainer(self);
+                if (isIdValid(containingBuilding))
+                {
+                    here = getLocation(containingBuilding);
+                }
+                String buildoutAreaName = getBuildoutAreaName(here.x, here.z);
+                sendSystemMessageTestingOnly(self, "You are in buildout area: " + buildoutAreaName);
             }
             if(command.equals("test"))
             {
