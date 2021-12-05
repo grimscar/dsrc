@@ -35,9 +35,7 @@ public class prisoner_pirate_cave extends script.base_script
     public void prisoner_pirate_cave_action_startEscort(obj_id player, obj_id npc) throws InterruptedException
     {
         groundquests.sendSignal(player, "hasFoundPrisoner");
-        ai_lib.aiFollow(npc, player, 1.0f, 3.0f);
-        setMovementRun(npc);
-        setBaseRunSpeed(npc, (getBaseRunSpeed(npc) - 8));
+        prisoner_pirate_cave_action_walkFaster(player, npc);
         setObjVar(npc, "traveling", 1);
         setObjVar(npc, "playerOwner", player);
         setInvulnerable(npc, false);
@@ -48,7 +46,6 @@ public class prisoner_pirate_cave extends script.base_script
     public void prisoner_pirate_cave_action_walkFaster(obj_id player, obj_id npc) throws InterruptedException
     {
         setMovementRun(npc);
-        setBaseRunSpeed(npc, (getBaseRunSpeed(npc) - 8));
         ai_lib.aiFollow(npc, player, 1.0f, 3.0f);
     }
     public int prisoner_pirate_cave_handleBranch3(obj_id player, obj_id npc, string_id response) throws InterruptedException
@@ -182,7 +179,6 @@ public class prisoner_pirate_cave extends script.base_script
     public int checkArrivalLoopHandler(obj_id self, dictionary params) throws InterruptedException
     {
         setMovementRun(self);
-        setBaseRunSpeed(self, getBaseRunSpeed(self));
         obj_id player = getObjIdObjVar(self, "playerOwner");
         if (!isValidId(player))
         {
@@ -267,7 +263,6 @@ public class prisoner_pirate_cave extends script.base_script
         prisonerPath[0] = new location(-3048, 37, -719, "lok", null);
         setYaw(self, -95.0f);
         setMovementRun(self);
-        setBaseRunSpeed(self, (getBaseRunSpeed(self) - 8));
         utils.setScriptVar(self, ai_lib.SCRIPTVAR_CACHED_PATROL_NAMED_PATH, prisonerPath);
         utils.setScriptVar(self, ai_lib.SCRIPTVAR_CACHED_PATROL_TYPE, 0);
         patrolOnce(self, prisonerPath, 0);

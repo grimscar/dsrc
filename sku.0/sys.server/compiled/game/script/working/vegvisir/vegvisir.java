@@ -29,14 +29,14 @@ public class vegvisir extends script.base_script
             }
             if (text.equals("whatBuildout"))
             {
-                location here = getLocation(self);
-                obj_id containingBuilding = getTopMostContainer(self);
-                if (isIdValid(containingBuilding))
+                location thisLoc = getLocation(self);
+                obj_id inBuild = getTopMostContainer(self);
+                if (isIdValid(inBuild))
                 {
-                    here = getLocation(containingBuilding);
+                    thisLoc = getLocation(inBuild);
                 }
-                String buildoutAreaName = getBuildoutAreaName(here.x, here.z);
-                sendSystemMessageTestingOnly(self, "You are in buildout area: " + buildoutAreaName);
+                String buildoutAreaName = getBuildoutAreaName(thisLoc.x, thisLoc.z);
+                sendSystemMessageTestingOnly(self, buildoutAreaName);
             }
             if(command.equals("test"))
             {
