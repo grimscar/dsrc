@@ -1,10 +1,6 @@
 package script.restoration.quests.character_slot;
 
-import script.dictionary;
-import script.menu_info;
-import script.menu_info_types;
-import script.obj_id;
-import script.string_id;
+import script.*;
 
 public class stage_two_instructions extends script.base_script
 {

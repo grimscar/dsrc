@@ -1,10 +1,10 @@
 package script.restoration.quests.character_slot;
 
+import script.library.create;
+import script.library.trial;
 import script.location;
 import script.obj_id;
 import script.string_id;
-import script.library.create;
-import script.library.trial;
 
 public class cave_master extends script.base_script
 {

@@ -1,11 +1,6 @@
 package script.restoration.quests.character_slot;
 
-import script.dictionary;
-import script.location;
-import script.menu_info;
-import script.menu_info_types;
-import script.obj_id;
-import script.string_id;
+import script.*;
 import script.library.create;
 import script.library.luck;
 import script.library.utils;

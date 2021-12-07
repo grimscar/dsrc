@@ -1,13 +1,7 @@
 package script.restoration.quests.character_slot;
 
-import script.dictionary;
-import script.location;
-import script.menu_info;
-import script.menu_info_types;
-import script.obj_id;
-import script.string_id;
+import script.*;
 import script.library.create;
-import script.library.groundquests;
 import script.library.player_structure;
 import script.library.trial;
 
@@ -108,7 +102,7 @@ public class stage_two_terminal extends script.base_script
             d.put("terminal", self);
             messageTo(getObjIdObjVar(self, "reactor"), "checkCotentsForReboot", d, 0f, false);
         }
-        else
+        else 
         {
             mi.addRootMenu(menu_info_types.ITEM_USE, SID_ONLINE);
         }
@@ -122,7 +116,6 @@ public class stage_two_terminal extends script.base_script
         {
             if (isUnlocked)
             {
-                groundquests.sendSignal(player, "rebootReactor");
                 trial.makeCellPublic(getTopMostContainer(self), ROOM_AHEAD);
             }
         }
@@ -242,10 +235,10 @@ public class stage_two_terminal extends script.base_script
                 obj_id[] contents = getInventoryAndEquipment(player);
                 if (contents != null)
                 {
-                    for (obj_id inventoryObject : contents)
+                    for (obj_id inventoryObject : contents) 
                     {
                         boolean ancient = hasObjVar(inventoryObject, "ancient");
-                        if (ancient)
+                        if (ancient) 
                         {
                             destroyObject(inventoryObject);
                         }

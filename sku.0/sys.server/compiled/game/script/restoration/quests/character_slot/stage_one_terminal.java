@@ -1,13 +1,7 @@
 package script.restoration.quests.character_slot;
 
-import script.dictionary;
-import script.location;
-import script.menu_info;
-import script.menu_info_types;
-import script.obj_id;
-import script.string_id;
+import script.*;
 import script.library.create;
-import script.library.groundquests;
 import script.library.trial;
 
 public class stage_one_terminal extends script.base_script
@@ -39,7 +33,7 @@ public class stage_one_terminal extends script.base_script
         {
             mi.addRootMenu(menu_info_types.ITEM_USE, SID_LOCKED);
         }
-        else
+        else 
         {
             mi.addRootMenu(menu_info_types.ITEM_USE, SID_NOT_LOCKED);
         }
@@ -48,7 +42,6 @@ public class stage_one_terminal extends script.base_script
     }
     public int OnObjectMenuSelect(obj_id self, obj_id player, int item) throws InterruptedException
     {
-        groundquests.sendSignal(player, "accessKeypad");
         if (item == menu_info_types.ITEM_USE)
         {
             if (!trial.isCellPublic(self, ROOM_AHEAD))
@@ -93,11 +86,11 @@ public class stage_one_terminal extends script.base_script
         {
             if (passkey.equals(result))
             {
-                groundquests.sendSignal(player, "correctCode");
+                //groundquests.sendSignal(player, "mustafar_droidfactory_final");
                 trial.makeCellPublic(getTopMostContainer(self), ROOM_AHEAD);
                 return SCRIPT_CONTINUE;
             }
-            else
+            else 
             {
                 sendSystemMessage(player, WRONG_CODE);
             }
